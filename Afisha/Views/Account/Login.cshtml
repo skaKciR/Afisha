@@ -1,9 +1,9 @@
-﻿@model Afisha.Models.LoginViewModel
+﻿		@model Afisha.Models.LoginViewModel
 <div >
 	<div class="login"><h1>Вход в личный кабинет </h1></div>
 	
 	<div class="">
-		<form asp-area="" asp-controller="Account" asp-action="Login" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
+		<form asp-area="" asp-controller="Account" asp-action="Login" method="post">
 			<div asp-validation-summary="All"></div>
 			<div>
 				<label asp-for="UserName"></label>
@@ -20,9 +20,11 @@
 				<input type="checkbox" asp-for="RememberMe"/>
 				<span asp-validation-for="RememberMe"></span>
 			</div>
+			<a asp-controller="Account" asp-action="Register">Зарегистрироваться</a>
 			<div>
 				<input type="submit" value="Войти"/>
 			</div>
-		</form>
-	</div>
+        </form>
+
+    </div>
 </div>

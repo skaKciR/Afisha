@@ -3,6 +3,7 @@ using Afisha.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Afisha.Models;
 
 namespace Afisha.Domain
 {

@@ -4,6 +4,7 @@ using Afisha.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Afisha.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221025082616_init1")]
+    partial class init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,7 +117,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageConcerts",
-                            DateAdded = new DateTime(2022, 10, 25, 12, 10, 39, 970, DateTimeKind.Utc).AddTicks(1494),
+                            DateAdded = new DateTime(2022, 10, 25, 8, 26, 16, 139, DateTimeKind.Utc).AddTicks(2821),
                             Text = "Содержание заполняется админом",
                             Title = "Концерты"
                         },
@@ -123,7 +125,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageCinema",
-                            DateAdded = new DateTime(2022, 10, 25, 12, 10, 39, 970, DateTimeKind.Utc).AddTicks(1531),
+                            DateAdded = new DateTime(2022, 10, 25, 8, 26, 16, 139, DateTimeKind.Utc).AddTicks(2877),
                             Text = "Содержание заполняется админом",
                             Title = "Кино"
                         },
@@ -131,7 +133,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 10, 25, 12, 10, 39, 970, DateTimeKind.Utc).AddTicks(1546),
+                            DateAdded = new DateTime(2022, 10, 25, 8, 26, 16, 139, DateTimeKind.Utc).AddTicks(2905),
                             Text = "Содержание заполняется админом",
                             Title = "Контакты"
                         },
@@ -139,7 +141,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"),
                             CodeWord = "Sign",
-                            DateAdded = new DateTime(2022, 10, 25, 12, 10, 39, 970, DateTimeKind.Utc).AddTicks(1560),
+                            DateAdded = new DateTime(2022, 10, 25, 8, 26, 16, 139, DateTimeKind.Utc).AddTicks(2930),
                             Text = "Содержание заполняется админом",
                             Title = "Личный кабинет"
                         });
@@ -175,7 +177,7 @@ namespace Afisha.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "7bb821e4-3da5-4fcb-8871-2bce63720e1a",
+                            ConcurrencyStamp = "732b21c9-8f0f-44e9-8218-f650e9b98a24",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -275,13 +277,13 @@ namespace Afisha.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9094c1c3-77ec-490b-875a-bf0b40f902d6",
+                            ConcurrencyStamp = "5eaa7d8d-c302-4266-b596-dc8bb8f914a4",
                             Email = "afisheshelper@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AFISHESHELPER@MAIL.RU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI6MbDUjLaHebFOBqDQboEbAXoOYLioPB+/qlf2DV7V4pR817N0TowwcSTela8+2hQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOzocQwgfJz8Nb7xRqaFqR4DcxGBrHcpBhTAN05H2gbsXmywHoNegPDqLz3tsurU5w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

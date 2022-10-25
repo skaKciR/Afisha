@@ -31,7 +31,16 @@
 				</li>
 				<li><a href="left-sidebar.html">Кино</a></li>
 				<li class="break"><a href="right-sidebar.html">Контакты</a></li>
-				<li><a href="/account/login/">Профиль</a></li>
+				<li>
+					@if(User.Identity.IsAuthenticated){
+						<a asp-controller="Account" asp-action="Login">Профиль</a>
+						<a asp-controller="Account" asp-action="Logout">Выйти</a>
+					} else{
+						<a asp-controller="Account" asp-action="Login">Войти</a>
+					}
+					
+				</li>
+
 			</ul>
 		</nav>
 

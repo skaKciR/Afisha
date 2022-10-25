@@ -4,6 +4,7 @@ using Afisha.Domain.Repositories.EntityFramework;
 using Afisha.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Afisha.Models;
 
 
 public class Startup
