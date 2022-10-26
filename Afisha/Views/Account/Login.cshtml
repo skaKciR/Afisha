@@ -1,29 +1,30 @@
 ﻿		@model Afisha.Models.LoginViewModel
-<div >
+<div class="center">
 	<div class="login"><h1>Вход в личный кабинет </h1></div>
 	
-	<div class="">
+	<div >
 		<form asp-area="" asp-controller="Account" asp-action="Login" method="post">
 			<div asp-validation-summary="All"></div>
 			<div>
-				<label asp-for="UserName"></label>
+				<label asp-for="UserName">Логин</label>
 				<input asp-for="UserName"/>
 				<span asp-validation-for="UserName"></span>
 			</div>
 			<div>
-				<label asp-for="Password"></label>
+				<label asp-for="Password">Пароль</label>
 				<input asp-for="Password"/>
 				<span asp-validation-for="Password"></span>
 			</div>
 			<div class="checkbox-group">
-				<label asp-for="RememberMe"></label>
+				<label asp-for="RememberMe">Запомнить меня</label>
 				<input type="checkbox" asp-for="RememberMe"/>
 				<span asp-validation-for="RememberMe"></span>
 			</div>
-			<a asp-controller="Account" asp-action="Register">Зарегистрироваться</a>
-			<div>
-				<input type="submit" value="Войти"/>
+			
+			<div class="login">
+				<input type="submit" value="Войти" />
 			</div>
+			<div class="login"><a asp-controller="Account" asp-action="Register">Еще нет аккаунта? Зарегистрироваться</a></div>
         </form>
 
     </div>

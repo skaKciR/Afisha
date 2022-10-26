@@ -33,8 +33,15 @@
 				<li class="break"><a href="right-sidebar.html">Контакты</a></li>
 				<li>
 					@if(User.Identity.IsAuthenticated){
-						<a asp-controller="Account" asp-action="Login">Профиль</a>
-						<a asp-controller="Account" asp-action="Logout">Выйти</a>
+						@if (User.IsInRole("admin"))
+						{
+							<a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+						}
+						else
+						{
+							<a asp-controller="Home" asp-action="Index">Профиль</a>
+						}
+						<li><a asp-controller="Account" asp-action="Logout">Выйти</a></li>
 					} else{
 						<a asp-controller="Account" asp-action="Login">Войти</a>
 					}

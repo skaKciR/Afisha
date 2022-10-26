@@ -1512,18 +1512,15 @@ form input[type=email],
 form input[type=password],
 form select,
 form textarea {
-  -moz-transition: background-color 0.25s ease-in-out;
-  -webkit-transition: background-color 0.25s ease-in-out;
-  -ms-transition: background-color 0.25s ease-in-out;
-  transition: background-color 0.25s ease-in-out;
-  -webkit-appearance: none;
-  display: block;
-  background: #f9fbfe;
-  border: solid 1px #d2d7dc;
-  border-radius: 0.35em;
-  width: 100%;
-  line-height: 1.5em;
-  padding: 0.75em;
+    -webkit-appearance: none;
+    display: block;
+    background: #f9fbfe;
+    border: solid 1px #d2d7dc;
+    border-radius: 0.35em;
+    width: 25%;
+    line-height: 2;
+    font-size: 19px;
+    padding-left: 0.8em;
 }
 form input[type=text]:focus,
 form input[type=email]:focus,
@@ -1582,19 +1579,21 @@ input[type=submit],
 input[type=reset],
 button,
 .button {
-  -moz-transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
-  -webkit-transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
-  -ms-transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
-  transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
-  display: inline-block;
-  color: inherit;
-  background: none;
-  text-decoration: none;
-  border: solid 1px #c2c7cc;
-  border-radius: 0.35em;
-  padding: 0.8em 2em 0.8em 2em;
-  cursor: pointer;
-  outline: 0;
+    -moz-transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    -webkit-transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    -ms-transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    display: inline-block;
+    color: inherit;
+    background: none;
+    text-decoration: none;
+    border: solid 1px #c2c7cc;
+    border-radius: 0.35em;
+    padding: 0.4em 1em 0.4em 1em;
+    cursor: pointer;
+    outline: 0;
+    margin-bottom: 1.3em;
+    margin-top: 1.3em;
 }
 input[type=button]:hover,
 input[type=submit]:hover,
@@ -2563,6 +2562,54 @@ input[type=checkbox] {
     justify-content: flex-start;
     align-items: flex-start;
 }
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
 .login h1{
     font-size: 2em;
 }
+.login a {
+    margin-left: 0px;
+}
+
+.admin_fields a {
+    text-overflow: ellipsis;
+    width: 8.33%;
+    display: block;
+    margin-top: 0.2em;
+    text-align: center;
+}
+.admin_cont {
+    border-radius: 0.2em 0.2em 0.2em 0.2em;
+    border: 0.1em solid;
+    width: 40%;
+    border-color: black;
+    margin-top: 0.4em;
+}
+.admin h1 {
+    font-weight: 500;
+    font-size: 2.5em;
+    color: blue;
+    margin-top: 1em;
+    text-align: left;
+}
+.admin h2 {
+    font-weight: 400;
+    font-size: 1.4em;
+    color:black;
+    margin-top: 1em;
+}
+.admin a {
+    border-bottom: 1px dashed black;
+    font-weight: 400;
+    font-size: 1.1em;
+    color: red;
+    margin-top: 1em;
+    margin-left: 0;
+}
+.admin_ {
+    font-size: 1.2em;
+    font-weight: 400;
+}
+

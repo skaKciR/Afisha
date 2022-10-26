@@ -5,28 +5,29 @@
 	ViewBag.Title = strTitle;
 }
 
-<div>
+<div class="admin">
 	<h1>@strTitle</h1>
 	<div>
-		<p></p>
-		<h3>Наши услуги</h3>
-		<div class="div-box">
-			<a asp-area="Admin" asp-controller="ServiceItems" asp-action="Edit" asp-route-id="">Добавить услугу</a>
+		<h2>Мероприятия</h2>
+		<div class="admin_">
+			<a asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id="">Добавить мероприятие</a>
 		</div>
+
 		@if (Model.Any())
 		{
 			<div>
 				@foreach (Event entity in Model)
 				{
-					<div>
-						<a asp-area="Admin" asp-controller="ServiceItems" asp-action="Edit" asp-route-id="@entity.Id">редактировать</a>
-						|
-						<form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="ServiceItems" asp-action="Delete" method="post">
+					<div class="admin_cont">
+						<a asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
+						<a>|</a>
+						<form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="EventItems" asp-action="Delete" method="post">
 							<input type="hidden" name="id" value="@entity.Id">
-							<a href="#" onclick="document.getElementById('form-@entity.Id').submit();">удалить</a>
+							<a href="#" onclick="document.getElementById('form-@entity.Id').submit();">Удалить </a>
 						</form>
-						|
-						<a asp-area="" asp-controller="Services" asp-action="Index" asp-route-id="@entity.Id">
+						<a>|</a>
+						
+						<a asp-area="" asp-controller="Events" asp-action="Index" asp-route-id="@entity.Id">
 							@($"{entity.Title}")
 						</a>
 					</div>
@@ -34,11 +35,11 @@
 			</div>
 		}
 	</div>
-	<div class="div-box">
-		<h3>Редактировать страницы сайта</h3>
+	<div class="admin_fields">
+		<h2>Редактировать страницы сайта</h2>
 		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
-		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageServices">Наши услуги</a>
-		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>
+		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageServices">Концерты</a>
+		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Кино</a>
 	</div>
 	<div class="div-box">
 		<form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
