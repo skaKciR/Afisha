@@ -2,7 +2,7 @@
 
 namespace Afisha.Domain.Entities
 {
-    public class Event : EntitiyBase.EntityBase
+    public class Event : EntityBase
     {
         [Required(ErrorMessage = "Заполните название мероприятия")]
         [Display(Name = "Название (заголовок)")]

@@ -5,11 +5,11 @@ using Afisha.Domain;
 
 namespace Afisha.Controllers
 {
-    public class EventsController : Controller
+    public class EventController : Controller
     {
         private readonly DataManager dataManager;
 
-        public EventsController(DataManager dataManager)
+        public EventController(DataManager dataManager)
         {
             this.dataManager = dataManager;
         }
@@ -21,7 +21,7 @@ namespace Afisha.Controllers
                 return View("Show", dataManager.Events.GetEventItemById(id));
             }
 
-            ViewBag.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageServices");
+            ViewBag.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageConcerts");
             return View(dataManager.Events.GetEventItems());
         }
     }

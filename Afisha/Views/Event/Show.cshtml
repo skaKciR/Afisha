@@ -1,0 +1,23 @@
+﻿@model Event
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeywords;
+}
+
+<div>
+	<h1>
+		@Model.Title
+	</h1>
+    <br/>
+	<h2>
+		@Model.Subtitle
+	</h2>
+    <br/>
+    <div>
+        <img class="img-block" src="~/images/@Model.TitleImagePath" />
+    </div>
+</div>
+<div>
+    @Html.Raw(Model.Text)
+</div>

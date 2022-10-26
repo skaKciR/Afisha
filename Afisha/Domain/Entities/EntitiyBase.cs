@@ -2,8 +2,7 @@
 
 namespace Afisha.Domain.Entities
 {
-    public abstract class EntitiyBase
-    {
+
         public abstract class EntityBase
         {
             protected EntityBase() => DateAdded = DateTime.UtcNow;
@@ -40,5 +39,4 @@ namespace Afisha.Domain.Entities
             public DateTime DateAdded { get; set; }
         }
 
-    }
 }

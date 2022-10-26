@@ -2,7 +2,7 @@
 
 namespace Afisha.Domain.Entities
 {
-    public class TextField : EntitiyBase.EntityBase
+    public class TextField : EntityBase
     {
         [Required]
         public string CodeWord { get; set; }
