@@ -137,7 +137,7 @@ a {
   transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
   color: inherit;
   text-decoration: none;
-  border-bottom: dotted 1px #62676c;
+  border-bottom: dotted 0px #62676c;
     margin-left: -11px;
 }
 a:hover {
@@ -147,6 +147,7 @@ a:hover {
 
 strong, b {
   font-weight: 400;
+
   color: #42474c;
 }
 
@@ -2565,4 +2566,73 @@ input[type=checkbox] {
 }
 .login h1{
     font-size: 2em;
+}
+.login a {
+    margin-left: 0px;
+}
+
+.admin_fields a {
+    text-overflow: ellipsis;
+    width: 8.33%;
+    display: block;
+    margin-top: 0.2em;
+    text-align: center;
+}
+
+.admin_cont {
+    border-radius: 0.2em 0.2em 0.2em 0.2em;
+    border: 0.1em solid;
+    width: 40%;
+    border-color: black;
+    margin-top: 0.4em;
+}
+
+.admin h1 {
+    font-weight: 500;
+    font-size: 2.5em;
+    color: blue;
+    margin-top: 1em;
+    text-align: left;
+}
+
+.admin h2 {
+    font-weight: 400;
+    font-size: 1.4em;
+    color: black;
+    margin-top: 1em;
+}
+
+.admin a {
+    
+    font-weight: 400;
+    font-size: 1.1em;
+    color: red;
+    margin-top: 1em;
+    margin-left: 0;
+}
+
+.admin_ {
+    font-size: 1.2em;
+    font-weight: 400;
+}
+ .section {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .section__item {
+        scroll-snap-align: start;
+    }
+
+ul {
+    list-style: none;
+}
+
+
+.section1 {
+    display: flex;
+    overflow-x: auto;
+    /* proximity - это значение, используемое по умолчанию, я описываю его лишь для того чтобы сделать изложение понятнее */
+    scroll-snap-type: x proximity;
 }

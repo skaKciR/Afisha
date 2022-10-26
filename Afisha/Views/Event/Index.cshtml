@@ -7,44 +7,38 @@
     ViewBag.Keywords = textField.MetaKeywords;
 
 }
-<style>
 
-
-    .section {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-    }
-
-    .section__item {
-        scroll-snap-align: start;
-    }
-
-    .section1 {
-        display: flex;
-        overflow-x: auto;
-        /* proximity - это значение, используемое по умолчанию, я описываю его лишь для того чтобы сделать изложение понятнее */
-        scroll-snap-type: x proximity;
-    }
-</style>
 
 <div>
     @if (Model.Any())
     {
+    <div class="row features">
         <ul class="section1">
 
             @foreach (Event entity in Model)
-            {
+            {<li class="section__item">
 
-                <li class="section__item">
-                    <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
-                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
-                    </a>
-                    <h1>@entity.Title</h1>
-                    <p>@entity.Subtitle</p>
-                </li>
+	             <section class="col-4 col-12-narrower feature">
+		             <div class="image-wrapper first">
+			             <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
+				             <img src="~/images/@entity.TitleImagePath" alt="" class="left"/>
+			             </a>
+		             </div>
+		             <header>
+			             <h1>@entity.Title</h1>
+		             </header>
+		             <p>
+			             @entity.Subtitle
+		             </p>
+
+	             </section>
+
+
+
+
+             </li>
 
             }
-        </ul>
+        </ul></div>
     }
 </div>
