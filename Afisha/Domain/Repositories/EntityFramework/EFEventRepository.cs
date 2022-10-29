@@ -28,6 +28,11 @@ namespace Afisha.Domain.Repositories.EntityFramework
         {
             return context.Events.FirstOrDefault(x => x.Date == date);
         }
+        public IQueryable<Event> GetEventsByString(string searchString)
+        {
+            if (context == null) return null;
+            return context.Events.Where(x => x.Title.Contains(searchString));
+        }
 
         public void SaveEventItem(Event entity)
         {
