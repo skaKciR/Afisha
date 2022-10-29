@@ -1,31 +1,40 @@
 ﻿		@model Afisha.Models.LoginViewModel
-<div class="">
-	<div class="login"><h1>Вход в личный кабинет </h1></div>
-	
-	<div >
-		<form asp-area="" asp-controller="Account" asp-action="Login" method="post">
-			<div asp-validation-summary="All"></div>
-			<div>
-				<label asp-for="UserName">Логин</label>
-				<input asp-for="UserName"/>
-				<span asp-validation-for="UserName"></span>
-			</div>
-			<div>
-				<label asp-for="Password">Пароль</label>
-				<input asp-for="Password"/>
-				<span asp-validation-for="Password"></span>
-			</div>
-			<div class="checkbox-group">
-				<label asp-for="RememberMe">Запомнить меня</label>
-				<input type="checkbox" asp-for="RememberMe"/>
-				<span asp-validation-for="RememberMe"></span>
-			</div>
-			
-			<div class="login">
-				<input type="submit" value="Войти" />
-			</div>
-			<div class="login"><a asp-controller="Account" asp-action="Register">Еще нет аккаунта? Зарегистрироваться</a></div>
-        </form>
+<div class="shadow">
+	<div class="login-wrap">
 
-    </div>
+
+		<div class="login-html">
+			
+			
+			@*<div id="closebtns" class="cl-btn-7"><button asp-controller="Account" asp-action="Register"></button></div>*@
+			<div class="login">
+				
+				<h1>Вход в аккаунт</h1></div>
+			<div class="login-form">
+				<form asp-area="" asp-controller="Account" asp-action="Login" method="post">
+					@*	<div asp-validation-summary="All"></div>*@
+					<div class="login">
+						<label asp-for="UserName">Логин</label>
+						<input asp-for="UserName"/>
+						<span asp-validation-for="UserName"></span>
+					</div>
+					<div class="login">
+						<label asp-for="Password">Пароль</label>
+						<input asp-for="Password"/>
+						<span asp-validation-for="Password"></span>
+					</div>
+					<div class="checkbox-group">
+						<label asp-for="RememberMe">Запомнить меня</label>
+						<input type="checkbox" asp-for="RememberMe"/>
+						<span asp-validation-for="RememberMe"></span>
+					</div>
+
+					<div class="group">
+						<input type="submit" class="button" value="Войти">
+					</div>
+					<div class="login"><a asp-controller="Account" asp-action="Register">Еще нет аккаунта? Зарегистрироваться</a></div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

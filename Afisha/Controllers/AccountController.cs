@@ -81,5 +81,13 @@ namespace Afisha.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+
+            return View();
+        }
     }
 }
