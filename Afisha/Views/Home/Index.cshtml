@@ -1,1 +1,59 @@
-﻿
+﻿@model IQueryable<Event>
+@{
+	TextField textField = ViewBag.TextField;
+
+	ViewBag.Title = textField.MetaTitle;
+	ViewBag.Description = textField.MetaDescription;
+	ViewBag.Keywords = textField.MetaKeywords;
+
+}
+
+
+<div>
+	@if (Model.Any())
+	{
+		<div class="row features">
+			<ul class="section1">
+
+				@foreach (Event entity in Model)
+				{<li class="section__item">
+
+						<section class="col-4 col-12-narrower feature">
+
+							<div class="image-wrapper first">
+								
+								<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
+									<div id="tekst_sverhu_kartinki">
+										<div class="brightless">
+											<img class="slider" src="~/images/@entity.TitleImagePath" alt="1200" class="slider" />
+										</div>
+
+										<div class="tekst_sverhu_kartinki_1">
+
+											<span>@entity.Title</span><br>
+											<div class="itemsnew">
+											<span>@entity.Date</span>
+											<span>@entity.Address</span>
+											</div>
+								
+
+										</div>
+
+									</div>
+								
+									
+							 </a> 
+						 </div>
+						
+
+					 </section>
+
+
+
+
+				 </li>
+
+				}
+			</ul></div>
+	}
+</div>

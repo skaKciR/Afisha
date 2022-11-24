@@ -1,23 +1,36 @@
 ﻿<!-- Header -->
+
 <div id="header-wrapper">
+
 	<div id="header" class="container">
+	
+	
 
-		<!-- 
 
 
-		-->
 		<h1 id="logo"><a href="/">Afishes</a></h1>
-
+		
+	
 		<!-- Nav -->
 		<nav id="nav">
+			
 			<ul>
 				<li>
 					<a asp-area="" asp-controller="Event" asp-action="Index">Концерты</a>
 				</li>
-				<li><a href="left-sidebar.html">Кино</a></li>
-				<li class="break"><a href="right-sidebar.html">Контакты</a></li>
 				<li>
-					@if(User.Identity.IsAuthenticated){
+					<a asp-area="" asp-controller="Event" asp-action="Index">Театры</a>
+				</li>
+				<li>
+					<a asp-area="" asp-controller="Event" asp-action="Index">Кино</a>
+				</li>
+				<li><a href="right-sidebar.html">Детям</a></li>
+				<li>
+					<a asp-area="" asp-controller="Event" asp-action="Index">Контакты</a>
+				</li>
+				<li>
+					@if (User.Identity.IsAuthenticated)
+					{
 						@if (User.IsInRole("admin"))
 						{
 							<a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
@@ -25,9 +38,9 @@
 						else
 						{
 							<div class="dropdown">
-								
+
 								<a asp-controller="Account" asp-action="Profile">Профиль</a>
-						
+
 								<div class="dropdown-content">
 									<a asp-controller="Account" asp-action="Logout">Краснодар</a>
 									<a asp-controller="Account" asp-action="Logout">Билеты</a>
@@ -36,12 +49,22 @@
 								</div>
 							</div>
 						}
-	
-					} else{
+
+					}
+					else
+					{
 						<a asp-controller="Account" asp-action="Login">Войти</a>
 					}
-					
+
 				</li>
+			
+					<div class="container">
+						<input type="text" placeholder="Search...">
+						<div class="search"></div>
+					</div>
+			
+				
+				
 
 			</ul>
 		</nav>
