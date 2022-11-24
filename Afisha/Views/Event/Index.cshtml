@@ -31,6 +31,11 @@
 		             <p>
 			             @entity.Subtitle
 		             </p>
+                            <form asp-controller="Cart" asp-action="AddToCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
+                                <p>
+                                    <button type="submit">Добавить в корзину</button>/>
+                                </p>
+                            </form>
 
 	             </section>
 

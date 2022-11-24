@@ -14,8 +14,8 @@ namespace Afisha.Domain.Entities
         [Display(Name = "Адрес")]
         public override string Address { get; set; }
 
-        //[Display(Name= "Стоимость билета")]
-        //public override string Price { get; set; }
+        [Display(Name = "Стоимость билета")]
+        public string? Cost { get; set; }
 
         [Display(Name = "Краткое описание услуги")]
         public override string Subtitle { get; set; }

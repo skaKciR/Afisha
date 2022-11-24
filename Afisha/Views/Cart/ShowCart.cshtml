@@ -1,0 +1,26 @@
+﻿@model IQueryable<Event>
+@{
+    
+
+}
+
+
+<div>
+    @if (Model.Any())
+    {
+        @foreach (Event entity in Model)
+        {
+            <li class="section__item">
+                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
+                    <img class="slider" src="~/images/@entity.TitleImagePath" alt="" class="slider" />
+                </a>
+                <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
+                    <p>
+                        <button type="submit">Удалить из корзины</button>/>
+                    </p>
+                </form>
+            </li>
+        }
+
+    }
+</div>

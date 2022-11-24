@@ -12,8 +12,6 @@ namespace Afisha.Domain.Entities
 
             [Display(Name = "Название (заголовок)")]
             public virtual string? Title { get; set; }
-            //[Display (Name="Стоимость билета")]
-            //public virtual string? Price { get; set; }
 
             [Display(Name = "Адрес")] 
             public virtual string? Address { get; set; }
@@ -22,7 +20,7 @@ namespace Afisha.Domain.Entities
             public virtual string? Subtitle { get; set; }
 
             [Display(Name = "Полное описание")]
-            public virtual string Text { get; set; }
+            public virtual string? Text { get; set; }
 
             [Display(Name = "Титульная картинка")]
             public string? TitleImagePath { get; set; }
