@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Core.Types;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
+using System.Xml.Linq;
 
 namespace Afisha.Controllers
 {
@@ -19,18 +21,27 @@ namespace Afisha.Controllers
 
         public IActionResult AddToCart(Guid eventId, string userName)
         {
-            Event _event = dataManager.Events.GetEventItemById(eventId);
-            if (_event != null)
+            if (userName != null)
             {
-                dataManager.Carts.SaveCartItem(new Cart { Quantity = 1, UserName = userName, EventId = eventId  });
+                Event _event = dataManager.Events.GetEventItemById(eventId);
+                if (_event != null)
+                {
+                    dataManager.Carts.SaveCartItem(new Cart { Quantity = 1, UserName = userName, EventId = eventId });
+                } 
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+           
         }
 
         public IActionResult RemoveFromCart(Guid eventId, string userName)
         {
             dataManager.Carts.DeleteFromCartById(eventId, userName);
-            return RedirectToAction("ShowCart", "Cart");
+            //return RedirectToAction("ShowCart", "Cart",name=userName);
+            return RedirectToRoute(new { controller = "Cart", action = "ShowCart", name=userName });
         }
 
         public IActionResult ShowCart(string name)

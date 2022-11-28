@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Afisha.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221124191049_nnn")]
-    partial class nnn
+    [Migration("20221125092622_CartAdd")]
+    partial class CartAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -168,7 +168,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageConcerts",
-                            DateAdded = new DateTime(2022, 11, 24, 19, 10, 48, 973, DateTimeKind.Utc).AddTicks(767),
+                            DateAdded = new DateTime(2022, 11, 25, 9, 26, 22, 701, DateTimeKind.Utc).AddTicks(3038),
                             Text = "Содержание заполняется админом",
                             Title = "Концерты"
                         },
@@ -176,7 +176,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageCinema",
-                            DateAdded = new DateTime(2022, 11, 24, 19, 10, 48, 973, DateTimeKind.Utc).AddTicks(804),
+                            DateAdded = new DateTime(2022, 11, 25, 9, 26, 22, 701, DateTimeKind.Utc).AddTicks(3065),
                             Text = "Содержание заполняется админом",
                             Title = "Кино"
                         },
@@ -184,7 +184,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 11, 24, 19, 10, 48, 973, DateTimeKind.Utc).AddTicks(816),
+                            DateAdded = new DateTime(2022, 11, 25, 9, 26, 22, 701, DateTimeKind.Utc).AddTicks(3073),
                             Text = "Содержание заполняется админом",
                             Title = "Контакты"
                         },
@@ -192,7 +192,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"),
                             CodeWord = "Sign",
-                            DateAdded = new DateTime(2022, 11, 24, 19, 10, 48, 973, DateTimeKind.Utc).AddTicks(828),
+                            DateAdded = new DateTime(2022, 11, 25, 9, 26, 22, 701, DateTimeKind.Utc).AddTicks(3081),
                             Text = "Содержание заполняется админом",
                             Title = "Личный кабинет"
                         });
@@ -272,7 +272,7 @@ namespace Afisha.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "b44f3606-f0ed-4f0d-bf5a-07a141aaddae",
+                            ConcurrencyStamp = "76ddc2bc-9069-4f4d-ad7d-62700679c837",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -372,13 +372,13 @@ namespace Afisha.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6e9667a2-d4b3-4b83-a98a-c076c168ec21",
+                            ConcurrencyStamp = "0afe055a-daeb-4690-a860-fe7aed68f496",
                             Email = "afisheshelper@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AFISHESHELPER@MAIL.RU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENU331j8ZU+MLyKHjqq4p2jCHJpptt2UPgSVOqw/9xirsnR9jFmpmWFQLvbwC7lpEw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEATeTEju05AA1ItG5RMSWuBwdgBAKw7OBdQSox1oFIzRX8lFm70sZsAVLJPtUoETiQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

@@ -17,11 +17,18 @@ namespace Afisha.Domain.Entities
         [Display(Name = "Стоимость билета")]
         public string? Cost { get; set; }
 
+        [Display(Name = "Тип мероприятия")]
+        public string? Type { get; set; }
+
+        [Display(Name = "Возрастное ограничение")]
+        public int? Age { get; set; }
+
         [Display(Name = "Краткое описание услуги")]
         public override string Subtitle { get; set; }
 
         [Display(Name = "Полное описание услуги")]
         public override string Text { get; set; }
 
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Afisha.Domain.Entities;
 using Afisha.Domain.Repositories.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Intrinsics.Arm;
 
@@ -18,13 +19,14 @@ namespace Afisha.Domain.Repositories.EntityFramework
         {
             return context.Carts;
         }
-
+    
         public void SaveCartItem(Cart entity)
         {
             if (entity.Id == default)
                 context.Entry(entity).State = EntityState.Added;
             else
                 context.Entry(entity).State = EntityState.Modified;
+            
             context.SaveChanges();
         }
 

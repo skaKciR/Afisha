@@ -1,4 +1,6 @@
-﻿@model IQueryable<Event>
+﻿
+
+@model IQueryable<Event>
 @{
     TextField textField = ViewBag.TextField;
 
@@ -33,7 +35,7 @@
 		             </p>
                             <form asp-controller="Cart" asp-action="AddToCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
                                 <p>
-                                    <button type="submit">Добавить в корзину</button>/>
+                                    <button type="submit">Добавить в корзину</button>
                                 </p>
                             </form>
 

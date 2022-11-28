@@ -1,4 +1,6 @@
-﻿@model IQueryable<Event>
+﻿
+
+@model IQueryable<Event>
 @{
 	TextField textField = ViewBag.TextField;
 
@@ -8,8 +10,11 @@
 
 }
 
-
+@* Ближайшие мероприятия*@
 <div>
+	<div class="promo_open">
+		<h2>Ближайшие мероприятия</h2>
+	</div>
 	@if (Model.Any())
 	{
 		<div class="row features">
@@ -28,15 +33,27 @@
 											<img class="slider" src="~/images/@entity.TitleImagePath" alt="1200" class="slider" />
 										</div>
 
-										<div class="tekst_sverhu_kartinki_1">
+										<div class="tekst_sverhu_kartinki_1" style="margin-bottom: 30ex;">
+											@if (entity.Age != null && entity.Type!=null)
+											{
+												<span style="color: #ffffffa6;text-transform: none;font-size: 25px;">@entity.Type @entity.Age+</span>
+											}
 
+										</div>
+										
+										<div class="tekst_sverhu_kartinki_1">
+											
 											<span>@entity.Title</span><br>
 											<div class="itemsnew">
-											<span>@entity.Date</span>
-											<span>@entity.Address</span>
-											</div>
-								
+												<span>@entity.Date</span>
+												<span>@entity.Address</span>
 
+											</div>
+
+										</div>
+									
+										<div class="tekst_sverhu_kartinki_1">
+											<div class="cost"> <span>@entity.Cost ₽</span></div>
 										</div>
 
 									</div>
@@ -57,3 +74,67 @@
 			</ul></div>
 	}
 </div>
+
+@* Концерты *@
+<div>
+	<div class="promo_open">
+	<h2>Концерты</h2>
+	</div>
+
+</div>
+
+@*Кино*@
+
+<div>
+	<div class="promo_open">
+		<h2>Кино</h2>
+	</div>
+
+</div>
+
+@*StandUP*@
+
+<div>
+	<div class="promo_open">
+		<h2>StandUP Шоу</h2>
+	</div>
+
+</div>
+
+@*Спектакли*@
+
+<div>
+	<div class="promo_open">
+		<h2>Спектакли</h2>
+	</div>
+
+</div>
+
+@*
+<div class="slider middle">
+	<div class="slides"> 
+
+		<input type="radio" namename="r" id="r1" checked />
+		<input type="radio" namename="r" id="r2" checked />
+		<input type="radio" namename="r" id="r3" checked />
+		<input type="radio" namename="r" id="r4" checked />
+		<input type="radio" namename="r" id="r5" checked />
+
+		<div class="slide"><img src="~/images/s940x380 (5).webp" alt="" /></div>
+		<div class="slide"><img src="/images/s940x380 (1).webp" alt="" /></div>
+		<div class="slide"><img src="~/images/s940x380 (4).webp" alt="" /></div>
+		<div class="slide"><img src="~/images/s940x380 (3).webp" alt="" /></div>
+		<div class="slide"><img src="~/images/s940x380 (2).webp" alt="" /></div>
+
+	</div>
+
+	<div class="navigation">
+
+		<label for="r1" class="bar"></label>
+		<label for="r2" class="bar"></label>
+		<label for="r3" class="bar"></label>
+		<label for="r4" class="bar"></label>
+		<label for="r5" class="bar"></label>
+	</div>
+
+</div>*@
