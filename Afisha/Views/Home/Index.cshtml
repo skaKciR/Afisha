@@ -1,1 +1,148 @@
 ﻿
+
+@model IQueryable<Event>
+@{
+	TextField textField = ViewBag.TextField;
+
+	ViewBag.Title = textField.MetaTitle;
+	ViewBag.Description = textField.MetaDescription;
+	ViewBag.Keywords = textField.MetaKeywords;
+
+}
+<link rel="stylesheet"
+	  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
+
+
+<div class="swiper mySwiper">
+	<div class="swiper-wrapper">
+		@if (Model.Any())
+		{
+			@foreach (Event entity in Model)
+			{
+				<div class="swiper-slide">
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
+						<div id="tekst_sverhu_kartinki">
+							<div class="brightless">
+								<img class="slider" src="~/images/@entity.TitleImagePath" alt="1200" class="slider" />
+							</div>
+
+							<div class="tekst_sverhu_kartinki_1" style="margin-bottom: 38ex;">
+								@if (entity.Age != null && entity.Type != null)
+								{
+									<span style="color: #ffffffa6;text-transform: none;font-size: 25px;">@entity.Type @entity.Age+</span>
+								}
+
+							</div>
+
+							<div class="tekst_sverhu_kartinki_1">
+
+								<span>@entity.Title</span><br>
+								<div class="itemsnew">
+									<span>@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
+									<span>@entity.Address</span>
+
+								</div>
+
+							</div>
+
+							<div class="tekst_sverhu_kartinki_1">
+								<div class="cost"> <span>@entity.Cost ₽</span></div>
+							</div>
+
+						</div>
+							</a>
+
+				</div>
+
+						
+						
+
+			}
+		}
+	</div>
+	<div class="swiper-pagination"></div>  <div class="swiper-button-next"></div>
+	<div class="swiper-button-prev"></div>
+</div>
+
+
+<script>
+
+	var swiper = new Swiper(".mySwiper", {
+		spaceBetween: 30,
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+		pagination: {
+			el: ".swiper-pagination",
+		},
+		mousewheel: true,
+		keyboard: true,
+	});
+</script>
+
+@* Концерты *@
+<div>
+	<div class="promo_open">
+	<h2>Концерты</h2>
+	</div>
+	<div class="smallimg">
+		<div class="brightless">
+		<img style ="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
+		<img src="/images/s940x380 (6).webp" />
+		<img src="~/images/s940x380 (4).webp" />
+			<img src="~/images/s940x380 (3).webp" />
+		</div>
+	</div>
+
+</div>
+
+@*Кино*@
+
+<div>
+	<div class="promo_open">
+		<h2>Кино</h2>
+	</div>
+	<div class="smallimg">
+		<img style="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
+		<img src="/images/s940x380 (6).webp" />
+		<img src="~/images/s940x380 (4).webp" />
+		<img src="~/images/s940x380 (3).webp" />
+	</div>
+	
+
+</div>
+
+@*StandUP*@
+
+<div>
+	<div class="promo_open">
+		<h2>StandUP Шоу</h2>
+	</div>
+	<div class="smallimg">
+		<img style="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
+		<img src="/images/s940x380 (6).webp" />
+		<img src="~/images/s940x380 (4).webp" />
+		<img src="~/images/s940x380 (3).webp" />
+	</div>
+
+</div>
+
+@*Спектакли*@
+
+<div>
+	<div class="promo_open">
+		<h2>Спектакли</h2>
+	</div>
+	<div class="smallimg">
+		<img style="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
+		<img src="/images/s940x380 (6).webp" />
+		<img src="~/images/s940x380 (4).webp" />
+		<img src="~/images/s940x380 (3).webp" />
+	</div>
+
+</div>
+
