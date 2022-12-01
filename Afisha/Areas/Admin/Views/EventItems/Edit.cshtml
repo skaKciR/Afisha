@@ -9,7 +9,7 @@
 
 <div>
     <h1>@strTitle</h1>
-    <div>
+    <div class="admins">
         <form asp-area="Admin" asp-controller="EventItems" asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="DateAdded" />
@@ -20,6 +20,21 @@
 	            <label asp-for="Title"></label>
 	            <input asp-for="Title" />
 	            <span asp-validation-for="Title"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="Type"></label>
+                <input asp-for="Type" />
+                <span asp-validation-for="Type"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="Age"></label>
+                <input asp-for="Age" />
+                <span asp-validation-for="Age"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="Cost"></label>
+                <input asp-for="Cost" />
+                <span asp-validation-for="Cost"></span>
             </div>
             <div class="div-box">
 	            <label asp-for="Date"></label>

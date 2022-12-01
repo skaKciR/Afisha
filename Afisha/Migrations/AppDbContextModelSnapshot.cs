@@ -22,6 +22,54 @@ namespace Afisha.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Afisha.Domain.Entities.Cart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MetaDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaKeywords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subtitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("Afisha.Domain.Entities.Event", b =>
                 {
                     b.Property<Guid>("Id")
@@ -30,6 +78,12 @@ namespace Afisha.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Cost")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
@@ -60,6 +114,9 @@ namespace Afisha.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -115,7 +172,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageConcerts",
-                            DateAdded = new DateTime(2022, 10, 26, 11, 46, 10, 117, DateTimeKind.Utc).AddTicks(9383),
+                            DateAdded = new DateTime(2022, 11, 28, 15, 33, 30, 4, DateTimeKind.Utc).AddTicks(4088),
                             Text = "Содержание заполняется админом",
                             Title = "Концерты"
                         },
@@ -123,7 +180,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageCinema",
-                            DateAdded = new DateTime(2022, 10, 26, 11, 46, 10, 117, DateTimeKind.Utc).AddTicks(9426),
+                            DateAdded = new DateTime(2022, 11, 28, 15, 33, 30, 4, DateTimeKind.Utc).AddTicks(4145),
                             Text = "Содержание заполняется админом",
                             Title = "Кино"
                         },
@@ -131,7 +188,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 10, 26, 11, 46, 10, 117, DateTimeKind.Utc).AddTicks(9440),
+                            DateAdded = new DateTime(2022, 11, 28, 15, 33, 30, 4, DateTimeKind.Utc).AddTicks(4160),
                             Text = "Содержание заполняется админом",
                             Title = "Контакты"
                         },
@@ -139,10 +196,54 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"),
                             CodeWord = "Sign",
-                            DateAdded = new DateTime(2022, 10, 26, 11, 46, 10, 117, DateTimeKind.Utc).AddTicks(9453),
+                            DateAdded = new DateTime(2022, 11, 28, 15, 33, 30, 4, DateTimeKind.Utc).AddTicks(4172),
                             Text = "Содержание заполняется админом",
                             Title = "Личный кабинет"
                         });
+                });
+
+            modelBuilder.Entity("Afisha.Domain.Entities.Ticket", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MetaDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaKeywords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subtitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -175,7 +276,7 @@ namespace Afisha.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "5dfd3b16-0b8a-461f-a23e-5bfcb6cfd859",
+                            ConcurrencyStamp = "346406c3-6373-4e6a-80e8-cc7ce67e70b3",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -275,13 +376,13 @@ namespace Afisha.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0c038442-b694-4e95-8dca-d24c6943ad8a",
+                            ConcurrencyStamp = "7bc9fd7a-566e-44b9-93b9-1d2e096cb3a7",
                             Email = "afisheshelper@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AFISHESHELPER@MAIL.RU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEErVHiHY7xFswKMInMTEs+jZwHIDEiMgusFnHFu8/Ud4nqeGpgAheePujGPzH15ZFQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA5RWSAkgmuWs1wd17guTgqyxXGNmwiSf3qQ0uhthBXkFqxI1TvNgpsHXD5z2qUtYg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

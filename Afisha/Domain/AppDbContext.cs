@@ -13,6 +13,8 @@ namespace Afisha.Domain
 
         public DbSet<TextField> TextFields { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -3,9 +3,19 @@
 		
 <div class="shadow">
 <div class="register-wrap">
+
+
+		<div class="login-html">
 			
-	
-	<div class="login-html">
+			<div class="cl-btn-2">
+			<div>
+				
+					<div class="leftright"></div>
+					<div class="rightleft"></div>
+					<a class="close-btn" asp-controller="Home" asp-action="Index">закрыть</a>
+				
+			</div>
+		</div>
 		<div class="login"><h1>Регистрация</h1></div>
 		<div class="login-form">
 			<form asp-area="" asp-controller="Account" asp-action="Register" method="post">
@@ -13,22 +23,22 @@
 				<div class="login">
 					<label asp-for="UserName">Логин</label>
 					<input asp-for="UserName"/>
-					<span asp-validation-for="UserName"></span>
+						<span class="span" asp-validation-for="UserName"></span>
 				</div>
 				<div class="login">
 					<label asp-for="Email"></label>
 					<input asp-for="Email" />
-					<span asp-validation-for="Email"></span>
+					<span class="span" asp-validation-for="Email"></span>
 				</div>
 				<div class="login">
 					<label asp-for="Password">Пароль</label>
 					<input asp-for="Password"/>
-					<span asp-validation-for="Password"></span>
+						<span class="span" asp-validation-for="Password"></span>
 				</div>
 				<div class="login">
 					<label asp-for="PasswordConfirm">Подтверждение пароля</label>
 					<input asp-for="PasswordConfirm"  />
-					<span asp-validation-for="PasswordConfirm"></span>
+						<span class="span" asp-validation-for="PasswordConfirm"></span>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="Зарегистрироваться">

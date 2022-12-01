@@ -1,0 +1,44 @@
+﻿@model IQueryable<Event>
+@{
+    
+
+}
+<div class="promo_open">
+    <div class="itemsnew">
+		<h1> Билеты в вашей корзине:</h1>
+	</div>
+</div>
+<div>
+    @if (Model.Any())
+    {
+       
+        @foreach (Event entity in Model)
+        {  <div class="promo_open">
+            
+            <li class="promo_open">
+                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
+                    <div class="promo_open">
+				<img class="slider" src="~/images/@entity.TitleImagePath" alt="" class="slider" />
+                </div>
+                </a>
+                <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
+                    <p>
+                        <div class="promo_open"><button type="submit">Оплатить</button></div>
+                        <div class="promo_open"><button type="submit">Удалить из корзины</button></div>
+                            
+                    </p>
+                </form>
+            </li>
+            </div>
+        }
+
+    }
+    else
+    {
+        <div class="promo_open"> 
+            <h2 style="margin-top: -1.2ex;"> Здесь пусто </h2>
+           <a asp-controller="Home" asp-action="Index"> <h3>Давайте добавим что-нибудь..?</h3> </a>
+            
+        </div>
+    }
+</div>

@@ -5,19 +5,30 @@
     ViewBag.Keywords = Model.MetaKeywords;
 }
 
+
 <div>
-	<h1>
-		@Model.Title
-	</h1>
-    <br/>
-	<h2>
-		@Model.Subtitle
-	</h2>
-    <br/>
-    <div>
-        <img class="img-block" src="~/images/@Model.TitleImagePath" />
+    <div class="promo_open"><h1>@Model.Title</h1></div>
+	<div class="promo">
+        <div class="tekst_sverhu_kartinki">
+
+			<img class="img-block" src="~/images/@Model.TitleImagePath" />
+            <div class="tekst_sverhu_kartinki_1">
+           
+                <span>@Model.Subtitle</span>
+            
+            </div>
+       </div>
     </div>
 </div>
-<div>
-    @Html.Raw(Model.Text)
+
+<div class="promo">
+	<h1>Описание:</h1>
+    </br>
+  <span style="letter-spacing: 2px;font-weight: 400;"> @Html.Raw(Model.Text) </span>
+    <form asp-controller="Cart" asp-action="AddToCart" asp-route-eventId="@Model.Id" asp-route-userName="@User.Identity.Name">
+        <p>
+           <div class="promo_open"> <button type="submit">Добавить в корзину</button></div>
+           
+        </p>
+    </form>
 </div>
