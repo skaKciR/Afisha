@@ -34,14 +34,13 @@ namespace Afisha.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-           
         }
 
         public IActionResult RemoveFromCart(Guid eventId, string userName)
         {
             dataManager.Carts.DeleteFromCartById(eventId, userName);
-            //return RedirectToAction("ShowCart", "Cart",name=userName);
-            return RedirectToRoute(new { controller = "Cart", action = "ShowCart", name=userName });
+            //return RedirectToAction("ShowCart", "Cart", name = userName);
+            return RedirectToRoute(new { controller = "Cart", action = "ShowCart", name = userName });
         }
 
         public IActionResult ShowCart(string name)
