@@ -11,5 +11,9 @@ namespace Afisha.Domain.Repositories.Abstract
 
         public IQueryable<Event> GetCartByName(string name);
         public void DeleteFromCartById(Guid eventId, string userName);
+        public IQueryable<Cart> GetEventItemsByName(string userName);
+        
+        public void RemoveCart(IQueryable<Cart> entity);
+
     }
 }

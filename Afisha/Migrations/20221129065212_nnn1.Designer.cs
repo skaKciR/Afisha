@@ -4,6 +4,7 @@ using Afisha.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Afisha.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221129065212_nnn1")]
+    partial class nnn1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,7 +174,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageConcerts",
-                            DateAdded = new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7899),
+                            DateAdded = new DateTime(2022, 11, 29, 6, 52, 12, 430, DateTimeKind.Utc).AddTicks(1199),
                             Text = "Содержание заполняется админом",
                             Title = "Концерты"
                         },
@@ -180,7 +182,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageCinema",
-                            DateAdded = new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7932),
+                            DateAdded = new DateTime(2022, 11, 29, 6, 52, 12, 430, DateTimeKind.Utc).AddTicks(1227),
                             Text = "Содержание заполняется админом",
                             Title = "Кино"
                         },
@@ -188,7 +190,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7944),
+                            DateAdded = new DateTime(2022, 11, 29, 6, 52, 12, 430, DateTimeKind.Utc).AddTicks(1240),
                             Text = "Содержание заполняется админом",
                             Title = "Контакты"
                         },
@@ -196,7 +198,7 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"),
                             CodeWord = "Sign",
-                            DateAdded = new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7956),
+                            DateAdded = new DateTime(2022, 11, 29, 6, 52, 12, 430, DateTimeKind.Utc).AddTicks(1304),
                             Text = "Содержание заполняется админом",
                             Title = "Личный кабинет"
                         });
@@ -232,18 +234,14 @@ namespace Afisha.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TicketId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -280,7 +278,7 @@ namespace Afisha.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "473a966f-92a1-4457-ba17-1508ad2580ea",
+                            ConcurrencyStamp = "2dfd2c5b-28a9-4aae-9ae1-47548651104f",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -380,13 +378,13 @@ namespace Afisha.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ad51a476-960e-44f9-b0d0-4e08c2437f2c",
+                            ConcurrencyStamp = "3642d047-24d9-46a2-8882-977d36ce1a64",
                             Email = "afisheshelper@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AFISHESHELPER@MAIL.RU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE1LhaBjW5x/nTIqjxg/NvcFNrpLNDXVBzqgQnpDlaYEneJUojND3Wwft7ifIMiCJw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBp7G13YNkXXUN9PTlXJawucL3pTUbm9FDppafzmb3rmlWGY0G1XCMnlru8GVyFJxw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

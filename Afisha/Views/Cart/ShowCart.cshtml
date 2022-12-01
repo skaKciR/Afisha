@@ -23,14 +23,17 @@
                 </a>
                 <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
                     <p>
-                        <div class="promo_open"><button type="submit">Оплатить</button></div>
-                        <div class="promo_open"><button type="submit">Удалить из корзины</button></div>
-                            
+                        <div class="promo_open"><button type="submit">Удалить из корзины</button></div>                     
                     </p>
                 </form>
             </li>
             </div>
         }
+        <form asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
+            <p>
+                <div class="promo_open"><button type="submit">Оплатить</button></div>
+            </p>
+        </form>
 
     }
     else

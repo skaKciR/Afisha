@@ -44,7 +44,7 @@
 								<div class="dropdown-content">
 									<a asp-controller="Account" asp-action="Logout">Краснодар</a>
 									<a asp-controller="Cart" asp-action="ShowCart" asp-route-name="@User.Identity.Name">Корзина</a>
-									<a asp-controller="Account" asp-action="Logout">Билеты</a>
+									<a asp-controller="Ticket" asp-action="ShowTickets" asp-route-name="@User.Identity.Name">Билеты</a>
 									<a asp-controller="Account" asp-action="Logout">Справка</a>
 									<a asp-controller="Account" asp-action="Logout">Выйти</a>
 								</div>
