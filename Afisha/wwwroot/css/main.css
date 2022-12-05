@@ -3055,8 +3055,8 @@ ul {
         text-align: center;
         border-radius: 20px;
         text-transform: none;
-        background: rgb(205,0,255);
-        background: linear-gradient(90deg, rgba(153,0,255,1) 0%, rgba(247,29,253,1) 50%, rgba(69,226,252,1) 100%);
+        background: rgb(0 0 0 / 75%);
+   
     }
 .promo_open button {
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -3215,7 +3215,7 @@ ul {
         text-transform: uppercase;
         font-weight: 700;
         font-family: "Josefin Sans", sans-serif;
-        background: linear-gradient(to right, rgb(0 231 255 / 84%) 18%, rgb(253 8 200 / 88%) 48%, rgb(87 1 255 / 79%) 96%);
+        background: linear-gradient(to right, rgb(0 231 255 / 71%) 18%, rgb(253 8 200) 48%);
         background-clip: border-box;
         background-size: 200% auto;
         color: #fff;
@@ -3254,4 +3254,11 @@ ul {
 .cardboxinfo {
     display: inline !important;
 
+}
+
+.links a{
+    display:block !important;
+}
+.links i {
+    font-family: "Font Awesome 5 Brands";
 }

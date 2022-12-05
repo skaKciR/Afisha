@@ -26,7 +26,22 @@
 				</li>
 				<li><a href="right-sidebar.html">Детям</a></li>
 				<li>
-					<a asp-area="" asp-controller="Event" asp-action="Index">Контакты</a>
+					<div class="dropdown">
+						<a style="margin-left: 1ex;margin-right: 5ex;" asp-area="" asp-controller="Event" asp-action="Index">Контакты</a>
+						<div class="dropdown-content" style="margin-left: -0.8em;">
+						<div class="links">
+							<a href='https://vk.com/id609839779' class="social-button social-button--facebook" aria-label="VK">
+									<i class="fa fa-vk"></i>
+							</a>
+							<a href='https://github.com/skaKciR' class="social-button social-button--facebook" aria-label="GitHub">
+								<i class="fab fa-github"></i>
+							</a>
+							<a href='mailto:afisheshelper@mail.ru' class="social-button social-button--facebook" aria-label="Email">
+									<i class="fa fa-envelope-o" aria-hidden="true"></i>
+								</a>
+							</div>
+					</div>
+					</div>
 				</li>
 				<li>
 					@if (User.Identity.IsAuthenticated)
@@ -41,12 +56,10 @@
 
 								<a asp-controller="Account" asp-action="Profile">Профиль</a>
 
-								<div class="dropdown-content">
-									
+								<div class="dropdown-content">	
 									<a asp-controller="Account" asp-action="Logout">Краснодар</a>
 									<a asp-controller="Cart" asp-action="ShowCart" asp-route-name="@User.Identity.Name">Корзина</a>
 									<a asp-controller="Ticket" asp-action="ShowTickets" asp-route-name="@User.Identity.Name">Билеты</a>
-									<a asp-controller="Account" asp-action="Logout">Справка</a>
 									<a asp-controller="Account" asp-action="Logout">Выйти</a>
 
 								</div>
