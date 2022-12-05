@@ -1,5 +1,5 @@
 ﻿
-@model IQueryable<Event>
+@model List<IQueryable<Event>>
 @{
 	TextField textField = ViewBag.TextField;
 
@@ -23,7 +23,7 @@
 		@if (Model.Any())
 		{
 
-			@foreach (Event entity in Model)
+			@foreach (Event entity in Model[0])
 			{
 				<div class="swiper-slide">
 						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
@@ -92,7 +92,7 @@
 			
 			<div class="smallswapper-wrapper">
 			
-			@foreach (Event entity in Model)
+			@foreach (Event entity in Model[1])
 			{
 			 @if(entity.Type=="Концерт")
 				{	
@@ -137,7 +137,7 @@
 
 			<div class="smallswapper-wrapper">
 
-				@foreach (Event entity in Model)
+				@foreach (Event entity in Model[2])
 				{
 					@if (entity.Type == "Кино")
 					{	
@@ -180,7 +180,7 @@
 
 				<div class="smallswapper-wrapper">
 
-					@foreach (Event entity in Model)
+					@foreach (Event entity in Model[3])
 					{
 						@if (entity.Type == "StandUP Шоу")
 						{
@@ -223,7 +223,7 @@
 
 					<div class="smallswapper-wrapper">
 
-						@foreach (Event entity in Model)
+						@foreach (Event entity in Model[4])
 						{
 							@if (entity.Type == "Спектакль")
 							{

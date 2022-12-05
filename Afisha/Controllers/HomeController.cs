@@ -15,18 +15,17 @@ namespace Afisha.Controllers
             }
       
 
-            public IActionResult Index(Guid id)
+            public IActionResult Index()
             {
-            var list = dataManager.Events.GetSliderElements(dataManager.Events.GetEventItems());
-            if (id != default)
-                {
-                    return View("Show", dataManager.Events.GetEventItemById(id));
-                
-                }
-
-                ViewBag.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageConcerts");
-            return View(dataManager.Events.GetEventItems()) ;
-            }
+            var list = new List<IQueryable<Event>>();
+            list.Add(dataManager.Events.GetElements(5, null));
+            list.Add(dataManager.Events.GetElements(3, "Концерт"));
+            list.Add(dataManager.Events.GetElements(3, "Кино"));
+            list.Add(dataManager.Events.GetElements(3, "StandUP Шоу"));
+            list.Add(dataManager.Events.GetElements(3, "Спектакль"));
+            ViewBag.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageConcerts");
+            return View(list);
+        }
         
     }
 }

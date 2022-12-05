@@ -51,15 +51,11 @@ namespace Afisha.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public List<Event> GetSliderElements(IEnumerable<Event> entity)
+        public IQueryable<Event> GetElements(int count, string type)
         {
-            List<Event> list = new List<Event>();
-            var cnt = context.Events.Count();
+            if (type == null) return context.Events.OrderByDescending(x => x.Date).Take(count);
+            else return context.Events.Where(x=> x.Type == type).OrderByDescending(x => x.Date).Take(count);
 
-               var items= context.Events.OrderByDescending(x => x).Take(5);
-            list = items.ToList();
-            return list;
-           
         }
     }
 }
