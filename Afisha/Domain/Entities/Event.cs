@@ -29,6 +29,8 @@ namespace Afisha.Domain.Entities
         [Display(Name = "Полное описание услуги")]
         public override string Text { get; set; }
 
+        [Display(Name = "Пушкинская карта")]
+        public bool PCard { get; set; } = false;
         
     }
 }

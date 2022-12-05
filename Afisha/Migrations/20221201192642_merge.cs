@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Afisha.Migrations
 {
-    public partial class nnn2 : Migration
+    public partial class merge : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,42 +26,42 @@ namespace Afisha.Migrations
                 keyColumn: "Id",
                 keyValue: "44546e06-8719-4ad8-b88a-f271ae9d6eab",
                 column: "ConcurrencyStamp",
-                value: "473a966f-92a1-4457-ba17-1508ad2580ea");
+                value: "b9649978-ba88-4b82-899a-728176965807");
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash" },
-                values: new object[] { "ad51a476-960e-44f9-b0d0-4e08c2437f2c", "AQAAAAEAACcQAAAAEE1LhaBjW5x/nTIqjxg/NvcFNrpLNDXVBzqgQnpDlaYEneJUojND3Wwft7ifIMiCJw==" });
+                values: new object[] { "b403bdaf-793b-43ee-a06f-c6c8373c3079", "AQAAAAEAACcQAAAAENHG906kOQv0+R2OARS/OC73NSwRduj1gNIg/u1demCE1Fz3uxxXAWX5RGEwRAyeoQ==" });
 
             migrationBuilder.UpdateData(
                 table: "TextFields",
                 keyColumn: "Id",
                 keyValue: new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"),
                 column: "DateAdded",
-                value: new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7956));
+                value: new DateTime(2022, 12, 1, 19, 26, 42, 248, DateTimeKind.Utc).AddTicks(3101));
 
             migrationBuilder.UpdateData(
                 table: "TextFields",
                 keyColumn: "Id",
                 keyValue: new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                 column: "DateAdded",
-                value: new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7944));
+                value: new DateTime(2022, 12, 1, 19, 26, 42, 248, DateTimeKind.Utc).AddTicks(3092));
 
             migrationBuilder.UpdateData(
                 table: "TextFields",
                 keyColumn: "Id",
                 keyValue: new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                 column: "DateAdded",
-                value: new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7899));
+                value: new DateTime(2022, 12, 1, 19, 26, 42, 248, DateTimeKind.Utc).AddTicks(3057));
 
             migrationBuilder.UpdateData(
                 table: "TextFields",
                 keyColumn: "Id",
                 keyValue: new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                 column: "DateAdded",
-                value: new DateTime(2022, 11, 29, 7, 47, 33, 322, DateTimeKind.Utc).AddTicks(7932));
+                value: new DateTime(2022, 12, 1, 19, 26, 42, 248, DateTimeKind.Utc).AddTicks(3082));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

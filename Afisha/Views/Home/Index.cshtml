@@ -1,5 +1,4 @@
 ﻿
-
 @model IQueryable<Event>
 @{
 	TextField textField = ViewBag.TextField;
@@ -14,12 +13,16 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
 
-
-
+<div class="smallimg">
+	<a asp-controller="Event" asp-action="Show">Афиша событий в Краснодаре</a>
+</div>
+	
 <div class="swiper mySwiper">
 	<div class="swiper-wrapper">
+		
 		@if (Model.Any())
 		{
+
 			@foreach (Event entity in Model)
 			{
 				<div class="swiper-slide">
@@ -35,6 +38,14 @@
 									<span style="color: #ffffffa6;text-transform: none;font-size: 25px;">@entity.Type @entity.Age+</span>
 								}
 
+
+							</div>
+							<div class="tekst_sverhu_kartinki_1" style="margin-bottom: 38ex;">
+							@if (entity.PCard == true)
+							{
+									<div class="wrapper2"><h1>Пушкинская карта</h1></div>
+							
+							}
 							</div>
 
 							<div class="tekst_sverhu_kartinki_1">
@@ -49,7 +60,9 @@
 							</div>
 
 							<div class="tekst_sverhu_kartinki_1">
-								<div class="cost"> <span>@entity.Cost ₽</span></div>
+								<div class="cost">
+									<span style="letter-spacing:4px;">@entity.Cost ₽</span>
+								</div>
 							</div>
 
 						</div>
@@ -68,6 +81,180 @@
 </div>
 
 
+
+@* Концерты *@
+<div>
+	<div class="smallimg">
+		<a asp-controller="Event" asp-action="Index">Концерты »</a>
+	</div>
+	<div class="smallimg" style="margin-bottom: 3ex; margin-top:3ex;">
+		<div class="brightless">
+			
+			<div class="smallswapper-wrapper">
+			
+			@foreach (Event entity in Model)
+			{
+			 @if(entity.Type=="Концерт")
+				{	
+					<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+							<div style="display:block;">
+								<div id="tekst_sverhu_kartinki"> 
+									<img src="~/images/@entity.TitleImagePath" />
+									<div class="tekst_sverhu_kartinki_1">
+
+										<span>@entity.Cost ₽</span>
+										</div>
+								</div>
+								<div  style="margin-left: -0.8ex;text-align:center;">
+									<div>
+									<span style="font-weight:400;">@entity.Title</span>
+									</div>
+									<div style="display:inline;">
+									<span style="font-size:20px;">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
+										<span style="font-size:20px;">@entity.Address</span>
+									</div>
+								</div>
+							</div>
+					</a>
+
+				}
+			}
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+@*Кино*@
+
+<div>
+	<div class="smallimg">
+		<a asp-controller="Event" asp-action="Index">Кино »</a>
+	</div>
+	<div class="smallimg" style="margin-bottom: 3ex; margin-top:3ex;">
+		<div class="brightless">
+
+			<div class="smallswapper-wrapper">
+
+				@foreach (Event entity in Model)
+				{
+					@if (entity.Type == "Кино")
+					{	
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+							<div style="display:block;">
+								<div id="tekst_sverhu_kartinki">
+									<img src="~/images/@entity.TitleImagePath" />
+									<div class="tekst_sverhu_kartinki_1">
+
+										<span>@entity.Cost ₽</span>
+									</div>
+								</div>
+								<div style="margin-left: -0.8ex;text-align:center;">
+									<div>
+										<span style="font-weight:400;">@entity.Title</span>
+									</div>
+									<div style="display:inline;">
+										<span style="font-size:20px;">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
+										<span style="font-size:20px;">@entity.Address</span>
+									</div>
+								</div>
+							</div>
+							</a>
+
+					}
+				}
+			</div>
+
+		</div>
+	</div>
+
+@*StandUP*@
+
+	<div>
+		<div class="smallimg">
+			<a asp-controller="Event" asp-action="Index">StandUP Шоу »</a>
+		</div>
+		<div class="smallimg" style="margin-bottom: 3ex; margin-top:3ex;">
+			<div class="brightless">
+
+				<div class="smallswapper-wrapper">
+
+					@foreach (Event entity in Model)
+					{
+						@if (entity.Type == "StandUP Шоу")
+						{
+							<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+								<div style="display:block;">
+									<div id="tekst_sverhu_kartinki">
+										<img src="~/images/@entity.TitleImagePath" />
+										<div class="tekst_sverhu_kartinki_1">
+
+											<span>@entity.Cost ₽</span>
+										</div>
+									</div>
+									<div style="margin-left: -0.8ex;text-align:center;">
+										<div>
+											<span style="font-weight:400;">@entity.Title</span>
+										</div>
+										<div style="display:inline;">
+											<span style="font-size:20px;">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
+											<span style="font-size:20px;">@entity.Address</span>
+										</div>
+									</div>
+								</div>
+							</a>
+
+						}
+					}
+				</div>
+
+			</div>
+		</div>
+
+@*Спектакли*@
+
+		<div>
+			<div class="smallimg">
+				<a asp-controller="Event" asp-action="Index">Спектакли »</a>
+			</div>
+			<div class="smallimg" style="margin-bottom: 3ex; margin-top:3ex;">
+				<div class="brightless">
+
+					<div class="smallswapper-wrapper">
+
+						@foreach (Event entity in Model)
+						{
+							@if (entity.Type == "Спектакль")
+							{
+								<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+									<div style="display:block;">
+										<div id="tekst_sverhu_kartinki">
+											<img src="~/images/@entity.TitleImagePath" />
+											<div class="tekst_sverhu_kartinki_1">
+
+												<span>@entity.Cost ₽</span>
+											</div>
+										</div>
+										<div style="margin-left: -0.8ex;text-align:center;">
+										<div>
+									<span style="font-weight:400;">@entity.Title</span>
+									</div>
+											<div style="display:inline;">
+												<span style="font-size:20px;">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
+												<span style="font-size:20px;">@entity.Address</span>
+											</div>
+										</div>
+									</div>
+								</a>
+
+							}
+						}
+					</div>
+
+				</div>
+			</div>
+
 <script>
 
 	var swiper = new Swiper(".mySwiper", {
@@ -83,66 +270,4 @@
 		keyboard: true,
 	});
 </script>
-
-@* Концерты *@
-<div>
-	<div class="promo_open">
-	<h2>Концерты</h2>
-	</div>
-	<div class="smallimg">
-		<div class="brightless">
-		<img style ="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
-		<img src="/images/s940x380 (6).webp" />
-		<img src="~/images/s940x380 (4).webp" />
-			<img src="~/images/s940x380 (3).webp" />
-		</div>
-	</div>
-
-</div>
-
-@*Кино*@
-
-<div>
-	<div class="promo_open">
-		<h2>Кино</h2>
-	</div>
-	<div class="smallimg">
-		<img style="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
-		<img src="/images/s940x380 (6).webp" />
-		<img src="~/images/s940x380 (4).webp" />
-		<img src="~/images/s940x380 (3).webp" />
-	</div>
-	
-
-</div>
-
-@*StandUP*@
-
-<div>
-	<div class="promo_open">
-		<h2>StandUP Шоу</h2>
-	</div>
-	<div class="smallimg">
-		<img style="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
-		<img src="/images/s940x380 (6).webp" />
-		<img src="~/images/s940x380 (4).webp" />
-		<img src="~/images/s940x380 (3).webp" />
-	</div>
-
-</div>
-
-@*Спектакли*@
-
-<div>
-	<div class="promo_open">
-		<h2>Спектакли</h2>
-	</div>
-	<div class="smallimg">
-		<img style="margin-left: -5ex;" src="~/images/s940x380 (5).webp" />
-		<img src="/images/s940x380 (6).webp" />
-		<img src="~/images/s940x380 (4).webp" />
-		<img src="~/images/s940x380 (3).webp" />
-	</div>
-
-</div>
 

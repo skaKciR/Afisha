@@ -1,6 +1,7 @@
 ﻿using Afisha.Domain;
 using Afisha.Domain.Entities;
 using Afisha.Domain.Repositories.Abstract;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.CompilerServices;
 
@@ -20,6 +21,7 @@ namespace Afisha.Domain.Repositories.EntityFramework
             return context.Events;
         }
 
+    
         public Event GetEventItemById(Guid id)
         {
             return context.Events.FirstOrDefault(x => x.Id == id);
@@ -47,6 +49,17 @@ namespace Afisha.Domain.Repositories.EntityFramework
         {
             context.Events.Remove(new Event() { Id = id });
             context.SaveChanges();
+        }
+
+        public List<Event> GetSliderElements(IEnumerable<Event> entity)
+        {
+            List<Event> list = new List<Event>();
+            var cnt = context.Events.Count();
+
+               var items= context.Events.OrderByDescending(x => x).Take(5);
+            list = items.ToList();
+            return list;
+           
         }
     }
 }

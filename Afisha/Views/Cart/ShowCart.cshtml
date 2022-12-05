@@ -16,24 +16,40 @@
         {  <div class="promo_open">
             
             <li class="promo_open">
-                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
-                    <div class="promo_open">
-				<img class="slider" src="~/images/@entity.TitleImagePath" alt="" class="slider" />
-                </div>
-                </a>
-                <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
-                    <p>
-                        <div class="promo_open"><button type="submit">Удалить из корзины</button></div>                     
-                    </p>
-                </form>
+              
+                        <div class="promo_open">
+                            <div class="cartbox">  
+                                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" >
+								    <div class="cartboxinfo">
+									    <div style="display:block !important">
+									        <h2> @entity.Title</h2>
+											<img style="margin-bottom:5ex;filter: brightness(0.9);height: 170px;border-radius: 20px;width: 330px;margin-left: 20px;" src="~/images/@entity.TitleImagePath" alt="" />
+									 </div>
+                                        <h2>@entity.Age</h2>
+                                       
+								    </div>
+                                  </a>
+                                  <div class="cartboxbuttons"> 
+                                      <form asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
+                                       
+									<div class="promo_open"><button type="submit">Оплатить</button></div>   
+								        </form>
+                                    <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
+                                       
+                                            <div class="promo_open"><button type="submit">Удалить из корзины</button></div>
+								        
+                                        </form>
+                              
+							</div>
+                             </div>
+                        </div>
+              
+         
             </li>
             </div>
         }
-        <form asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
-            <p>
-                <div class="promo_open"><button type="submit">Оплатить</button></div>
-            </p>
-        </form>
+     
+           
 
     }
     else
