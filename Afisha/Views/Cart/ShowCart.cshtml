@@ -4,60 +4,72 @@
 
 }
 <div class="promo_open">
-    <div class="itemsnew">
-		<h1> Билеты в вашей корзине:</h1>
+    <div class="itemsnew"> 
+		<h1> Билеты в вашей корзине (@Model.Count()) :</h1>
 	</div>
 </div>
 <div>
-    @if (Model.Any())
-    {
-       
-        @foreach (Event entity in Model)
-        {  <div class="promo_open">
-            
-            <li class="promo_open">
+ <div class="listwrappercontainer">      
+@if (Model.Any())
+        {
+            foreach (Event entity in Model)
+            { 
               
-                        <div class="promo_open">
-                            <div class="cartbox">  
-                                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" >
-								    <div class="cartboxinfo">
-									    <div style="display:block !important">
-									        <h2> @entity.Title</h2>
-											<img style="margin-bottom:5ex;filter: brightness(0.9);height: 170px;border-radius: 20px;width: 330px;margin-left: 20px;" src="~/images/@entity.TitleImagePath" alt="" />
-									 </div>
-                                        <h2>@entity.Age</h2>
-                                       
-								    </div>
-                                  </a>
-                                  <div class="cartboxbuttons"> 
-                                      <form asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
-                                       
-									<div class="promo_open"><button type="submit">Оплатить</button></div>   
-								        </form>
-                                    <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
-                                       
-                                            <div class="promo_open"><button type="submit">Удалить из корзины</button></div>
-								        
-                                        </form>
-                              
-							</div>
-                             </div>
-                        </div>
-              
-         
-            </li>
-            </div>
-        }
-     
-           
+                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+                    <div class="listwrapper">
+                        <div id="tekst_sverhu_kartinki">
 
-    }
-    else
-    {
-        <div class="promo_open"> 
-            <h2 style="margin-top: -1.2ex;"> Здесь пусто </h2>
+                            <div id="tekst_sverhu_kartinki">
+                                <div class="brightless">
+                                    <img class="listwrapper" src="~/images/@entity.TitleImagePath" />
+                                </div>
+                                <div class="tekst_sverhu_kartinki_2">
+                                    @if (entity.PCard == true)
+                                    {
+                                        <div class="tekstheaderright"><span>Пушкинская карта</span></div>
+
+                                    }
+                                    <div class="tekstheadright">
+                                        <span>@entity.Type @entity.Age+</span>
+                                    </div>
+                                    <div class="tekstfooterleft">
+                                        <span style="margin-bottom: -2ex;display:block;margin-left: 4ex;">@entity.Title</span>
+                                        <div class="truncate">
+                                            <span>@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString() @entity.Address</span> </div>
+                                    </div>
+                                    <div class="tekstfooterright">
+                                        <span style="float:right;">@entity.Cost ₽</span>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
+
+                            <div class="promo_open"><button type="submit">Удалить из корзины</button></div>
+
+                        </form>
+                    </div>
+                </a>  
+             
+            }
+               <form asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
+              <div class="promo_open2"><button type="submit">Оплатить всё</button></div>
+        </form>
+        }
+        else
+        {
+            <div class="promo_open"> 
+                <h2 style="margin-top: -1.2ex;"> Здесь пусто </h2>
            <a asp-controller="Home" asp-action="Index"> <h3>Давайте добавим что-нибудь..?</h3> </a>
             
         </div>
     }
+  </div>
+    
+   
 </div>
+    

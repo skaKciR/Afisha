@@ -1,5 +1,6 @@
 ﻿@import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 /*
 	Telephasic by HTML5 UP
 	html5up.net | @ajlkn
@@ -3061,7 +3062,7 @@ ul {
 .promo_open button {
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
     color: white;
-    margin: 15px auto;
+    margin: 10px auto;
     display: block;
     font-size: 2.6ex;
     font-weight: 400;
@@ -3215,7 +3216,7 @@ ul {
         text-transform: uppercase;
         font-weight: 700;
         font-family: "Josefin Sans", sans-serif;
-        background: linear-gradient(to right, rgb(0 231 255 / 71%) 18%, rgb(253 8 200) 48%);
+        background: linear-gradient(90deg, rgb(0 231 255) 1%, rgb(253 8 200) 85%);
         background-clip: border-box;
         background-size: 200% auto;
         color: #fff;
@@ -3223,7 +3224,7 @@ ul {
         text-fill-color: transparent;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: textclip 3s linear infinite !important;
+        animation: textclip 4s linear infinite !important;
         display: inline-block;
     }
 @keyframes textclip {
@@ -3262,3 +3263,118 @@ ul {
 .links i {
     font-family: "Font Awesome 5 Brands";
 }
+
+
+/* LIST */
+
+.listwrapper {
+    margin-left: 0;
+    width: fit-content;
+    height: auto;
+    display: inline-block;
+    margin-right: 5ex;
+}
+.listwrapper img {
+    width: 500px;
+    height: 250px;
+    border-radius: 3ex;
+    box-shadow: 0 0 10px #444;
+    margin-bottom:2ex;
+}
+.listwrappertex h1 {
+    font-weight: 600;
+    font-size: 5ex;
+    margin-bottom: 3ex;
+    font-family: 'Montserrat', sans-serif;
+}
+.listwrappercontainer {
+    width:100%;
+    height:fit-content;
+    margin:0 auto;
+    display:inline-block;
+
+}
+div#tekst_sverhu_kartinki {
+    position: relative;
+}
+
+.tekst_sverhu_kartinki_2 {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    text-transform: uppercase;
+    color: #fffbfb;
+    width: 94%;
+    height: 84%;
+}
+    .tekst_sverhu_kartinki_2 span {
+    font: bold 19px/44px Helvetica, Sans-Serif;
+    padding: 8px;
+    text-transform:none;
+}
+.tekstfooterleft {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 2ex;
+    left: -2%;
+}
+    .tekstfooterleft span {
+      
+    }
+.tekstfooterright {
+    position: absolute;
+    right: 13%;
+    bottom: 15%;
+}
+    .tekstfooterright span {
+        letter-spacing: 2px;
+        padding-left: 6px;
+        padding-right: 6px;
+        background: #000000b5;
+        border-radius: 16px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .tekstheaderright{
+        position:absolute;
+        right:12%;
+        top:0;
+    }
+        .tekstheaderright span {
+            color: #fff;
+            font-family: "Josefin Sans", sans-serif;
+            background: linear-gradient(90deg, rgb(0 231 255) 1%, rgb(253 8 200) 85%);
+            background-clip: border-box;
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textclip 4s linear infinite !important;
+            display: inline-block;
+        }
+
+.truncate {
+    width: 37ex;
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+.promo_open2 button {
+    position: absolute;
+    box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 50%);
+    color: white;
+    margin: 0 auto;
+    display: block;
+    font-size: 2.6ex;
+    font-weight: 400;
+    background: linear-gradient(90deg, rgba(0,0,0,0.8715861344537815) 39%, rgba(32,30,32,0.9528186274509804) 74%, rgba(0,0,0,0.7875525210084033) 100%);
+    left: 50%;
+    top: 13%;
+}
+
+    .promo_open2 button:hover {
+        color: red;
+    }

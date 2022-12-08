@@ -1,0 +1,67 @@
+﻿@model List<Event>
+@{
+    TextField textField = ViewBag.TextField;
+
+
+}
+ 
+ <div class="listwrappertex">
+     @if(Model.Any()){
+        @if (@Model[0].Type=="Концерт")
+        {
+            <h1>Концерты</h1>
+        }
+        else if (@Model[0].Type == "Спектакль")
+        {
+           <h1>Спектакли</h1>
+        }
+        else{
+            <h1>@Model[0].Type</h1>
+        }
+     }
+     else
+     {
+        <h1>Похоже,тут пусто &#128164</h1>
+     }
+</div>
+      
+   <div class="listwrappercontainer">      
+@if (Model.Any())
+{
+    foreach (Event entity in Model)
+    {
+        <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+        <div class="listwrapper">
+            <div id="tekst_sverhu_kartinki">
+ 
+                        <div id="tekst_sverhu_kartinki">
+                            <div class="brightless">
+                        <img class="listwrapper" src="~/images/@entity.TitleImagePath" />
+                        </div>
+                            <div class="tekst_sverhu_kartinki_2">
+                                @if(entity.PCard==true){
+                                    <div class="tekstheaderright"><span>Пушкинская карта</span></div>
+                                       
+                                }
+                                <div class="tekstheadright">
+                                <span>@entity.Type @entity.Age+</span>
+                            </div>
+                                <div class="tekstfooterleft">
+                                <span style="margin-bottom: -2ex;display:block;margin-left: 4ex;">@entity.Title</span>
+                                <div class="truncate">
+                               <span>@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString() @entity.Address</span> </div>
+                                </div>
+                                <div class="tekstfooterright">
+                                <span style="float:right;">@entity.Cost ₽</span>
+                                </div>
+                            
+                                
+                            
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </a>
+    }
+}
+  </div>

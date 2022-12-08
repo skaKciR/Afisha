@@ -16,18 +16,20 @@
 			
 			<ul>
 				<li>
-					<a asp-area="" asp-controller="Event" asp-action="Index">Концерты</a>
+					<a asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Концерт">Концерты</a>
 				</li>
 				<li>
-					<a asp-area="" asp-controller="Event" asp-action="Index">Театры</a>
+					<a asp-area="" asp-controller="Event" asp-action="List" asp-route-type="StandUP Шоу">StandUP</a>
 				</li>
 				<li>
-					<a asp-area="" asp-controller="Event" asp-action="Index">Кино</a>
+					<a asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Кино">Кино</a>
 				</li>
-				<li><a href="right-sidebar.html">Детям</a></li>
+				<li>
+					<a asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Спектакль">Спектакли</a>
+			</li>
 				<li>
 					<div class="dropdown">
-						<a style="margin-left: 1ex;margin-right: 5ex;" asp-area="" asp-controller="Event" asp-action="Index">Контакты</a>
+						<a style="margin-left: 1ex;margin-right: 5ex;" asp-area="" asp-controller="" asp-action="">Контакты</a>
 						<div class="dropdown-content" style="margin-left: -0.8em;">
 						<div class="links">
 							<a href='https://vk.com/id609839779' class="social-button social-button--facebook" aria-label="VK">
@@ -57,7 +59,7 @@
 								<a asp-controller="Account" asp-action="Profile">Профиль</a>
 
 								<div class="dropdown-content">	
-									<a asp-controller="Account" asp-action="Logout">Краснодар</a>
+									<a style="cursor: pointer;">Краснодар</a>
 									<a asp-controller="Cart" asp-action="ShowCart" asp-route-name="@User.Identity.Name">Корзина</a>
 									<a asp-controller="Ticket" asp-action="ShowTickets" asp-route-name="@User.Identity.Name">Билеты</a>
 									<a asp-controller="Account" asp-action="Logout">Выйти</a>

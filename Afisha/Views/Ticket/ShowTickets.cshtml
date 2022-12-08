@@ -5,25 +5,57 @@
 }
 <div class="promo_open">
     <div class="itemsnew">
-		<h1> Ваши билеты:</h1>
+		<h1> Ваши билеты (@Model.Count()) :</h1>
 	</div>
 </div>
 <div>
-    @if (Model.Any())
-    {
-       
-        @foreach (Event entity in Model)
-        {  <div class="promo_open">
-            
-            <li class="promo_open">
-                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
-                    <div class="promo_open">
-				<img class="slider" src="~/images/@entity.TitleImagePath" alt="" class="slider" />
-                </div>
+    <div class="listwrappercontainer">
+        @if (Model.Any())
+        {
+            foreach (Event entity in Model)
+            {
+                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+                    <div class="listwrapper">
+                        <div id="tekst_sverhu_kartinki">
+
+                            <div id="tekst_sverhu_kartinki">
+                                <div style=" filter: brightness(67%);">
+                                    <img class="listwrapper" src="~/images/@entity.TitleImagePath" />
+                                </div>
+                                <div class="tekst_sverhu_kartinki_2">
+                                    @if (entity.PCard == true)
+                                    {
+                                        <div class="tekstheaderright"><span>Пушкинская карта</span></div>
+
+                                    }
+                                    <div class="tekstheadright">
+                                        <span>@entity.Type @entity.Age+</span>
+                                    </div>
+                                    <div class="tekstfooterleft">
+                                        <span style="margin-bottom: -2ex;display:block;margin-left: 4ex;">@entity.Title</span>
+                                        <div class="truncate">
+                                            <span>@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString() @entity.Address</span>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="tekstfooterright">
+                                        <span style="float:right;">@entity.Cost ₽</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </a>
-            </li>
+            }
+        }
+        else
+        {
+            <div class="promo_open">
+                <a asp-controller="Cart" asp-action="ShowCart" asp-route-name="@User.Identity.Name"> <h3>Проверьте корзину,возможно вы не оплатили билет ➔ </h3> </a>
+
             </div>
         }
+    </div>
 
-    }
+
 </div>

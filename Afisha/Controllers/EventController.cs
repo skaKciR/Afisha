@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using Afisha.Domain;
+using Afisha.Domain.Entities;
 
 namespace Afisha.Controllers
 {
@@ -24,5 +25,10 @@ namespace Afisha.Controllers
             ViewBag.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageConcerts");
             return View(dataManager.Events.GetEventItems());
         }
+        public IActionResult List(string type)
+        {
+                return View(dataManager.Events.GetEventsByType(type).ToList());
+        }
+
     }
 }

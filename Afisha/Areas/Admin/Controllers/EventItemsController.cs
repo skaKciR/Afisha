@@ -48,5 +48,6 @@ namespace Afisha.Areas.Admin.Controllers
             dataManager.Events.DeleteEventItem(id);
             return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
         }
+
     }
 }

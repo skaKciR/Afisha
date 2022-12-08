@@ -2,6 +2,7 @@
 using Afisha.Domain.Entities;
 using Afisha.Domain.Repositories.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.CompilerServices;
 
@@ -55,6 +56,11 @@ namespace Afisha.Domain.Repositories.EntityFramework
         {
             if (type == null) return context.Events.OrderByDescending(x => x.Date).Take(count);
             else return context.Events.Where(x=> x.Type == type).OrderByDescending(x => x.Date).Take(count);
+
+        }
+
+        public  List<Event> GetEventsByType(string type){
+            return context.Events.Where(x => x.Type == type).ToList();
 
         }
     }

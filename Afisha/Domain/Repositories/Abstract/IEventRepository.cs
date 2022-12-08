@@ -15,5 +15,6 @@ namespace Afisha.Domain.Repositories.Abstract
         void DeleteEventItem(Guid id);
         IQueryable<Event> GetEventsByString(string searchString);
         IQueryable<Event> GetElements(int count, string type);
+        List<Event> GetEventsByType(string type);
     }
 }
