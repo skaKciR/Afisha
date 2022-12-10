@@ -1,6 +1,111 @@
 ﻿<!-- Header -->
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-<div id="header-wrapper">
+<nav style="border-radius:0ex 0ex 4ex 4ex; margin-bottom: 4em;" class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+	<div class="container-fluid">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="/" style="font-size: 6ex;padding-right:1em;">
+			<img src="/images/Kururin 2.png" width="90" height="90" class="d-inline-block align-top" alt="" loading="lazy">
+			Afishes
+		</a>
+		<div class="collapse navbar-collapse nev" id="navbarTogglerDemo03">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link " asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Концерт">Концерты</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " asp-area="" asp-controller="Event" asp-action="List" asp-route-type="StandUP Шоу">StandUP</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link "  asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Кино">Кино</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Спектакль">Спектакли</a>
+				</li>
+				<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle " href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Контакты
+          </a>
+          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
+						<li>
+							<a class="dropdown-item" href='https://vk.com/id609839779' class="social-button social-button--facebook" aria-label="VK">
+								<i class="fa fa-vk"> VK </i>
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href='https://github.com/skaKciR' class="social-button social-button--facebook" aria-label="VK">
+								<i class="fa fa-github"> Github </i>
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href='mailto:afisheshelper@mail.ru' class="social-button social-button--facebook" aria-label="VK">
+								<i class="fa fa-envelope-open"> Mail </i>
+							</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href='https://t.me/kislian' class="social-button social-button--facebook" aria-label="VK">
+								<i class="fa fa-telegram"> Telegram </i>
+							</a>
+						</li>
+          </ul>
+        </li>
+
+		@if (User.Identity.IsAuthenticated)
+					{
+						@if (User.IsInRole("admin"))
+						{<li class="nav-item">
+							<a class="nav-link " asp-area="Admin" asp-controller="Home" asp-action="Index">AdminPanel</a>
+						</li>
+						}
+						else
+						{
+							<li class="classnav-item dropdown">
+							<a class="nav-link dropdown-toggle " href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								@User.Identity.Name
+							</a>
+							<ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
+								<li>
+									<a class="dropdown-item">Краснодар</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-controller="Cart" asp-action="ShowCart" asp-route-name="@User.Identity.Name">Корзина</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-controller="Ticket" asp-action="ShowTickets" asp-route-name="@User.Identity.Name">Билеты</a>
+								</li>
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<a class="dropdown-item" asp-controller="Account" asp-action="Logout" >Выйти</a>
+								</li>
+								
+						
+							</ul>
+						</li>
+						}
+
+					}
+					else
+					{	<li class="nav-item">
+						<a class="nav-link" asp-controller="Account" asp-action="Login">Войти</a>
+						</li>
+					}
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+				<button style="margin-right:2em;" class="btn btn-outline-light" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+
+@*<div id="header-wrapper">
 
 	<div id="header" class="container">
 	
@@ -9,11 +114,14 @@
 
 
 		<h1 id="logo"><a href="/">Afishes</a></h1>
-		
+		*@
 	
 		<!-- Nav -->
-		<nav id="nav">
-			
+	@*	<nav class="navbar navbar-default" id="nav">
+				<div>
+						<input type="text" placeholder="Search...">
+						<div class="search"></div>
+					</div>
 			<ul>
 				<li>
 					<a asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Концерт">Концерты</a>
@@ -27,10 +135,11 @@
 				<li>
 					<a asp-area="" asp-controller="Event" asp-action="List" asp-route-type="Спектакль">Спектакли</a>
 			</li>
+				
 				<li>
 					<div class="dropdown">
 						<a style="margin-left: 1ex;margin-right: 5ex;" asp-area="" asp-controller="" asp-action="">Контакты</a>
-						<div class="dropdown-content" style="margin-left: -0.8em;">
+						<div class="dropdown-content" style="margin-left: -1.2em;">
 						<div class="links">
 							<a href='https://vk.com/id609839779' class="social-button social-button--facebook" aria-label="VK">
 									<i class="fa fa-vk"></i>
@@ -45,7 +154,7 @@
 					</div>
 					</div>
 				</li>
-				<li>
+			<li>
 					@if (User.Identity.IsAuthenticated)
 					{
 						@if (User.IsInRole("admin"))
@@ -76,10 +185,7 @@
 
 				</li>
 			
-					<div class="container">
-						<input type="text" placeholder="Search...">
-						<div class="search"></div>
-					</div>
+				
 			
 				
 				
@@ -88,4 +194,4 @@
 		</nav>
 
 	</div>
-</div>
+</div>*@

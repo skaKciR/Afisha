@@ -9,6 +9,49 @@
 	</div>
 </div>
 <div>
+
+    <div class="container">
+    <div class="row">
+        @if (Model.Any())
+        {
+            foreach (Event entity in Model)
+            {
+                <div class="col-md-6">
+                    <div class="smallimg">
+                        <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+                            <div style="display:block;">
+                                <div id="tekst_sverhu_kartinki">
+
+                                    <div class="brightless">
+                                        <img src="~/images/@entity.TitleImagePath" />
+                                        <div class="tekst_sverhu_kartinki_3">
+                                            <span style="background: #000000c7;padding: 5px; border-radius: 20px;font-size: 90%;">@entity.Cost ₽</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div style="margin-left: -0.8ex;text-align:center;">
+                                <div сlass="smallimg" style="margin-bottom: -1ex;">
+                                    <span style="font-weight:400;">@entity.Title</span>
+                                </div>
+                                <div style="display:inline;" class="smallimg">
+                                    <span style="font-size:20px;">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
+                                    <span style="font-size:20px;">@entity.Address</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
+
+
  <div class="listwrappercontainer">      
 @if (Model.Any())
         {
@@ -17,7 +60,7 @@
               
                 <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
                     <div class="listwrapper">
-                        <div id="tekst_sverhu_kartinki">
+                        <div id="tekst_sverhu_kartinki" style="height: 250px;">
 
                             <div id="tekst_sverhu_kartinki">
                                 <div class="brightless">
@@ -49,7 +92,11 @@
 
                         <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
 
-                            <div class="promo_open"><button type="submit">Удалить из корзины</button></div>
+                            <div class="promo_open">
+                                <button type="submit" style="margin-bottom: 10%;">
+                                    Удалить из корзины
+                                </button>
+                            </div>
 
                         </form>
                     </div>
@@ -57,7 +104,7 @@
              
             }
                <form asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
-              <div class="promo_open2"><button type="submit">Оплатить всё</button></div>
+              <div class="promo_open2"><button type="submit" style="top: 9%;">Оплатить всё</button></div>
         </form>
         }
         else
