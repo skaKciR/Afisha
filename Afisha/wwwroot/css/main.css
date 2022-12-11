@@ -3306,7 +3306,7 @@ ul {
     margin-left: 0px;
     margin-bottom: 2ex;
     font-size: 4ex;
-    font-weight: bold;
+    font-weight:400;
     text-decoration: none;
 }
 .smallswiper-swipe {
@@ -3330,9 +3330,8 @@ ul {
     text-align: right;
     margin-left:85ex;
     }
-    .wrapper2 h1 {
+    .wrapper2 p {
         color: #fff;
-        font-size: 3ex;
         text-transform: uppercase;
         font-weight: 700;
         font-family: "Josefin Sans", sans-serif;
@@ -3511,4 +3510,10 @@ div#tekst_sverhu_kartinki {
    
     text-transform: uppercase;
     color: #fffbfb;
+}
+.bure {
+    height: 18%;
+    border-radius: 50%;
+    margin: auto;
+    width: 8% !important;
 }
