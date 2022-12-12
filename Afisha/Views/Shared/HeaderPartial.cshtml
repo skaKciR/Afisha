@@ -95,8 +95,8 @@
 						</li>
 					}
 			</ul>
-			<form class="d-flex">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+			<form class="d-flex" method="get" action="@Url.Action("Search", "Search")">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchString" id="searchString">
 				<button style="margin-right:2em;" class="btn btn-outline-light" type="submit">Search</button>
 			</form>
 		</div>

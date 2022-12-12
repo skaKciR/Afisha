@@ -11,6 +11,7 @@ namespace Afisha.Controllers
         {
             this.dataManager = dataManager;
         }
+        [HttpGet]
         public IActionResult Search(string searchString)
         {
             return View(dataManager.Events.GetEventsByString(searchString));

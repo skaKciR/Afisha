@@ -34,7 +34,7 @@ namespace Afisha.Domain.Repositories.EntityFramework
         public IQueryable<Event> GetEventsByString(string searchString)
         {
             if (context == null) return null;
-            return context.Events.Where(x => x.Title.Contains(searchString));
+            return context.Events.Where(x => x.Title.ToLower().Contains(searchString.ToLower()));
         }
 
         public void SaveEventItem(Event entity)
