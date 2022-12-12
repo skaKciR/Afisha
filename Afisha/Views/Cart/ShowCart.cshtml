@@ -3,120 +3,69 @@
     
 
 }
-<div class="promo_open">
-    <div class="itemsnew"> 
-		<h1> Билеты в вашей корзине (@Model.Count()) :</h1>
-	</div>
+<div style="display:flex;">
+<h1 style="font-size: 2.7vmax;"> Билеты в вашей корзине (@Model.Count()) :</h1>
+    @if (Model.Any())
+    {
+        <form style="margin-right: 6vmin;margin-top: 0.5vmin;" asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
+            <button style="border-radius: 3vmin;background: black;color: white;margin-left:1vmin;" submit">Оплатить всё</button>
+        </form>
+    }
 </div>
-<div>
-
+@if (Model.Any())
+{
     <div class="container">
-    <div class="row">
-        @if (Model.Any())
-        {
-            foreach (Event entity in Model)
+        <div class="row">
+            <div class="smallimg" style=" margin-bottom: 1.4ex;">
+            </div>
+            @foreach (Event entity in Model)
             {
-                <div class="col-md-6">
+
+                <div class="col-xs-12 col-md-6" style="padding-top: 0px;padding-bottom: 3ex;">
+
+
                     <div class="smallimg">
                         <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
-                            <div style="display:block;">
-                                <div id="tekst_sverhu_kartinki">
-
-                                    <div class="brightless">
-                                        <img src="~/images/@entity.TitleImagePath" />
-                                        <div class="tekst_sverhu_kartinki_3">
-                                            <span style="background: #000000c7;padding: 5px; border-radius: 20px;font-size: 90%;">@entity.Cost ₽</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div style="margin-left: -0.8ex;text-align:center;">
-                                <div сlass="smallimg" style="margin-bottom: -1ex;">
-                                    <span style="font-weight:400;">@entity.Title</span>
-                                </div>
-                                <div style="display:inline;" class="smallimg">
-                                    <span style="font-size:20px;">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
-                                    <span style="font-size:20px;">@entity.Address</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            }
-        }
-    </div>
-</div>
-
-
-
-
-
- <div class="listwrappercontainer">      
-@if (Model.Any())
-        {
-            foreach (Event entity in Model)
-            { 
-              
-                <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
-                    <div class="listwrapper">
-                        <div id="tekst_sverhu_kartinki" style="height: 250px;">
 
                             <div id="tekst_sverhu_kartinki">
                                 <div class="brightless">
-                                    <img class="listwrapper" src="~/images/@entity.TitleImagePath" />
-                                </div>
-                                <div class="tekst_sverhu_kartinki_2">
-                                    @if (entity.PCard == true)
+                                    <img style="box-shadow: 0px 5px 9px 3px #000000c4;" src="~/images/@entity.TitleImagePath" />
+                                    <div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+                                        <p style="font-size:min(3.5vmin,1.4ex);" class="h2">@entity.Age+ </p>
+                                    </div>
+                                    @if (@entity.PCard == true)
                                     {
-                                        <div class="tekstheaderright"><span>Пушкинская карта</span></div>
-
+                                        <div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+                                            <p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+                                        </div>
                                     }
-                                    <div class="tekstheadright">
-                                        <span>@entity.Type @entity.Age+</span>
+                                    <div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+                                        <p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
                                     </div>
-                                    <div class="tekstfooterleft">
-                                        <span style="margin-bottom: -2ex;display:block;margin-left: 4ex;">@entity.Title</span>
-                                        <div class="truncate">
-                                            <span>@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString() @entity.Address</span> </div>
+                                    <div class="tekst_sverhu_kartinki_1">
+                                        <p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
+                                        <p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
                                     </div>
-                                    <div class="tekstfooterright">
-                                        <span style="float:right;">@entity.Cost ₽</span>
-                                    </div>
-
-
-
                                 </div>
                             </div>
-                        </div>
-
-                        <form asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
-
-                            <div class="promo_open">
-                                <button type="submit" style="margin-bottom: 10%;">
-                                    Удалить из корзины
-                                </button>
-                            </div>
-
-                        </form>
+                           
+                        </a> 
+                        <form style="text-align:center;" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
+                            <button type="submit" style="border-radius: 3vmin;background: black;color: white;margin-top: 1vmin;">
+                                Удалить из корзины
+                            </button>
+                            </form>
                     </div>
-                </a>  
-             
+                </div>
+
             }
-               <form asp-controller="Ticket" asp-action="Buy" asp-route-userName="@User.Identity.Name">
-              <div class="promo_open2"><button type="submit" style="top: 9%;">Оплатить всё</button></div>
-        </form>
-        }
-        else
-        {
-            <div class="promo_open"> 
-                <h2 style="margin-top: -1.2ex;"> Здесь пусто </h2>
-           <a asp-controller="Home" asp-action="Index"> <h3>Давайте добавим что-нибудь..?</h3> </a>
-            
         </div>
+    </div>
     }
-  </div>
-    
-   
-</div>
-    
+    else
+    {
+    <h2 style="font-size:2vmax;"> Здесь пусто </h2>
+    <a style="text-decoration: none !important;" asp-controller="Home" asp-action="Index"><h3 style="color: #ff0000ab; font-size:2vmax;">Давайте добавим что-нибудь ?</h3></a>
+
+    }
+

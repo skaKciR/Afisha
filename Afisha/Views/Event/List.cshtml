@@ -26,44 +26,43 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        @if (Model.Any())
-        {
-            foreach (Event entity in Model)
-            {
-                <div class="col-xs-12 col-md-6">
-                    <div class="smallimg">
-                        <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
-                            <div style="display:block;">
-                                <div id="tekst_sverhu_kartinki">
+	<div class="row">
+		<div class="smallimg" style=" margin-bottom: 1.4ex;">
+		</div>
+		@foreach (Event entity in Model)
+		{
+			
+				<div class="col-xs-12 col-md-6" style="padding-top: 0px;padding-bottom: 3ex;">
 
-                                    <div class="brightless">
-                                        <img src="~/images/@entity.TitleImagePath" />
-                                        <div class="tekst_sverhu_kartinki_3">
-                                            <span style="background: #000000c7;padding: 5px; border-radius: 20px;font-size: 90%;">@entity.Cost ₽</span>
-                                        </div>
-                                        @if (entity.PCard == true)
-                                        {
-                                            <div class="tekstheaderright"><span style="font-size:1.4ex;">Пушкинская карта</span></div>
 
-                                        }
-                                    </div>
+					<div class="smallimg">
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
 
-                                </div>
-                            </div>
-                            <div style="margin-left: -0.8ex;text-align:center;">
-                                <div сlass="smallimg" style="margin-bottom: -1ex;">
-                                    <span style="font-weight:400;">@entity.Title</span>
-                                </div>
-                                <div style="display:inline;" class="smallimg">
-                                    <span style="font-size:20px;">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()</span>
-                                    <span style="font-size:20px;">@entity.Address</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            }
-        }
-    </div>
+							<div id="tekst_sverhu_kartinki">
+								<div class="brightless">
+									<img style="box-shadow: 0px 5px 9px 3px #000000c4;" src="~/images/@entity.TitleImagePath" />
+									<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+										<p style="font-size:min(3.5vmin,1.4ex);" class="h2">@entity.Age+ </p>
+									</div>
+									@if (@entity.PCard == true)
+									{
+										<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+											<p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+										</div>
+									}
+									<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+										<p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
+									</div>
+									<div class="tekst_sverhu_kartinki_1">
+										<p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
+										<p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+		
+		}
+	</div>
 </div>
