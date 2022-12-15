@@ -26,6 +26,7 @@ public class Startup
         services.AddTransient<IEventRepository, EFEventRepository>();
         services.AddTransient<ITicketRepository, EFTicketRepository>();
         services.AddTransient<ICartRepository, EFCartRepository>();
+        services.AddTransient<IFavoriteRepository, EFFavoriteRepository>();
         services.AddTransient<DataManager>();
 
         //подключаем контекст БД

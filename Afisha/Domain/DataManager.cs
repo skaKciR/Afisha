@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Tracing;
+using Afisha.Domain.Entities;
 using Afisha.Domain.Repositories.Abstract;
 
 namespace Afisha.Domain
@@ -9,13 +10,15 @@ namespace Afisha.Domain
         public IEventRepository Events { get; set; }
         public ICartRepository Carts { get; set; }
         public ITicketRepository Tickets { get; set; }
+        public IFavoriteRepository Favorite { get; set; }
 
-        public DataManager(ITextFieldsRepository textFieldsRepository, IEventRepository eventRepository, ICartRepository carts, ITicketRepository tickets)
+        public DataManager(ITextFieldsRepository textFieldsRepository, IEventRepository eventRepository, ICartRepository carts, ITicketRepository tickets,IFavoriteRepository favorites)
         {
             TextFields = textFieldsRepository;
             Events = eventRepository;
             Carts = carts;
-            Tickets = tickets;  
+            Tickets = tickets;
+            Favorite = favorites;
         }
     }
 }

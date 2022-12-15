@@ -1,10 +1,10 @@
 ﻿@model IQueryable<Event>
 @{
-    
+
 
 }
 <div style="display:flex;">
-    <h1 style="font-size: 2.7vmax;"> Ваши купленные билеты (@Model.Count()) :</h1>
+    <h1 style="font-size: 2.7vmax;"> Избранное (@Model.Count()) :</h1>
 </div>
 @if (Model.Any())
 {
@@ -37,11 +37,6 @@
                                         <p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
                                     </div>
                                     <div class="tekst_sverhu_kartinki_1">
-                                           <form style="margin-top: 4vmin;text-align: center;" asp-controller="Ticket" asp-action="TicketInfo" asp-route-eventId="@entity.Id">
-                                            <button type="submit" style="margin-top: 1vmin;border-radius: 3vmin;color: white;font-size: 2.5vmin;"><i class="fa fa-qrcode" aria-hidden="true"></i></button>
-            </form>
-                                    </div>
-                                    <div class="tekst_sverhu_kartinki_1">
                                         <p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
                                         <p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
                                     </div>
@@ -49,16 +44,22 @@
                             </div>
                            
                         </a> 
+                        <form style="text-align:center;" asp-controller="Favorite" asp-action="RemoveFromFavorite" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
+                            <button type="submit" style="border-radius: 3vmin;background: black;color: white;margin-top: 1vmin;">
+                               Убрать из избраного
+                            </button>
+                            </form>
                     </div>
                 </div>
 
             }
         </div>
     </div>
-}
-else
-{
+    }
+    else
+    {
     <h2 style="font-size:2vmax;"> Здесь пусто </h2>
-    <a style="text-decoration: none !important;" asp-controller="Home" asp-action="Index"><h3 style="color: #ff0000ab; font-size:2vmax;">Проверьте вашу корзину</h3></a>
+    <a style="text-decoration: none !important;" asp-controller="Home" asp-action="Index"><h3 style="color: #ff0000ab; font-size:2vmax;">Давайте добавим что-нибудь ?</h3></a>
 
-}
+    }
+

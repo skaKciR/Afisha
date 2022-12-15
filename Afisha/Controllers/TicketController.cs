@@ -20,10 +20,10 @@ namespace Afisha.Controllers
         {
             var cart = dataManager.Carts.GetEventItemsByName(userName);
             //foreach (var item in cart)
-           // {
-                dataManager.Tickets.SaveTicketItem(cart);
-           // }
-            
+            // {
+            dataManager.Tickets.SaveTicketItem(cart);
+            // }
+
             dataManager.Carts.RemoveCart(cart);
             return RedirectToAction("Index", "Home");
 
@@ -32,6 +32,12 @@ namespace Afisha.Controllers
         public IActionResult ShowTickets(string name)
         {
             return View(dataManager.Tickets.GetTicketsByName(name));
+        }
+
+        public IActionResult TicketInfo(Guid id)
+        {
+
+            return View("TicketInfo", dataManager.Tickets.GetTicketItemById(id));
         }
     }
 }

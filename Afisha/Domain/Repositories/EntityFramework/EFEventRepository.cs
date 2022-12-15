@@ -63,5 +63,6 @@ namespace Afisha.Domain.Repositories.EntityFramework
             return context.Events.Where(x => x.Type == type).ToList();
 
         }
+     
     }
 }

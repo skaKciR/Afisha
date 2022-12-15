@@ -29,5 +29,9 @@ namespace Afisha.Domain.Repositories.EntityFramework
                    join e in context.Events on c.EventId equals e.Id
                    select context.Events.FirstOrDefault(x => x.Id == e.Id);
         }
+        public Ticket GetTicketItemById(Guid id)
+        {
+            return context.Tickets.FirstOrDefault(x => x.Id == id);
+        }
     }
 }
