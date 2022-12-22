@@ -1,19 +1,41 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace Afisha.Domain.Entities
 {
-    public class Event
+    public class Ticket
     {
-        public Event() => DateAdded = DateTime.UtcNow;
+        public Ticket()
+        {
+
+        }
+        public Ticket(Event _event, int number, string userName) 
+        {
+            DateAdded = DateTime.UtcNow;
+            Cost = _event.Cost;
+            Title = _event.Title;
+            Subtitle = _event.Subtitle;
+            PCard = _event.PCard;
+            Age = _event.Age;
+            Address = _event.Address;
+            Date = _event.Date;
+            Type = _event.Type;
+            TitleImagePath = _event.TitleImagePath;
+            Text = _event.Text;
+            Number = number;
+            UserName = userName;
+        }
+        [Required]
+        public string? UserName { get; set; }
+        [Required]
+        public int Number { get; set; }
+
+        //[DataType(DataType.DateTime)]
         public DateTime DateAdded { get; set; }
-        [Required(ErrorMessage = "Заполните название мероприятия")]
-        [Display(Name = "Название (заголовок)")]
         public string? Title { get; set; }
 
         [Required]
         public Guid Id { get; set; }
 
-        //[DataType(DataType.Time)]
+        [DataType(DataType.Time)]
         public DateTime Date { get; set; }
 
         [Display(Name = "Адрес")]
@@ -39,15 +61,5 @@ namespace Afisha.Domain.Entities
 
         [Display(Name = "Пушкинская карта")]
         public bool PCard { get; set; } = false;
-
-
-        [Display(Name = "SEO метатег Title")]
-        public string? MetaTitle { get; set; }
-
-        [Display(Name = "SEO метатег Description")]
-        public string? MetaDescription { get; set; }
-
-        [Display(Name = "SEO метатег Keywords")]
-        public string? MetaKeywords { get; set; }
     }
 }

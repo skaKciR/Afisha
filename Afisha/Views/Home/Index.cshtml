@@ -1,5 +1,285 @@
-﻿<div>
-	<h1>
-	AFISHA
-		</h1>
+﻿
+@model List<IQueryable<Event>>
+@{
+	TextField textField = ViewBag.TextField;
+
+	ViewBag.Title = textField.MetaTitle;
+	ViewBag.Description = textField.MetaDescription;
+	ViewBag.Keywords = textField.MetaKeywords;
+
+}
+<link rel="stylesheet"
+	  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
+
+<h1 style="margin-bottom: 1em;padding-left: 0.5em;">
+	Афиша в Краснодаре
+</h1>
+<div id="carouselExampleControls" style="background-color: white !important;padding-left: 1em;padding-right: 1em;" class="carousel slide bg-dark" data-bs-ride="carousel">
+	<div class="carousel-inner" style="border-radius: 2ex;box-shadow: 0px 5px 9px 3px #000000c4;">
+		
+		@if (Model[0].Any())
+		{
+			<div class="carousel-item active" style="background:white;">
+			<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@Model[0].First().Id">
+				<div id="tekst_sverhu_kartinki">
+					<img style="max-height:520px;    min-height: 170px;filter:brightness(0.8);" src="~/images/@Model[0].First().TitleImagePath" class="d-block w-100" alt="">
+					<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+						<p style="font-size: 2.5vmin;" class="h2">@Model[0].First().Type  @Model[0].First().Age+ </p>
+					</div>
+					@if (@Model[0].First().PCard == true)
+					{
+						<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+							<p style="font-size: 2.5vmin;text-align:center;" class="h2">Пушкинская карта</p>
+						</div>
+					}
+					<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+						<p style="font-size: 3.5vmin;margin-bottom: 0;" class="h2">@Model[0].First().Cost ₽</p>
+					</div>
+					<div class="tekst_sverhu_kartinki_1">
+						<p style="font-size: 4vmin;" class="h1 ">@Model[0].First().Title </p>
+						<p style="font-size: 2.5vmin;text-align: center;" class="h2">@Model[0].First().Date.ToString("dd MMMM") @Model[0].First().Date.ToShortTimeString()  </p>
+					</div>
+				</div>
+			</a>
+		</div>
+			@foreach (Event entity in Model[0].Skip(1))
+			{
+				<div class="carousel-item" style="background:white;">
+					<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+						<div id="tekst_sverhu_kartinki">
+							<img style="max-height:520px;    min-height: 170px;filter:brightness(0.8);" src="~/images/@entity.TitleImagePath" class="d-block w-100" alt="">
+							<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+								<p style="font-size: 2.5vmin;" class="h2">@entity.Type @entity.Age+ </p>
+							</div>
+							@if (@entity.PCard == true)
+							{
+								<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+									<p style="font-size: 2.5vmin; text-align:center;" class="h2">Пушкинская карта</p>
+								</div>
+							}
+							<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+								<p style="font-size: 3.5vmin;margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
+							</div>
+							<div class="tekst_sverhu_kartinki_1">
+								<p style="font-size: 4vmin;" class="h1">@entity.Title </p>
+								<p style="font-size: 2.5vmin;text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
+
+							</div>
+						</div>
+					</a>
+				</div>
+			}
+
+		}
+
+	</div>
+	<button class="carousel-control-prev bg-dark bure" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Предыдущий</span>
+	</button>
+	<button class="carousel-control-next bg-dark bure" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Следующий</span>
+	</button>
 </div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-md-3" style="padding-top: 0px;padding-bottom: 3ex;">
+
+
+	</div>
+</div>
+
+
+@*Концерты*@
+<div class="container">
+	<div class="row">
+		<div class="smallimg" style=" margin-bottom: 1.4ex;">
+			<a asp-controller="Event" asp-action="List" asp-route-type="Концерт"><h1>Концерты »</h1></a>
+		</div>
+		@foreach (Event entity in Model[1])
+		{
+			@if (entity.Type == "Концерт")
+			{
+				<div class="col-xs-12 col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+
+
+					<div class="smallimg">
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+
+							<div id="tekst_sverhu_kartinki">
+								<div class="brightless">
+									<img style="box-shadow: 0px 5px 9px 3px #000000c4;" src="~/images/@entity.TitleImagePath" />
+									<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+										<p style="font-size:min(3.5vmin,1.4ex);" class="h2">@entity.Age+ </p>
+									</div>
+									@if (@entity.PCard == true)
+									{
+										<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+											<p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+										</div>
+									}
+									<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+										<p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
+									</div>
+									<div class="tekst_sverhu_kartinki_1">
+										<p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
+										<p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			}
+		}
+	</div>
+</div>
+
+@*Кино*@
+<div class="container">
+	<div class="row">
+		<div class="smallimg" style=" margin-bottom: 1.4ex;">
+			<a asp-controller="Event" asp-action="List" asp-route-type="Кино"><h1>Кино »</h1></a>
+		</div>
+		@foreach (Event entity in Model[2])
+		{
+			@if (entity.Type == "Кино")
+			{
+				<div class="col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+					<div class="smallimg">
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+							<div id="tekst_sverhu_kartinki">
+								<div class="brightless">
+									<img style="box-shadow: 0px 5px 9px 3px #000000c4;" src="~/images/@entity.TitleImagePath" />
+									<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+										<p style="font-size:min(3.5vmin,1.4ex);" class="h2">@entity.Age+ </p>
+									</div>
+									@if (@entity.PCard == true)
+									{
+										<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+											<p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+										</div>
+									}
+									<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+										<p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
+									</div>
+									<div class="tekst_sverhu_kartinki_1">
+										<p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
+										<p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			}
+		}
+	</div>
+</div>
+
+@*StandUP Шоу*@
+<div class="container">
+	<div class="row">
+		<div class="smallimg" style=" margin-bottom: 1.4ex;">
+			<a asp-controller="Event" asp-action="List" asp-route-type="StandUP Шоу"><h1>StandUP Шоу »</h1></a>
+		</div>
+		@foreach (Event entity in Model[3])
+		{
+			@if (entity.Type == "StandUP Шоу")
+			{
+				<div class="col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+					<div class="smallimg">
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+							<div id="tekst_sverhu_kartinki">
+								<div class="brightless">
+									<img style="box-shadow: 0px 5px 9px 3px #000000c4;" src="~/images/@entity.TitleImagePath" />
+									<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+										<p style="font-size:min(3.5vmin,1.4ex);" class="h2">@entity.Age+ </p>
+									</div>
+									@if (@entity.PCard == true)
+									{
+										<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+											<p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+										</div>
+									}
+									<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+										<p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
+									</div>
+									<div class="tekst_sverhu_kartinki_1">
+										<p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
+										<p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			}
+		}
+	</div>
+</div>
+
+@*Спектакли*@
+<div class="container">
+	<div class="row">
+		<div class="smallimg" style=" margin-bottom: 1.4ex;">
+			<a asp-controller="Event" asp-action="List" asp-route-type="Спектакль"><h1>Спектакли »</h1></a>
+		</div>
+		@foreach (Event entity in Model[4])
+		{
+			@if (entity.Type == "Спектакль")
+			{
+				<div class="col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+					<div class="smallimg">
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+							<div id="tekst_sverhu_kartinki">
+								<div class="brightless">
+									<img style="box-shadow: 0px 5px 9px 3px #000000c4;" src="~/images/@entity.TitleImagePath" />
+									<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+										<p style="font-size:min(3.5vmin,1.4ex);" class="h2">@entity.Age+ </p>
+									</div>
+									@if (@entity.PCard == true)
+									{
+										<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+											<p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+										</div>
+									}
+									<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+										<p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
+									</div>
+									<div class="tekst_sverhu_kartinki_1">
+										<p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
+										<p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			}
+		}
+	</div>
+</div>
+
+<script>
+
+	var swiper = new Swiper(".mySwiper", {
+		spaceBetween: 30,
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+		pagination: {
+			el: ".swiper-pagination",
+		},
+		mousewheel: true,
+		keyboard: true,
+	});
+</script>
+
