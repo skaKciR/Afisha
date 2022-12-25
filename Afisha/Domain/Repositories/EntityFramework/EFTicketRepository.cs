@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Afisha.Domain.Repositories.EntityFramework
 {
-    public class EFTicketRepository:ITicketRepository
+    public class EFTicketRepository : ITicketRepository
     {
         private readonly AppDbContext context;
         public EFTicketRepository(AppDbContext context)
@@ -13,25 +13,34 @@ namespace Afisha.Domain.Repositories.EntityFramework
         }
         public void SaveTicketItem(IEnumerable<Cart> entity)
         {
-            List<Ticket> list = new List<Ticket>();
-            foreach (var item in entity)
+            string name = "";
+            List<Event> events = new List<Event>();
+            foreach (Cart cart in entity)
             {
-                list.Add(new Ticket { EventId = item.EventId, UserName = item.UserName });
+                name = cart.UserName;
+                events.Add(context.Events.FirstOrDefault(x => x.Id == cart.EventId));
+            }      
+
+            int number;
+            if (context.Tickets.Count() == 0) number = 0;
+            else number = context.Tickets.OrderByDescending(x => x.Number).First().Number;
+
+            List<Ticket> tickets = new List<Ticket>();
+            foreach (var item in events)
+            {
+                tickets.Add(new Ticket(item, ++number, name));
             }
-            context.AddRange(list);
+
+            context.AddRange(tickets);
             context.SaveChanges();
         }
-        public IQueryable<Event> GetTicketsByName(string name)
+        public IQueryable<Ticket> GetTicketsByName(string name)
         {
-            if (context == null) return null;
-
-            return from c in context.Tickets.Where(x => x.UserName == name)
-                   join e in context.Events on c.EventId equals e.Id
-                   select context.Events.FirstOrDefault(x => x.Id == e.Id);
+            return context.Tickets.Where(x => x.UserName == name);
         }
-        public Ticket GetTicketItemById(Guid id)
+        public Ticket GetTicketItemByNumber(int number)
         {
-            return context.Tickets.FirstOrDefault(x => x.Id == id);
+            return context.Tickets.FirstOrDefault(x => x.Number == number);
         }
     }
 }

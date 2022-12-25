@@ -5,8 +5,8 @@ namespace Afisha.Domain.Repositories.Abstract
 {
     public interface ITicketRepository
     {
-        public IQueryable<Event> GetTicketsByName(string name);
+        public IQueryable<Ticket> GetTicketsByName(string name);
         public void SaveTicketItem(IEnumerable<Cart> entity);
-        Ticket GetTicketItemById(Guid id);
+        Ticket GetTicketItemByNumber(int number);
     }
 }

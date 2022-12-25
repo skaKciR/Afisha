@@ -26,7 +26,7 @@ namespace Afisha.Controllers
                 Event _event = dataManager.Events.GetEventItemById(eventId);
                 if (_event != null)
                 {
-                    dataManager.Carts.SaveCartItem(new Cart { Quantity = 1, UserName = userName, EventId = eventId });
+                    dataManager.Carts.SaveCartItem(new Cart { UserName = userName, EventId = eventId });
                 } 
                 return RedirectToAction("Index", "Home");
             }

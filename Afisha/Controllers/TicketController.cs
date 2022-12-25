@@ -34,10 +34,10 @@ namespace Afisha.Controllers
             return View(dataManager.Tickets.GetTicketsByName(name));
         }
 
-        public IActionResult TicketInfo(Guid id)
+        public IActionResult TicketInfo(int number)
         {
 
-            return View("TicketInfo", dataManager.Tickets.GetTicketItemById(id));
+            return View("TicketInfo", dataManager.Tickets.GetTicketItemByNumber(number));
         }
     }
 }

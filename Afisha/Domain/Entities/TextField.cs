@@ -2,15 +2,35 @@
 
 namespace Afisha.Domain.Entities
 {
-    public class TextField : EntityBase
+    public class TextField
     {
         [Required]
         public string CodeWord { get; set; }
 
-        [Display(Name = "Название (заголовок)")]
-        public override string Title { get; set; } = "Информационная страница";
+        public TextField() => DateAdded = DateTime.UtcNow;
 
-        [Display(Name = "Содержание страницы")]
-        public override string Text { get; set; } = "Содержание заполняется админом";
+        [Required]
+        public Guid Id { get; set; }
+
+        [Display(Name = "Название (заголовок)")]
+        public string? Title { get; set; }
+
+        [Display(Name = "Краткое описание")]
+        public string? Subtitle { get; set; }
+
+        [Display(Name = "Полное описание")]
+        public string? Text { get; set; }
+
+        [Display(Name = "SEO метатег Title")]
+        public string? MetaTitle { get; set; }
+
+        [Display(Name = "SEO метатег Description")]
+        public string? MetaDescription { get; set; }
+
+        [Display(Name = "SEO метатег Keywords")]
+        public string? MetaKeywords { get; set; }
+
+        [DataType(DataType.Time)]
+        public DateTime DateAdded { get; set; }
     }
 }

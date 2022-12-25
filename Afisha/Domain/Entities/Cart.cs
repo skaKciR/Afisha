@@ -1,14 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace Afisha.Domain.Entities
 {
-    public class Cart : EntityBase
+    public class Cart
     {
+        public Cart()
+        {
+
+        }
+        [Required]
+        public Guid Id { get; set; }
+
         [Required]
         public string UserName { get; set; }
 
         [Required]
         public Guid EventId { get; set; }
-
-        public int Quantity { get; set; }
     }
 }
