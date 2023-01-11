@@ -10,7 +10,7 @@ namespace Afisha.Domain
         public IEventRepository Events { get; set; }
         public ICartRepository Carts { get; set; }
         public ITicketRepository Tickets { get; set; }
-        public IFavoriteRepository Favorite { get; set; }
+        public IFavoriteRepository Favorites { get; set; }
 
         public DataManager(ITextFieldsRepository textFieldsRepository, IEventRepository eventRepository, ICartRepository carts, ITicketRepository tickets,IFavoriteRepository favorites)
         {
@@ -18,7 +18,7 @@ namespace Afisha.Domain
             Events = eventRepository;
             Carts = carts;
             Tickets = tickets;
-            Favorite = favorites;
+            Favorites = favorites;
         }
     }
 }

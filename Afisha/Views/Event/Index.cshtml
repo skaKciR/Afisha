@@ -24,7 +24,8 @@
 		             <div class="image-wrapper first">
 			             <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
                              
-				             <img  class="slider" src="~/images/@entity.TitleImagePath" alt="" class="slider"/>
+				             @*<img  class="slider" src="~/images/@entity.TitleImagePath" alt="" class="slider"/>*@
+                                    <img class="slider" src=@string.Concat("data:image/jpeg;base64,", Convert.ToBase64String(entity.Image)) alt="" class="slider" />
 			             </a>
 		             </div>
 		             <header>

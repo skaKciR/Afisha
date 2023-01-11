@@ -4,6 +4,7 @@ using Afisha.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Afisha.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230111071956_picture")]
+    partial class picture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,9 +62,6 @@ namespace Afisha.Migrations
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
@@ -115,21 +114,6 @@ namespace Afisha.Migrations
                     b.ToTable("Favorites");
                 });
 
-            modelBuilder.Entity("Afisha.Domain.Entities.Picture", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Pictures");
-                });
-
             modelBuilder.Entity("Afisha.Domain.Entities.TextField", b =>
                 {
                     b.Property<Guid>("Id")
@@ -170,28 +154,28 @@ namespace Afisha.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageConcerts",
-                            DateAdded = new DateTime(2023, 1, 11, 8, 23, 58, 634, DateTimeKind.Utc).AddTicks(3868),
+                            DateAdded = new DateTime(2023, 1, 11, 7, 19, 56, 116, DateTimeKind.Utc).AddTicks(5528),
                             Title = "Концерты"
                         },
                         new
                         {
                             Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
                             CodeWord = "PageCinema",
-                            DateAdded = new DateTime(2023, 1, 11, 8, 23, 58, 634, DateTimeKind.Utc).AddTicks(3896),
+                            DateAdded = new DateTime(2023, 1, 11, 7, 19, 56, 116, DateTimeKind.Utc).AddTicks(5555),
                             Title = "Кино"
                         },
                         new
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2023, 1, 11, 8, 23, 58, 634, DateTimeKind.Utc).AddTicks(3910),
+                            DateAdded = new DateTime(2023, 1, 11, 7, 19, 56, 116, DateTimeKind.Utc).AddTicks(5567),
                             Title = "Контакты"
                         },
                         new
                         {
                             Id = new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"),
                             CodeWord = "Sign",
-                            DateAdded = new DateTime(2023, 1, 11, 8, 23, 58, 634, DateTimeKind.Utc).AddTicks(4019),
+                            DateAdded = new DateTime(2023, 1, 11, 7, 19, 56, 116, DateTimeKind.Utc).AddTicks(5579),
                             Title = "Личный кабинет"
                         });
                 });
@@ -216,9 +200,6 @@ namespace Afisha.Migrations
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("MetaDescription")
                         .HasColumnType("nvarchar(max)");
@@ -290,7 +271,7 @@ namespace Afisha.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "dec1f891-501a-4950-b532-df47a0e109d5",
+                            ConcurrencyStamp = "63fa62c5-be84-4e48-aaea-343709a44eae",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -390,13 +371,13 @@ namespace Afisha.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d2117082-05d2-4dd4-b82a-7e2bc728a401",
+                            ConcurrencyStamp = "f2b5dba6-82c0-492e-95a2-0144d2a04499",
                             Email = "afisheshelper@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AFISHESHELPER@MAIL.RU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIg375f/xTFaUIVkgYoLH+WWbs3igqFW+umLfmlROfKYsx86oQ+byowTxMdETu+ZrQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELCUOqb7LwvdJbByYDOA4BqLhqSXJPHGqAThLNzVi1HcFUFs4+C4acyNzOn7bQbtNw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

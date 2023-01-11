@@ -32,6 +32,7 @@ namespace Afisha.Domain.Entities
             PCard = _event.PCard;
             Type = _event.Type;
             Cost = _event.Cost;
+            Image = _event.Image;
         }
 
         [Required]
@@ -52,6 +53,8 @@ namespace Afisha.Domain.Entities
 
         [Display(Name = "Титульная картинка")]
         public string? TitleImagePath { get; set; }
+
+        public byte[]? Image { get; set; }
 
         [Display(Name = "SEO метатег Title")]
         public string? MetaTitle { get; set; }

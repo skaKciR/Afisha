@@ -25,6 +25,11 @@ namespace Afisha.Domain.Entities
         [Display(Name = "Титульная картинка")]
         public string? TitleImagePath { get; set; }
 
+        public byte[]? Image { get; set; }
+
+        //[Display(Name = "Титульная картинка1")]
+        //public Guid Picture { get; set; }
+
         [Display(Name = "SEO метатег Title")]
         public string? MetaTitle { get; set; }
 
