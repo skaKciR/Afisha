@@ -14,7 +14,7 @@ namespace Afisha.Domain.Entities
 
         }
 
-        public Ticket(Event _event, int number, string username)
+        public Ticket(Event _event, int number, string username, byte[] QR)
         {
             DateAdded = DateTime.UtcNow;
             UserName = username;
@@ -33,6 +33,7 @@ namespace Afisha.Domain.Entities
             Type = _event.Type;
             Cost = _event.Cost;
             Image = _event.Image;
+            this.QR = QR;
         }
 
         [Required]
@@ -56,6 +57,7 @@ namespace Afisha.Domain.Entities
 
         public byte[]? Image { get; set; }
 
+        public byte[]? QR { get; set; }
         [Display(Name = "SEO метатег Title")]
         public string? MetaTitle { get; set; }
 

@@ -1,6 +1,11 @@
 ﻿using Afisha.Domain.Entities;
 using Afisha.Domain.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
+using MessagingToolkit.QRCode.Codec.Data;
+using MessagingToolkit.QRCode.Codec;
+using System.Drawing;
+using Microsoft.Extensions.Hosting.Internal;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Afisha.Domain.Repositories.EntityFramework
 {
@@ -11,7 +16,7 @@ namespace Afisha.Domain.Repositories.EntityFramework
         {
             this.context = context;
         }
-        public void SaveTicketItem(IEnumerable<Cart> entity)
+        public void SaveTicketItem(IEnumerable<Cart> entity, string host)
         {
             string name = "";
             List<Event> events = new List<Event>();
@@ -28,7 +33,7 @@ namespace Afisha.Domain.Repositories.EntityFramework
             List<Ticket> tickets = new List<Ticket>();
             foreach (var item in events)
             {
-                tickets.Add(new Ticket(item, ++number, name));
+                tickets.Add(new Ticket(item, ++number, name, GetQRByNumberTicket(number, host)));
             }
 
             context.AddRange(tickets);
@@ -42,5 +47,19 @@ namespace Afisha.Domain.Repositories.EntityFramework
         {
             return context.Tickets.FirstOrDefault(x => x.Number == number);
         }
+        public byte[] GetQRByNumberTicket(int number, string host)
+        {
+            QRCodeEncoder encoder = new QRCodeEncoder();
+            Bitmap qrcode = encoder.Encode(host + "/Ticket / TicketInfo ? number =" + number.ToString());
+            //ImageConverter converter = new ImageConverter();
+            //return (byte[])converter.ConvertTo(qrcode, typeof(byte[]));
+            MemoryStream stream = new MemoryStream();
+            qrcode.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            var bytes = stream.GetBuffer();
+            stream.Dispose();
+            stream.Close();
+            return bytes;
+        }
+        //Ticket/TicketInfo? number = 1
     }
 }
