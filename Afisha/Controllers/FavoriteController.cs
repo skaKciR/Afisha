@@ -26,7 +26,7 @@ namespace Afisha.Controllers
                 Event _event = dataManager.Events.GetEventItemById(eventId);
                 if (_event != null)
                 {
-                    dataManager.Favorite.SaveFavoriteItem(new Favorite { UserName = userName, EventId = eventId });
+                    dataManager.Favorites.SaveFavoriteItem(new Favorite { UserName = userName, EventId = eventId });
                 } 
                 return RedirectToAction("Index", "Home");
             }
@@ -38,13 +38,13 @@ namespace Afisha.Controllers
 
         public IActionResult RemoveFromFavorite(Guid eventId, string userName)
         {
-            dataManager.Favorite.DeleteFromFavoriteById(eventId, userName);
+            dataManager.Favorites.DeleteFromFavoriteById(eventId, userName);
             return RedirectToRoute(new { controller = "Favorite", action = "ShowFavorite", name = userName });
         }
 
         public IActionResult ShowFavorite(string name)
         {
-            return View(dataManager.Favorite.GetFavoriteByName(name));
+            return View(dataManager.Favorites.GetFavoriteByName(name));
         }
     }
 }

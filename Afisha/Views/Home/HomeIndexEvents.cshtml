@@ -1,0 +1,27 @@
+﻿@model Event
+<div class="smallimg">
+    <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@Model.Id">
+
+        <div id="tekst_sverhu_kartinki">
+            <div class="brightless">
+                <img style="box-shadow: 0px 5px 9px 3px #000000c4;" src=@string.Concat("data:image/jpeg;base64,", Convert.ToBase64String(Model.Image)) />
+                <div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+                    <p style="font-size:min(3.5vmin,1.4ex);" class="h2">@Model.Age+ </p>
+                </div>
+                @if (@Model.PCard == true)
+                {
+                    <div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+                        <p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+                    </div>
+                }
+                <div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+                    <p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@Model.Cost ₽</p>
+                </div>
+                <div class="tekst_sverhu_kartinki_1">
+                    <p style="font-size:min(4vmin,1.4ex);" class="h1">@Model.Title </p>
+                    <p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@Model.Date.ToString("dd MMMM") @Model.Date.ToShortTimeString()  </p>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
