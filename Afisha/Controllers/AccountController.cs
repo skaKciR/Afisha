@@ -39,7 +39,7 @@ namespace Afisha.Controllers
                 {
 
                     EmailService emailService = new EmailService();
-                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "https://localhost:7176/Account/ConfirmEmail?Email=" + user.Email);
+                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "Здравствуйте, " + user.UserName+"." +" Благодарим за регистрацию на сайте afishes.ru!" + "\r\n" + "Для завершения регистрации перейдите по ссылке: " + "https://localhost:7176/Account/ConfirmEmail?id=" + user.Id);
                     // установка куки
 
                     return RedirectToAction("Index", "Home");
@@ -55,9 +55,9 @@ namespace Afisha.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> ConfirmEmail(string Email)
+        public async Task<ActionResult> ConfirmEmail(string id)
         {
-            IdentityUser user =await userManager.FindByEmailAsync(Email);
+            IdentityUser user = await userManager.FindByIdAsync(id);
                     user.EmailConfirmed = true;
                     await userManager.UpdateAsync(user);
                     await signInManager.SignInAsync(user, isPersistent: false);
@@ -73,7 +73,7 @@ namespace Afisha.Controllers
         [Authorize]
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model,string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {

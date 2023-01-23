@@ -17,8 +17,9 @@
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 								<label style="color: #e5e5e5!important;"class="mb-2 text-muted" asp-for="UserName">Логин</label>
-								<input asp-for="UserName" />
-								<span asp-validation-for="UserName"></span>
+								<input asp-for="UserName" required placeholder="Введите ваш логин"/> 
+								<span style="text-align: center;color: #0d6efd;position: absolute; margin-top: -7%;" asp-validation-for="UserName"></span>
+								
 									<div class="invalid-feedback">
 										Заполните Логин
 									</div>
@@ -26,8 +27,9 @@
 
 								<div class="mb-3">
 								<label style="color: #e5e5e5!important;" class="mb-2 text-muted" asp-for="Password">Пароль</label>
-								<input asp-for="Password" />
-								<span asp-validation-for="Password"></span>
+								<input asp-for="Password" required placeholder="Введите пароль" />
+								<span style="text-align: center;color: #0d6efd;position: absolute; margin-top: -7%;" asp-validation-for="Password"></span>
+								
 									<div class="invalid-feedback">
 										Заполните пароль
 									</div>
@@ -43,10 +45,6 @@
 								</div>
 							</div>
 
-
-								@*<p class="form-text text-muted mb-3">
-									By registering you agree with our terms and condition.
-								</p>*@
 
 								<div class="align-items-center d-flex">
 								<button style="margin: auto;width: 90%;margin-top:7%" type="submit" class="btn btn-primary ms-auto">
@@ -66,107 +64,7 @@
 			</div>
 		</div>
 	</section>
+	<style>
 
+	</style>
 	<script src="js/login.js"></script>
-
-
-
-
-@*
-
-		<div class="shadow">
-			<div class="newloginwrapper">
-		<div class="cl-btn-2">
-			<div>
-
-				<div class="leftright"></div>
-				<div class="rightleft"></div>
-				<a class="close-btn" asp-controller="Home" asp-action="Index">закрыть</a>
-			</div>
-		</div>
-
-		<h1>Вход в аккаунт</h1>
-		<form asp-area="" asp-controller="Account" asp-action="Login" method="post">
-
-			<div class="login" style="margin-top: 34%;">
-						<label asp-for="UserName">Логин</label>
-						<input asp-for="UserName"/>
-						<span asp-validation-for="UserName"></span>
-					</div>
-					<div class="login">
-						<label asp-for="Password">Пароль</label>
-						<input asp-for="Password"/>
-						<span asp-validation-for="Password"></span>
-					</div>
-					<div class="checkbox-group">
-						<label asp-for="RememberMe">Запомнить меня</label>
-						<input type="checkbox" asp-for="RememberMe"/>
-						<span asp-validation-for="RememberMe"></span>
-					</div>
-				
-					<div class="group">
-						<input type="submit" class="button" value="Войти">
-				</div>
-			
-					<div class="login"><a asp-controller="Account" asp-action="Register">Еще нет аккаунта? Зарегистрироваться</a></div>
-				</form>
-
-			</div>
-		</div>
-
-*@
-
-
-
-
-@*<div class="shadow">
-	<div class="login-wrap">
-
-		
-
-		<div class="login-html">
-
-			<div class="cl-btn-2">
-				<div>
-				
-					<div class="leftright"></div>
-					<div class="rightleft"></div>
-					<a class="close-btn" asp-controller="Home" asp-action="Index">закрыть</a>
-				</div>
-			</div>
-			
-			
-			<div class="login">
-				
-				
-				<h1>Вход в аккаунт</h1>
-			</div>
-			<div class="login-form">
-			
-				<form asp-area="" asp-controller="Account" asp-action="Login" method="post">
-					@*	<div asp-validation-summary="All"></div>*@
-				@*	<div class="login">
-						<label asp-for="UserName">Логин</label>
-						<input asp-for="UserName"/>
-						<span asp-validation-for="UserName"></span>
-					</div>
-					<div class="login">
-						<label asp-for="Password">Пароль</label>
-						<input asp-for="Password"/>
-						<span asp-validation-for="Password"></span>
-					</div>
-					<div class="checkbox-group">
-						<label asp-for="RememberMe">Запомнить меня</label>
-						<input type="checkbox" asp-for="RememberMe"/>
-						<span asp-validation-for="RememberMe"></span>
-					</div>
-
-					<div class="group">
-						<input type="submit" class="button" value="Войти">
-					</div>
-					<div class="login"><a asp-controller="Account" asp-action="Register">Еще нет аккаунта? Зарегистрироваться</a></div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>*@

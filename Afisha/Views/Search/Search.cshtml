@@ -8,7 +8,11 @@
 <div class="listwrappertex">
 	@if (!Model.Any())
 	{
-		<h1>Похоже, ничего не найдено &#128164</h1>
+		<h1> Похоже, ничего не найдено </h1>
+	}
+	else
+	{
+		<h1> Результаты поиска: </h1>
 	}
 
 </div>
@@ -54,3 +58,13 @@
 		}
 	</div>
 </div>
+<style>
+	.listwrappertex h1 {
+		margin-bottom: -2ex;
+		font-weight: 600;
+		font-size: 5vmin;
+		font-family: 'Montserrat', sans-serif;
+		padding-top: 1ex;
+		padding-left: 2ex;
+	}
+</style>

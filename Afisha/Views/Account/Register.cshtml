@@ -1,22 +1,6 @@
 ﻿
 @model Afisha.Models.RegisterViewModel
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
 
@@ -34,8 +18,8 @@
 						<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 							<div class="mb-3">
 								<label style="color: #e5e5e5!important;"  class="mb-2 text-muted" asp-for="UserName">Логин</label>
-								<input asp-for="UserName" />
-								<span asp-validation-for="UserName"></span>
+								<input asp-for="UserName" required placeholder="Введите логин">
+								<span style="text-align: center;color: #0d6efd;position: absolute; margin-top: -7%;"  asp-validation-for="UserName"></span>
 								<div class="invalid-feedback">
 									Заполните Логин
 								</div>
@@ -43,23 +27,23 @@
 
 							<div class="mb-3">
 								<label style="color: #e5e5e5!important;" class="mb-2 text-muted" asp-for="Email">Email</label>
-								<input asp-for="Email" />
-								<span class="span" asp-validation-for="Email"></span>
+								<input asp-for="Email" required placeholder="Введите адрес электронной почты" />
+								<span style="text-align: center;color: #0d6efd;position: absolute; margin-top: -7%;"  class="span" asp-validation-for="Email"></span>
 								<div class="invalid-feedback">
 									Заполните email
 								</div>
 							</div>
 							<div class="mb-3">
 								<label style="color: #e5e5e5!important;" class="mb-2 text-muted" asp-for="Password">Пароль</label>
-								<input asp-for="Password" />
-								<span asp-validation-for="Password"></span>
+								<input asp-for="Password" required placeholder="Введите пароль" />
+								<span style="text-align: center;color: #0d6efd;position: absolute; margin-top: -7%;"  asp-validation-for="Password"></span>
 								<div class="invalid-feedback">
 									Заполните пароль
 								</div>
 							</div>
 							<div 	<label style ="color: #e5e5e5!important;" class="mb-2 text-muted" asp-for="PasswordConfirm">Подтверждение пароля</label>
-									<input asp-for="PasswordConfirm"/>
-									<span class="span" asp-validation-for="PasswordConfirm"></span>
+									<input asp-for="PasswordConfirm" required placeholder="Подтвердите пароль"/>
+									<span style="text-align: center;color: #0d6efd;position: absolute; margin-top: -7%;" class="span" asp-validation-for="PasswordConfirm"></span>
 								<div class="invalid-feedback">
 									Заполните потдверждение пароль
 								</div>
