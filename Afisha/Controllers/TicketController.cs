@@ -22,11 +22,12 @@ namespace Afisha.Controllers
         }
         public IActionResult Buy(string userName)
         {
-            var cart = dataManager.Carts.GetEventItemsByName(userName);
+            var cart = dataManager.Carts.GetEventItemsByName(userName).ToList();
+            
             //foreach (var item in cart)
             // {
-            dataManager.Tickets.SaveTicketItem(cart, "192.168.146.127");
-            // }
+            dataManager.Tickets.SaveTicketItem(cart, "afishes.ru");
+        // }
 
             dataManager.Carts.RemoveCart(cart);
             return RedirectToAction("Index", "Home");
