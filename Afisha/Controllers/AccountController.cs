@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Afisha.Service;
+using System.Web;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace Afisha.Controllers
 {
@@ -21,19 +25,23 @@ namespace Afisha.Controllers
         {
             return View();
         }
+        
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
-                // добавляем пользователя
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    EmailService emailService = new EmailService();
+                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "https://localhost:7176/Account/ConfirmEmail?Email=" + user.Email);
                     // установка куки
-                    await signInManager.SignInAsync(user, false);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -46,6 +54,15 @@ namespace Afisha.Controllers
             }
             return View(model);
         }
+
+        public async Task<ActionResult> ConfirmEmail(string Email)
+        {
+            IdentityUser user =await userManager.FindByEmailAsync(Email);
+                    user.EmailConfirmed = true;
+                    await userManager.UpdateAsync(user);
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction("Index", "Home");
+        }
         [Authorize]
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
@@ -56,18 +73,21 @@ namespace Afisha.Controllers
         [Authorize]
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model,string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 IdentityUser user = await userManager.FindByNameAsync(model.UserName);
                 if (user != null)
                 {
-                    await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
-                    if (result.Succeeded)
+                    if (user.EmailConfirmed == true)
                     {
-                        return Redirect(model.returnUrl ?? "/");
+                        await signInManager.SignOutAsync();
+                        Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+                        if (result.Succeeded)
+                        {
+                            return Redirect(model.returnUrl ?? "/");
+                        }
                     }
                 }
                 ModelState.AddModelError(nameof(LoginViewModel.UserName), "BadLogin");

@@ -50,9 +50,7 @@ namespace Afisha.Domain.Repositories.EntityFramework
         public byte[] GetQRByNumberTicket(int number, string host)
         {
             QRCodeEncoder encoder = new QRCodeEncoder();
-            Bitmap qrcode = encoder.Encode(host + "/Ticket / TicketInfo ? number =" + number.ToString());
-            //ImageConverter converter = new ImageConverter();
-            //return (byte[])converter.ConvertTo(qrcode, typeof(byte[]));
+            Bitmap qrcode = encoder.Encode(host + "/Ticket/TicketInfo?number=" + number.ToString());
             MemoryStream stream = new MemoryStream();
             qrcode.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
             var bytes = stream.GetBuffer();
@@ -60,6 +58,5 @@ namespace Afisha.Domain.Repositories.EntityFramework
             stream.Close();
             return bytes;
         }
-        //Ticket/TicketInfo? number = 1
     }
 }

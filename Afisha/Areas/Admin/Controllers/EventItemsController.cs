@@ -36,21 +36,6 @@ namespace Afisha.Areas.Admin.Controllers
                         imageData = binaryReader.ReadBytes((int)titleImageFile.Length);
                     }
                     model.Image = imageData;
-
-                    //byte[] imageData;
-                    //using (var binaryReader = new BinaryReader(titleImageFile.OpenReadStream()))
-                    //{
-                    //    imageData = binaryReader.ReadBytes((int)titleImageFile.Length);
-                    //}
-                    //Picture p = new Picture { Image = imageData };
-                    //dataManager.Pictures.Insert(p);
-                    //model.Picture = p.Id;
-
-                    //model.TitleImagePath = titleImageFile.FileName;
-                    //using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create))
-                    //{
-                    //    titleImageFile.CopyTo(stream);
-                    //}
                 }
                 dataManager.Events.SaveEventItem(model);
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());

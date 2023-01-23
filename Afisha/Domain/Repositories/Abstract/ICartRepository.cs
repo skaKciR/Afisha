@@ -13,7 +13,7 @@ namespace Afisha.Domain.Repositories.Abstract
         public void DeleteFromCartById(Guid eventId, string userName);
         public IQueryable<Cart> GetEventItemsByName(string userName);
         
-        public void RemoveCart(IQueryable<Cart> entity);
+        public void RemoveCart(List<Cart> entity);
 
     }
 }

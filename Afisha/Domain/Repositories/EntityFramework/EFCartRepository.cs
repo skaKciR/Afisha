@@ -51,7 +51,7 @@ namespace Afisha.Domain.Repositories.EntityFramework
         }
 
         
-        public void RemoveCart(IQueryable<Cart> entity)
+        public void RemoveCart(List<Cart> entity)
         {
             context.Carts.RemoveRange(entity);
             context.SaveChanges();
