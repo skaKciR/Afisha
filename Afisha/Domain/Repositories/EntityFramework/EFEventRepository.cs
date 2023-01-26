@@ -54,8 +54,8 @@ namespace Afisha.Domain.Repositories.EntityFramework
 
         public IQueryable<Event> GetElements(int count, string type)
         {
-            if (type == null) return context.Events.AsNoTracking().OrderByDescending(x => x.Date).Take(count);
-            else return context.Events.AsNoTracking().Where(x=> x.Type == type).OrderByDescending(x => x.Date).Take(count);
+            if (type == null) return context.Events.OrderByDescending(x => x.Date).Take(count);
+            else return context.Events.Where(x=> x.Type == type).OrderByDescending(x => x.Date).Take(count);
 
         }
 
