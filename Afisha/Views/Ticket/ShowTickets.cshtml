@@ -38,7 +38,7 @@
                                   
                                     <button type="button" class="btn btn-outline-success col-md-12 col-ms-12" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign in</button>
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog col-xs-12 col-md-12" style="top:16%">
+                                        <div class="modal-dialog col-xs-12 col-md-12 modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-tittle" id="#exampleModalLabel">
@@ -71,8 +71,9 @@
 }
 else
 {
-    <h2 style="font-size:2vmax;"> Здесь пусто</h2>
-    <a style="text-decoration: none !important;" asp-controller="Home" asp-action="Index"><h2 style="font-size:2vmax;"> Здесь пусто. Проверьте вашу корзину,возможно вы не оплатили билет.</h2></a>
+<h2 style="font-size:2vmax;"> Здесь пусто</h2>
+
+    <a style="text-decoration: none !important;" asp-controller="Cart" asp-action="ShowCart" asp-route-name="@User.Identity.Name"><h2 style="font-size:2vmax;"> Проверьте вашу корзину,возможно вы не оплатили билет.</h2></a>
 
 }
 
