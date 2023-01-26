@@ -1,5 +1,6 @@
 ﻿using Afisha.Domain;
 using Afisha.Domain.Entities;
+using Afisha.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Afisha.Controllers
@@ -13,18 +14,20 @@ namespace Afisha.Controllers
             {
                 this.dataManager = dataManager;
             }
-      
 
-            public IActionResult Index()
+
+        public IActionResult Index()
+        {
+            HomeIndexViewModel hivm = new HomeIndexViewModel
             {
-            var list = new List<IQueryable<Event>>();
-            list.Add(dataManager.Events.GetElements(5, null));
-            list.Add(dataManager.Events.GetElements(3, "Концерт"));
-            list.Add(dataManager.Events.GetElements(3, "Кино"));
-            list.Add(dataManager.Events.GetElements(3, "StandUP Шоу"));
-            list.Add(dataManager.Events.GetElements(3, "Спектакль"));
+                Slider = dataManager.Events.GetElements(5, null),
+                Concerts = dataManager.Events.GetElements(3, "Концерт"),
+                Cinemas = dataManager.Events.GetElements(3, "Кино"),
+                StandUps = dataManager.Events.GetElements(3, "StandUP Шоу"),
+                Plays = dataManager.Events.GetElements(3, "Спектакль")
+            };
             ViewBag.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageConcerts");
-            return View(list);
+            return View(hivm);
         }
         
     }

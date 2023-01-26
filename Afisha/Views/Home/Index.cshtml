@@ -1,4 +1,4 @@
-﻿@model List<IQueryable<Event>>
+﻿@model HomeIndexViewModel
 @{
     TextField textField = ViewBag.TextField;
 
@@ -18,16 +18,16 @@
 </h1>
 
 
-@if (Model[0].Any())
+@if (Model.Slider.Any())
 {
     <div id="carouselExampleControls" style="background-color: white !important;padding-left: 1em;padding-right: 1em;" class="carousel slide bg-dark" data-bs-ride="carousel">
         <div class="carousel-inner" style="border-radius: 2ex;box-shadow: 0px 5px 9px 3px #000000c4;">
 
             <div class="carousel-item active" style="background:white;">
-                @await Html.PartialAsync("HomeCarousel", Model[0].First())
+                @await Html.PartialAsync("HomeCarousel", Model.Slider.First())
             </div>
 
-            @foreach (Event entity in Model[0].Skip(1))
+            @foreach (Event entity in Model.Slider.Skip(1))
             {
                 <div class="carousel-item" style="background:white;">
                     @await Html.PartialAsync("HomeCarousel", entity)
@@ -59,7 +59,7 @@
             <div class="smallimg" style=" margin-bottom: 1.4ex;">
                 <a asp-controller="Event" asp-action="List" asp-route-type="Концерт"><h1>Концерты »</h1></a>
             </div>
-            @foreach (Event entity in Model[1])
+            @foreach (Event entity in Model.Concerts)
             {
                 @if (entity.Type == "Концерт")
                 {
@@ -77,7 +77,7 @@
             <div class="smallimg" style=" margin-bottom: 1.4ex;">
                 <a asp-controller="Event" asp-action="List" asp-route-type="Кино"><h1>Кино »</h1></a>
             </div>
-            @foreach (Event entity in Model[2])
+            @foreach (Event entity in Model.Cinemas)
             {
                 @if (entity.Type == "Кино")
                 {
@@ -95,7 +95,7 @@
             <div class="smallimg" style=" margin-bottom: 1.4ex;">
                 <a asp-controller="Event" asp-action="List" asp-route-type="StandUP Шоу"><h1>StandUP Шоу »</h1></a>
             </div>
-            @foreach (Event entity in Model[3])
+            @foreach (Event entity in Model.StandUps)
             {
                 @if (entity.Type == "StandUP Шоу")
                 {
@@ -113,7 +113,7 @@
             <div class="smallimg" style=" margin-bottom: 1.4ex;">
                 <a asp-controller="Event" asp-action="List" asp-route-type="Спектакль"><h1>Спектакли »</h1></a>
             </div>
-            @foreach (Event entity in Model[4])
+            @foreach (Event entity in Model.Plays)
             {
                 @if (entity.Type == "Спектакль")
                 {
