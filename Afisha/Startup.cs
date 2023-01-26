@@ -71,7 +71,7 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-
+      
         //!!! порядок регистрации middleware очень важен
 
         //в процессе разработки нам важно видеть какие именно ошибки

@@ -48,16 +48,29 @@
 									Заполните потдверждение пароль
 								</div>
 							</div>
-
-
-							@*<p class="form-text text-muted mb-3">
-							By registering you agree with our terms and condition.
-							</p>*@
-
 							<div class="align-items-center d-flex">
-								<button style="margin: auto;width: 90%;margin-top:5%;margin-bottom:-5%" type="submit" class="btn btn-primary ms-auto">
+								<button style="margin: auto;width: 90%;margin-top:5%;margin-bottom:-5%" type="submit" class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
 									Зарегистрироваться
 								</button>
+								
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-tittle" id="#exampleModalLabel">
+													Завершение регистрации <i style="color:green;" class="fa fa-check" aria-hidden="true"></i>
+
+												</h5>
+												<button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+											</div>
+											<div class="modal-body">
+												<h5 class="modal-body" id="#exampleModalLabel"> Пожалуйста,проверьте вашу почту для завершения регистрации. </h5>
+											</div>
+											<div class="modal-footer">
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -74,107 +87,4 @@
 </section>
 
 <script src="js/login.js"></script>
-
-
-
-
-
-
-
-
-
-
-@*
-
-<div class="shadow">
-	<div class="newregisterwrapper">
-	
-		<div class="cl-btn-2">
-			<div>
-
-				<div class="leftright"></div>
-				<div class="rightleft"></div>
-				<a class="close-btn" asp-controller="Home" asp-action="Index">закрыть</a>
-			</div>
-		</div>
-
-		<h1>Зарегистрироваться</h1>
-		<form asp-area="" asp-controller="Account" asp-action="Register" method="post">
-			
-			<div class="newregister" style="margin-top: 29%;">
-				<label asp-for="UserName">Логин</label>
-				<input asp-for="UserName" />
-				<span asp-validation-for="UserName"></span>
-			</div>
-			<div class="newregister">
-				<label asp-for="Email"></label>
-				<input asp-for="Email" />
-				<span class="span" asp-validation-for="Email"></span>
-			</div>
-			<div class="newregister">
-				<label asp-for="Password">Пароль</label>
-				<input asp-for="Password" />
-				<span asp-validation-for="Password"></span>
-			</div>
-			<div class="newregister">
-				<label asp-for="PasswordConfirm">Подтверждение пароля</label>
-				<input asp-for="PasswordConfirm" />
-				<span class="span" asp-validation-for="PasswordConfirm"></span>
-			</div>
-
-			<div class="group">
-				<input type="submit" class="button" value="Зарегистрироваться">
-			</div>
-
-			
-		</form>
-
-	</div>
-</div>*@
-@*@*div class="shadow">
-<div class="register-wrap">
-
-
-		<div class="login-html">
-			
-			<div class="cl-btn-2">
-			<div>
-				
-					<div class="leftright"></div>
-					<div class="rightleft"></div>
-					<a class="close-btn" asp-controller="Home" asp-action="Index">закрыть</a>
-				
-			</div>
-		</div>
-		<div class="login"><h1>Регистрация</h1></div>
-		<div class="login-form">
-			<form asp-area="" asp-controller="Account" asp-action="Register" method="post">
-				@*<div asp-validation-summary="All"></div>*@
-				@*<div class="login">
-					<label asp-for="UserName">Логин</label>
-					<input asp-for="UserName"/>
-						<span class="span" asp-validation-for="UserName"></span>
-				</div>
-				<div class="login">
-					<label asp-for="Email"></label>
-					<input asp-for="Email" />
-					<span class="span" asp-validation-for="Email"></span>
-				</div>
-				<div class="login">
-					<label asp-for="Password">Пароль</label>
-					<input asp-for="Password"/>
-						<span class="span" asp-validation-for="Password"></span>
-				</div>
-				<div class="login">
-					<label asp-for="PasswordConfirm">Подтверждение пароля</label>
-					<input asp-for="PasswordConfirm"  />
-						<span class="span" asp-validation-for="PasswordConfirm"></span>
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Зарегистрироваться">
-				</div>
-			</form>
-		</div>
-	</div>
-	</div>
-</div>*@
+<style>

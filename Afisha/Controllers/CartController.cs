@@ -27,7 +27,8 @@ namespace Afisha.Controllers
                 if (_event != null)
                 {
                     dataManager.Carts.SaveCartItem(new Cart { UserName = userName, EventId = eventId });
-                } 
+                }
+                System.Threading.Thread.Sleep(1674);
                 return RedirectToAction("Index", "Home");
             }
             else

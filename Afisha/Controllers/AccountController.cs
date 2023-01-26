@@ -6,6 +6,7 @@ using Afisha.Service;
 using System.Web;
 using MimeKit;
 using MailKit.Net.Smtp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Afisha.Controllers
 {
@@ -37,11 +38,11 @@ namespace Afisha.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
+                   
                     EmailService emailService = new EmailService();
-                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "Здравствуйте, " + user.UserName+"." +" Благодарим за регистрацию на сайте afishes.ru!" + "\r\n" + "Для завершения регистрации перейдите по ссылке: " + "https://localhost:7176/Account/ConfirmEmail?id=" + user.Id);
+                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "Здравствуйте, " + user.UserName+"." +" Благодарим за регистрацию на сайте afishes.ru! " + "Для завершения регистрации перейдите по ссылке: " +"<br>"+ "afishes.ru/Account/ConfirmEmail?id=" + user.Id);
                     // установка куки
-
+                    System.Threading.Thread.Sleep(1674);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -90,7 +91,7 @@ namespace Afisha.Controllers
                         }
                     }
                 }
-                ModelState.AddModelError(nameof(LoginViewModel.UserName), "BadLogin");
+                ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверные данные");
             }
             return View(model);
         }
