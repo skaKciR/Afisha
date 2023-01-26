@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,6 +46,12 @@
       <HintPath>..\..\..\..\Desktop\MessagingToolkit.QRCode.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <!--<ItemGroup>
+    <Reference Include="MessagingToolkit.QRCode">
+      <HintPath>..\..\..\..\Desktop\MessagingToolkit.QRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>-->
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 

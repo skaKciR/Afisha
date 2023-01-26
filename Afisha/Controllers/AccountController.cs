@@ -37,11 +37,10 @@ namespace Afisha.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
                     EmailService emailService = new EmailService();
-                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "Здравствуйте, " + user.UserName+"." +" Благодарим за регистрацию на сайте afishes.ru!" + "\r\n" + "Для завершения регистрации перейдите по ссылке: " + "https://localhost:7176/Account/ConfirmEmail?id=" + user.Id);
-                    // установка куки
-
+                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "Здравствуйте, " 
+                        + user.UserName+"." +" Благодарим Вас за регистрацию на сайте afishes.ru! Для завершения регистрации перейдите по ссылке:" + "<br>" + 
+                        "https://localhost:7176/Account/ConfirmEmail?id=" + user.Id);        
                     return RedirectToAction("Index", "Home");
                 }
                 else
