@@ -3,6 +3,7 @@ using Afisha.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Afisha.Models;
 
 namespace Afisha.Domain
 {
@@ -12,7 +13,8 @@ namespace Afisha.Domain
 
         public DbSet<TextField> TextFields { get; set; }
         public DbSet<Event> Events { get; set; }
-
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

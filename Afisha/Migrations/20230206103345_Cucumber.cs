@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Afisha.Migrations
 {
-    public partial class _initial : Migration
+    public partial class Cucumber : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,24 +49,55 @@ namespace Afisha.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Carts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Events",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TitleImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     MetaTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MetaKeywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cost = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Age = table.Column<int>(type: "int", nullable: true),
+                    PCard = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Events", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Favorites",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Favorites", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -75,11 +106,9 @@ namespace Afisha.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CodeWord = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TitleImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MetaTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MetaKeywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -88,6 +117,34 @@ namespace Afisha.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TextFields", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TitleImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    QR = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cost = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Age = table.Column<int>(type: "int", nullable: true),
+                    Session = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hall = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SelectedSeats = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PCard = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,22 +256,22 @@ namespace Afisha.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "c5324c96-9d47-4ac1-bc7a-f17bcf3a75d9", "admin", "ADMIN" });
+                values: new object[] { "44546e06-8719-4ad8-b88a-f271ae9d6eab", "abfd0d39-dec5-4d39-9957-a347e8e63552", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "4d6eb3c3-4dd7-4608-be97-7f17570c24ea", "afisheshelper@mail.ru", true, false, null, "AFISHESHELPER@MAIL.RU", "ADMIN", "AQAAAAEAACcQAAAAEKPWuPDHGYi5K16BjZZ+wPmZFA142IylWvI4KHV/ShXj5yhH095vOHSwpQp6sIiC/Q==", null, false, "", false, "admin" });
+                values: new object[] { "3b62472e-4f66-49fa-a20f-e7685b9565d8", 0, "8ab420ce-6e69-47ed-9814-0d37fd624602", "afisheshelper@mail.ru", true, false, null, "AFISHESHELPER@MAIL.RU", "ADMIN", "AQAAAAEAACcQAAAAECj4StV0zD7kR82pXYkvREl4J36l53eT1RdwpTLSqWcRzzheRj1H45ixLQE0Q9bH0A==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "TextFields",
-                columns: new[] { "Id", "Address", "CodeWord", "DateAdded", "MetaDescription", "MetaKeywords", "MetaTitle", "Subtitle", "Text", "Title", "TitleImagePath" },
+                columns: new[] { "Id", "CodeWord", "DateAdded", "MetaDescription", "MetaKeywords", "MetaTitle", "Subtitle", "Text", "Title" },
                 values: new object[,]
                 {
-                    { new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"), null, "Sign", new DateTime(2022, 10, 23, 9, 45, 8, 5, DateTimeKind.Utc).AddTicks(2529), null, null, null, null, "Содержание заполняется админом", "Личный кабинет", null },
-                    { new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"), null, "PageContacts", new DateTime(2022, 10, 23, 9, 45, 8, 5, DateTimeKind.Utc).AddTicks(2522), null, null, null, null, "Содержание заполняется админом", "Контакты", null },
-                    { new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"), null, "PageConcerts", new DateTime(2022, 10, 23, 9, 45, 8, 5, DateTimeKind.Utc).AddTicks(2490), null, null, null, null, "Содержание заполняется админом", "Концерты", null },
-                    { new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"), null, "PageCinema", new DateTime(2022, 10, 23, 9, 45, 8, 5, DateTimeKind.Utc).AddTicks(2512), null, null, null, null, "Содержание заполняется админом", "Кино", null }
+                    { new Guid("2863fe2b-ddb9-4a7a-a74d-5fb64be349de"), "Sign", new DateTime(2023, 2, 6, 10, 33, 45, 418, DateTimeKind.Utc).AddTicks(7275), null, null, null, null, null, "Личный кабинет" },
+                    { new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"), "PageContacts", new DateTime(2023, 2, 6, 10, 33, 45, 418, DateTimeKind.Utc).AddTicks(7265), null, null, null, null, null, "Контакты" },
+                    { new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"), "PageConcerts", new DateTime(2023, 2, 6, 10, 33, 45, 418, DateTimeKind.Utc).AddTicks(7145), null, null, null, null, null, "Концерты" },
+                    { new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"), "PageCinema", new DateTime(2023, 2, 6, 10, 33, 45, 418, DateTimeKind.Utc).AddTicks(7252), null, null, null, null, null, "Кино" }
                 });
 
             migrationBuilder.InsertData(
@@ -280,10 +337,19 @@ namespace Afisha.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Carts");
+
+            migrationBuilder.DropTable(
                 name: "Events");
 
             migrationBuilder.DropTable(
+                name: "Favorites");
+
+            migrationBuilder.DropTable(
                 name: "TextFields");
+
+            migrationBuilder.DropTable(
+                name: "Tickets");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

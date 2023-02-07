@@ -2,10 +2,15 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Afisha.Service;
+using System.Web;
+using MimeKit;
+using MailKit.Net.Smtp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Afisha.Controllers
 {
-    [Authorize]
+
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
@@ -16,29 +21,77 @@ namespace Afisha.Controllers
             signInManager = signinMgr;
         }
 
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser { UserName = model.UserName, Email = model.Email };
+                var result = await userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                   
+                    EmailService emailService = new EmailService();
+                    await emailService.SendEmailAsync(user.Email, "Подтверждение регистрации на сайте Afishes.ru", "Здравствуйте, " + user.UserName+"." +" Благодарим за регистрацию на сайте afishes.ru! " + "Для завершения регистрации перейдите по ссылке: " +"<br>"+ "afishes.ru/Account/ConfirmEmail?id=" + user.Id);
+                    // установка куки
+                    System.Threading.Thread.Sleep(1674);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        public async Task<ActionResult> ConfirmEmail(string id)
+        {
+            IdentityUser user = await userManager.FindByIdAsync(id);
+                    user.EmailConfirmed = true;
+                    await userManager.UpdateAsync(user);
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction("Index", "Home");
+        }
+        [Authorize]
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
             return View(new LoginViewModel());
         }
+        [Authorize]
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
                 IdentityUser user = await userManager.FindByNameAsync(model.UserName);
                 if (user != null)
                 {
-                    await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
-                    if (result.Succeeded)
+                    if (user.EmailConfirmed == true)
                     {
-                        return Redirect(returnUrl ?? "/");
+                        await signInManager.SignOutAsync();
+                        Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+                        if (result.Succeeded)
+                        {
+                            return Redirect(model.returnUrl ?? "/");
+                        }
                     }
                 }
-                ModelState.AddModelError(nameof(LoginViewModel.UserName), "BadLogin");
+                ModelState.AddModelError(nameof(LoginViewModel.UserName), "Неверные данные");
             }
             return View(model);
         }
@@ -48,6 +101,14 @@ namespace Afisha.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+
+            return View();
         }
     }
 }

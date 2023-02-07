@@ -1,6 +1,8 @@
 ﻿using Afisha.Domain;
 using Afisha.Domain.Entities;
 using Afisha.Domain.Repositories.Abstract;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.CompilerServices;
 
@@ -20,6 +22,7 @@ namespace Afisha.Domain.Repositories.EntityFramework
             return context.Events;
         }
 
+    
         public Event GetEventItemById(Guid id)
         {
             return context.Events.FirstOrDefault(x => x.Id == id);
@@ -27,6 +30,11 @@ namespace Afisha.Domain.Repositories.EntityFramework
         public Event GetEventItemByDate(DateTime date)
         {
             return context.Events.FirstOrDefault(x => x.Date == date);
+        }
+        public IQueryable<Event> GetEventsByString(string searchString)
+        {
+            if (context == null) return null;
+            return context.Events.Where(x => x.Title.ToLower().Contains(searchString.ToLower()));
         }
 
         public void SaveEventItem(Event entity)
@@ -43,5 +51,18 @@ namespace Afisha.Domain.Repositories.EntityFramework
             context.Events.Remove(new Event() { Id = id });
             context.SaveChanges();
         }
+
+        public IQueryable<Event> GetElements(int count, string type)
+        {
+            if (type == null) return context.Events.OrderByDescending(x => x.Date).Take(count);
+            else return context.Events.Where(x=> x.Type == type).OrderByDescending(x => x.Date).Take(count);
+
+        }
+
+        public  List<Event> GetEventsByType(string type){
+            return context.Events.Where(x => x.Type == type).ToList();
+
+        }
+     
     }
 }

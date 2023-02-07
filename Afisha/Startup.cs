@@ -4,6 +4,7 @@ using Afisha.Domain.Repositories.EntityFramework;
 using Afisha.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Afisha.Models;
 
 
 public class Startup
@@ -23,6 +24,8 @@ public class Startup
 
         services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
         services.AddTransient<IEventRepository, EFEventRepository>();
+        services.AddTransient<ITicketRepository, EFTicketRepository>();
+        services.AddTransient<IFavoriteRepository, EFFavoriteRepository>();
         services.AddTransient<DataManager>();
 
         //подключаем контекст БД
@@ -67,7 +70,7 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-
+      
         //!!! порядок регистрации middleware очень важен
 
         //в процессе разработки нам важно видеть какие именно ошибки

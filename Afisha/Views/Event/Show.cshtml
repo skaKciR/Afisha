@@ -1,0 +1,198 @@
+﻿@model EventHallsViewModel
+@{
+    ViewBag.Title = Model.Event.MetaTitle;
+    ViewBag.Description = Model.Event.MetaDescription;
+    ViewBag.Keywords = Model.Event.MetaKeywords;
+}
+
+
+<div class="container">
+    <div class="row">
+
+        <div style="padding-top: 1ex;" class="col-xs-12 col-md-12">
+            <div>
+                <h1 style="font-size: 5vmin;color:black;">@Model.Event.Title</h1>
+                <h2 style="font-size: 3.5vmin;color: gray;margin-bottom: 3vmin;">@Model.Event.Type @Model.Event.Age+</h2>
+
+            </div>
+            <div id="tekst_sverhu_kartinki">
+
+                <img style="max-height:520px;border-radius: 2vmin;min-height: 170px;filter:brightness(0.8);box-shadow: 0px 5px 9px 3px #000000c4;" src=@string.Concat("data:image/jpeg;base64,", Convert.ToBase64String(Model.Event.Image)) class="d-block w-100" alt="">
+                <div class="tekst_sverhu_kartinki_1">
+                    <h2 style="font-size: 3.5vmin;color: white;">@Model.Event.Date.ToString("dd MMMM") @Model.Event.Date.ToShortTimeString()</h2>
+                </div>
+                <div class="tekst_sverhu_kartinki_1" style="margin-left: 75%;float: right;">
+                    <h2 style="text-align: center;background: #000000a6;font-size: 3.5vmin;color: white;letter-spacing:0.5vmin;padding: 1vmin;border-radius: 1vmin;">@Model.Event.Cost ₽</h2>
+                </div>
+                <div class="tekst_sverhu_kartinki_1" style="margin-left: 84%;margin-bottom: 30%;">
+                    <form asp-controller="Favorite" asp-action="AddToFavorite" asp-route-eventId="@Model.Event.Id" asp-route-userName="@User.Identity.Name">
+                        <button type="submit"><i style="font-size:4vmin;" class="fa-regular fa-heart"></i></button>
+                    </form>
+                </div>
+            </div>
+            <h1 style="font-size: 5vmin;color: black;margin-top:3vmin;">Описание</h1>
+            <h2 style="font-size: 2.5vmin;color: gray; letter-spacing:0.2vmin;">@Model.Event.Text</h2>
+            <div class="mx-auto">
+                <button type="submit" style="box-shadow: 0px 3px 9px 3px #000000c4;margin-top: 1vmin;border-radius: 3vmin;background: black;color: white;font-size: 2.5vmin;" data-bs-toggle="modal" data-bs-target="#exampleModal">Добавить в корзину <i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
+            </div>
+            <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" style="max-width:700px;">
+                    <div class="modal-content">
+                        <div class="modal-header mx-auto ">
+                            <div class="mx-auto d-grid">
+                                <h5 class="modal-tittle mx-auto p-0" id="#exampleModalLabel">
+                                    @Model.Event.Type @Model.Event.Title
+                                </h5>
+                                <h6 class="modal-body p-0 mx-auto" id="#exampleModalLabel"> @Model.Event.Date.ToString("dd MMMM"). @Model.Event.Address</h6>
+                            </div>
+                        </div>
+                        <div class="modal-body mx-auto">
+
+                            <div class="d-inline">
+                                <h5 class="modal-body p-0">
+                                    Сеанс:
+                                </h5>
+                                <select style="margin-bottom:1%" id="session-selector" class="form-select w-20 p-0.8">
+                                    <option value="1">10:00</option>
+                                    <option value="1">15:00</option>
+                                    <option value="3">20:00</option>
+                                    <option value="2">23:00</option>
+                                </select>
+                                <div class="d-inline-block">
+                                    <h5 class="d-inline-block">Зал: </h5>
+                                    <h5 class="d-inline-block" id="hall"></h5>
+                                </div>
+
+                                <h5 style="margin-top:1%" class="modal-body p-0" id="#exampleModalLabel">
+                                    Выберите места:
+                                </h5>
+                            </div>
+
+                            <h2 class="modal-body p-0 mx-auto" style="margin-left:45% !important; margin-bottom:2%">Экран</h2>
+                            <form class="d-inline-block mx-auto" id="seat-form">
+                                <input type="hidden" name="selectedSeat" id="selectedSeat">
+                                <table class="mx-auto" id="seats"></table>
+                                <div id="selectedSeats"></div>
+
+                            </form>
+                            <div>
+
+                                <div class="d-flex">
+                                    <h5>Выбрано мест: </h5>
+                                    <h5 id="seatsCount"></h5>
+
+                                </div>
+                                <div class="d-flex">
+                                    <h5>Стоимость: </h5>
+                                    <h5 id="totalprice"></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <form asp-controller="Ticket" asp-action="Buy" asp-route-eventId="@Model.Event.Id" asp-route-userName="@User.Identity.Name" method="post">
+                                <input type="hidden" name="session" id="session-input">
+                                <input type="hidden" name="hall" id="hall-input">
+                                <input type="hidden" name="selectedSeats" id="selectedSeats-input">
+                                <button type="submit" class="btn btn-dark" id="submit-button">Подтвердить</button>
+                            </form>
+                            <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Отменить</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #seats td {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        text-align: center;
+        cursor: pointer;
+        padding: 5px !important;
+    }
+
+    td {
+        border-radius: 12px !important;
+    }
+
+    table {
+        border-collapse: separate !important;
+        border-spacing: 6px !important;
+    }
+
+    h6 {
+        display: inline;
+    }
+
+    #seats tr {
+    }
+
+</style>
+<script>
+
+    document.getElementById('session-selector').selectedIndex = -1;
+    document.getElementById("session-selector").addEventListener("change", function () {
+        const selectedOption = this.options[this.selectedIndex];
+        const hallNumber = selectedOption.value;
+        const tekst = document.getElementById("hall").textContent;
+        document.getElementById("hall").textContent = hallNumber;
+
+    });
+    const table = document.querySelector("#seats");
+    const selectedSeatsDiv = document.querySelector("#selectedSeats");
+    const selectedSeats = [];
+
+
+    for (let i = 0; i < 10; i++) {
+        const row = document.createElement("tr");
+        var totalprice = Number(0);
+        var seatsCount = Number(0);
+        const rowNumberCell = document.createElement("h6");
+        var unavailable = "@Model.selectedSeats";
+        rowNumberCell.textContent = "Ряд " + (i + 1);
+        row.appendChild(rowNumberCell);
+        for (let j = 0; j < 10; j++) {
+
+            const cell = document.createElement("td");
+            cell.style.backgroundColor = "#02acf7";
+            if (unavailable.includes(`${i + 1}:${j + 1}`)) {
+                cell.style.backgroundColor = "gray";
+            }
+            else {
+                cell.style.backgroundColor = "#02acf7";
+
+                cell.addEventListener("click", (e) => {
+                    const seatIndex = selectedSeats.indexOf(`${i + 1}:${j + 1}`);
+                    const price = @Model.Event.Cost;
+                    const selected = seatIndex === -1;
+
+                    if (selected) {
+                        selectedSeats.push(`${i + 1}:${j + 1}`);
+                        cell.style.backgroundColor = "lime";
+                        totalprice += price;
+                        seatsCount++;
+                    } else {
+                        selectedSeats.splice(seatIndex, 1);
+                        cell.style.backgroundColor = "#02acf7";
+                        totalprice -= price;
+                        seatsCount--;
+                    }
+
+                    document.getElementById("totalprice").textContent = `${totalprice} ₽`;
+                    document.getElementById("seatsCount").textContent = seatsCount;
+                }
+                );}
+
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+    document.getElementById("submit-button").addEventListener("click", function () {
+        document.getElementById("session-input").value = document.getElementById("session-selector").value;
+        document.getElementById("hall-input").value = document.getElementById("hall").textContent;
+        document.getElementById("selectedSeats-input").value = selectedSeats.join(",");
+    });
+</script>

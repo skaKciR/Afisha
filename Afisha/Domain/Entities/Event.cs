@@ -2,24 +2,58 @@
 
 namespace Afisha.Domain.Entities
 {
-    public class Event : EntitiyBase.EntityBase
+    public class Event
     {
+        public Event() => DateAdded = DateTime.UtcNow;
+
+        [Required]
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "Заполните название мероприятия")]
         [Display(Name = "Название (заголовок)")]
-        public override string Title { get; set; }
-
-        [DataType(DataType.Time)]
-        public  DateTime Date { get; set; }
+        public string? Title { get; set; }
 
         [Display(Name = "Адрес")]
-        public override string Address { get; set; }
+        public string? Address { get; set; }
 
+        [Display(Name = "Краткое описание")]
+        public string? Subtitle { get; set; }
 
-        [Display(Name = "Краткое описание услуги")]
-        public override string Subtitle { get; set; }
+        [Display(Name = "Полное описание")]
+        public string? Text { get; set; }
 
-        [Display(Name = "Полное описание услуги")]
-        public override string Text { get; set; }
+        [Display(Name = "Титульная картинка")]
+        public string? TitleImagePath { get; set; }
 
+        public byte[]? Image { get; set; }
+
+        //[Display(Name = "Титульная картинка1")]
+        //public Guid Picture { get; set; }
+
+        [Display(Name = "SEO метатег Title")]
+        public string? MetaTitle { get; set; }
+
+        [Display(Name = "SEO метатег Description")]
+        public string? MetaDescription { get; set; }
+
+        [Display(Name = "SEO метатег Keywords")]
+        public string? MetaKeywords { get; set; }
+
+        [DataType(DataType.Time)]
+        public DateTime DateAdded { get; set; }
+
+        public DateTime Date { get; set; }
+
+        [Display(Name = "Стоимость билета")]
+        public string? Cost { get; set; }
+
+        [Display(Name = "Тип мероприятия")]
+        public string? Type { get; set; }
+
+        [Display(Name = "Возрастное ограничение")]
+        public int? Age { get; set; }
+
+        [Display(Name = "Пушкинская карта")]
+        public bool PCard { get; set; } = false;
     }
 }

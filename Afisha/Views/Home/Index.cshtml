@@ -1,5 +1,144 @@
-﻿<div>
-	<h1>
-	AFISHA
-		</h1>
+﻿@model HomeIndexViewModel
+@{
+    TextField textField = ViewBag.TextField;
+
+    ViewBag.Title = textField.MetaTitle;
+    ViewBag.Description = textField.MetaDescription;
+    ViewBag.Keywords = textField.MetaKeywords;
+
+}
+<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
+
+<h1 style="margin-bottom: 1em;padding-left: 0.5em;">
+    Афиша в Краснодаре 
+</h1>
+
+
+@if (Model.Slider.Any())
+{
+    <div id="carouselExampleControls" style="background-color: white !important;padding-left: 1em;padding-right: 1em;" class="carousel slide bg-dark" data-bs-ride="carousel">
+        <div class="carousel-inner" style="border-radius: 2ex;box-shadow: 0px 5px 9px 3px #000000c4;">
+
+            <div class="carousel-item active" style="background:white;">
+                @await Html.PartialAsync("HomeCarousel", Model.Slider.First())
+            </div>
+
+            @foreach (Event entity in Model.Slider.Skip(1))
+            {
+                <div class="carousel-item" style="background:white;">
+                    @await Html.PartialAsync("HomeCarousel", entity)
+                </div>
+            }
+        </div>
+
+        <button class="carousel-control-prev bg-dark bure" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+        </button>
+        <button class="carousel-control-next bg-dark bure" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+        </button>
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-3" style="padding-top: 0px;padding-bottom: 3ex;">
+        </div>
+    </div>
+
+
+    @*Концерты*@
+    <div class="container">
+        <div class="row">
+            <div class="smallimg" style=" margin-bottom: 1.4ex;">
+                <a asp-controller="Event" asp-action="List" asp-route-type="Концерт"><h1>Концерты »</h1></a>
+            </div>
+            @foreach (Event entity in Model.Concerts)
+            {
+                @if (entity.Type == "Концерт")
+                {
+                    <div class="col-xs-12 col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+                        @await Html.PartialAsync("HomeIndexEvents", entity)
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    @*Кино*@
+    <div class="container">
+        <div class="row">
+            <div class="smallimg" style=" margin-bottom: 1.4ex;">
+                <a asp-controller="Event" asp-action="List" asp-route-type="Кино"><h1>Кино »</h1></a>
+            </div>
+            @foreach (Event entity in Model.Cinemas)
+            {
+                @if (entity.Type == "Кино")
+                {
+                    <div class="col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+                         @await Html.PartialAsync("HomeIndexEvents", entity)
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    @*StandUP Шоу*@
+    <div class="container">
+        <div class="row">
+            <div class="smallimg" style=" margin-bottom: 1.4ex;">
+                <a asp-controller="Event" asp-action="List" asp-route-type="StandUP Шоу"><h1>StandUP Шоу »</h1></a>
+            </div>
+            @foreach (Event entity in Model.StandUps)
+            {
+                @if (entity.Type == "StandUP Шоу")
+                {
+                    <div class="col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+                        @await Html.PartialAsync("HomeIndexEvents", entity)
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    @*Спектакли*@
+    <div class="container">
+        <div class="row">
+            <div class="smallimg" style=" margin-bottom: 1.4ex;">
+                <a asp-controller="Event" asp-action="List" asp-route-type="Спектакль"><h1>Спектакли »</h1></a>
+            </div>
+            @foreach (Event entity in Model.Plays)
+            {
+                @if (entity.Type == "Спектакль")
+                {
+                    <div class="col-md-4" style="padding-top: 0px;padding-bottom: 3ex;">
+                        @await Html.PartialAsync("HomeIndexEvents", entity)
+                    </div>
+                }
+            }
+        </div>
+    </div>
 </div>
+<style>
+</style>
+
+<script>
+
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+    });
+</script>

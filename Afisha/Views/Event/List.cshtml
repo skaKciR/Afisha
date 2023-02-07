@@ -1,0 +1,68 @@
+﻿@model List<Event>
+@{
+    TextField textField = ViewBag.TextField;
+
+
+}
+ 
+ <div class="listwrappertex">
+     @if(Model.Any()){
+        @if (@Model[0].Type=="Концерт")
+        {
+            <h1>Концерты</h1>
+        }
+        else if (@Model[0].Type == "Спектакль")
+        {
+           <h1>Спектакли</h1>
+        }
+        else{
+            <h1>@Model[0].Type</h1>
+        }
+     }
+     else
+     {
+        <h1>Похоже,тут пусто &#128164</h1>
+     }
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="smallimg" style=" margin-bottom: 1.4ex;">
+		</div>
+		@foreach (Event entity in Model)
+		{
+			
+				<div class="col-xs-12 col-md-6" style="padding-top: 0px;padding-bottom: 3ex;">
+
+
+					<div class="smallimg">
+						<a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+
+							<div id="tekst_sverhu_kartinki">
+								<div class="brightless">
+									<img style="box-shadow: 0px 5px 9px 3px #000000c4;" src=@string.Concat("data:image/jpeg;base64,", Convert.ToBase64String(entity.Image)) />
+									<div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
+										<p style="font-size:min(3.5vmin,1.4ex);" class="h2">@entity.Age+ </p>
+									</div>
+									@if (@entity.PCard == true)
+									{
+										<div class="tekst_sverhu_kartinki_1" style="top: 7%;left:75%;">
+											<p style="font-size:min(2.5vmin,1ex); text-align:center;" class="h2">Пушкинская карта</p>
+										</div>
+									}
+									<div class="tekst_sverhu_kartinki_1" style="padding: 1vmin 1vmin 1vmin 1vmin;text-align: center;background: #000000cf;left: 82%;bottom: 15%;border-radius: 2.2vmin;">
+										<p style="font-size: min(3.5vmin,1ex);margin-bottom: 0;" class="h2">@entity.Cost ₽</p>
+									</div>
+									<div class="tekst_sverhu_kartinki_1">
+										<p style="font-size:min(4vmin,1.4ex);" class="h1">@entity.Title </p>
+										<p style="font-size:min(2.5vmin,1ex);text-align: center;" class="h2">@entity.Date.ToString("dd MMMM") @entity.Date.ToShortTimeString()  </p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+		
+		}
+	</div>
+</div>
