@@ -23,58 +23,40 @@ namespace Afisha.Controllers
             this.hostingEnvironment = hostEnvironment;
         }
 
-       
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Buy(Guid EventID, string session, string hall, string selectedSeats,string userName)
+        public IActionResult Buy(Guid EventID, string session, string hall, string selectedSeats, string userName)
         {
-            dataManager.Tickets.SaveTicketItem(EventID,session,hall,selectedSeats,userName);
+            dataManager.Tickets.SaveTicketItem(EventID, session, hall, selectedSeats, userName);
             return RedirectToAction("Index", "Home");
 
         }
 
         public IActionResult ShowTickets(string name)
         {
-            return View(dataManager.Tickets.GetTicketsByName(name));
+            var list = new List<TicketWithEventData>();
+            foreach (var item in dataManager.Tickets.GetTicketsByName(name).ToList())
+            {
+                list.Add(dataManager.Tickets.GetTicketWithEventData(item.Id));
+            }
+            return View(list);
         }
 
         public IActionResult TicketInfo(Guid id)
         {
 
-            return View("TicketInfo", dataManager.Tickets.GetTicketItemById(id));
+            return View("TicketInfo", dataManager.Tickets.GetTicketWithEventData(id));
         }
 
-            public ActionResult TicketWithEventData(Guid id)
-            {
-
-            var ticket = dataManager.Tickets.GetTicketItemById(id);
-            var eventData = dataManager.Events.GetEventItemById(ticket.EventId);
-
-            var model = new TicketWithEventData
-            {
-                TicketId = ticket.Id,
-                EventId = ticket.EventId,
-                UserName = ticket.UserName,
-                Title = eventData.Title,
-                Subtitle = eventData.Subtitle,
-                Text = eventData.Text,
-                Image = eventData.Image,
-                Date = eventData.Date,
-                Cost = eventData.Cost,
-                Type = eventData.Type,
-                Age = eventData.Age,
-                PCard = eventData.PCard,
-                TitleImagePath = eventData.TitleImagePath,
-                QR = ticket.QR,
-                Address = eventData.Address
-                };
-
-                return View(model);
-            }
+        public IActionResult TicketWithEventData(Guid id)
+        {
+            return View(dataManager.Tickets.GetTicketWithEventData(id));
         }
-
-
     }
+
+
+}
 

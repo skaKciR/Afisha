@@ -25,6 +25,7 @@ namespace Afisha.Domain.Entities
         }
 
         public Guid EventId { get; set; }
+
         [Required(ErrorMessage = "Заполните название мероприятия")]
 
         public byte[]? QR { get; set; }

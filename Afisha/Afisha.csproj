@@ -43,9 +43,10 @@
 
   <ItemGroup>
     <Reference Include="MessagingToolkit.QRCode">
-      <HintPath>..\..\Users\slise\Downloads\MessagingToolkit.QRCode.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\MessagingToolkit.QRCode.dll</HintPath>
     </Reference>
   </ItemGroup>
+
 
 
 
