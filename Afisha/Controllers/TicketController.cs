@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Afisha.Models;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Afisha.Controllers
 {
     public class TicketController : Controller
@@ -39,12 +40,41 @@ namespace Afisha.Controllers
             return View(dataManager.Tickets.GetTicketsByName(name));
         }
 
-        public IActionResult TicketInfo(int number)
+        public IActionResult TicketInfo(Guid id)
         {
 
-            return View("TicketInfo", dataManager.Tickets.GetTicketItemByNumber(number));
+            return View("TicketInfo", dataManager.Tickets.GetTicketItemById(id));
         }
-       
+
+            public ActionResult TicketWithEventData(Guid id)
+            {
+
+            var ticket = dataManager.Tickets.GetTicketItemById(id);
+            var eventData = dataManager.Events.GetEventItemById(ticket.EventId);
+
+            var model = new TicketWithEventData
+            {
+                TicketId = ticket.Id,
+                EventId = ticket.EventId,
+                UserName = ticket.UserName,
+                Title = eventData.Title,
+                Subtitle = eventData.Subtitle,
+                Text = eventData.Text,
+                Image = eventData.Image,
+                Date = eventData.Date,
+                Cost = eventData.Cost,
+                Type = eventData.Type,
+                Age = eventData.Age,
+                PCard = eventData.PCard,
+                TitleImagePath = eventData.TitleImagePath,
+                QR = ticket.QR,
+                Address = eventData.Address
+                };
+
+                return View(model);
+            }
+        }
+
 
     }
-}
+

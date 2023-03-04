@@ -1,7 +1,6 @@
 ﻿@model Event
 <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@Model.Id">
     <div id="tekst_sverhu_kartinki">
-        @*                        <img style="max-height:520px;    min-height: 170px;filter:brightness(0.8);" src="~/images/@Model[0].First().TitleImagePath" class="d-block w-100" alt="">*@
         <img style="max-height:520px;    min-height: 170px;filter:brightness(0.8);" src=@string.Concat("data:image/jpeg;base64,", Convert.ToBase64String(@Model.Image)) class="d-block w-100">
         <div class="tekst_sverhu_kartinki_1" style="top: 7%;left: 6%;">
             <p style="font-size: 2.5vmin;" class="h2">@Model.Type  @Model.Age+ </p>

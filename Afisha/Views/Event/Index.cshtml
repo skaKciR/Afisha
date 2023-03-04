@@ -1,74 +1,89 @@
 ﻿
 
-@model IQueryable<Event>
-@{
-    TextField textField = ViewBag.TextField;
 
-    ViewBag.Title = textField.MetaTitle;
-    ViewBag.Description = textField.MetaDescription;
-    ViewBag.Keywords = textField.MetaKeywords;
-
-}
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/cdb.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/cdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 
 <div>
-    @if (Model.Any())
-    {
-    <div class="row features">
-        <ul class="section1">
+    <div class="row" style="margin-bottom:2ex"><h1 class="mx-auto">Адрес недвижимост</h1></div>
 
-            @foreach (Event entity in Model)
-            {<li class="section__item">
+@*Слайдер изображений*@
 
-	             <section class="col-4 col-12-narrower feature">
-		             <div class="image-wrapper first">
-			             <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id" class="image featured">
-                             
-				          
-                                    <img class="slider" src=@string.Concat("data:image/jpeg;base64,", Convert.ToBase64String(entity.Image)) alt=""/>
-			             </a>
-		             </div>
-		             <header>
-			             <h1>@entity.Title</h1>
-		             </header>
-		             <p>
-			             @entity.Subtitle
-		             </p>
-                            <form asp-controller="Cart" asp-action="AddToCart" asp-route-eventId="@entity.Id" asp-route-userName="@User.Identity.Name">
-                                <p>
-									<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Добавить в корзину</button>
-                                </p>
-                               
-								
-								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-tittle" id="#exampleModalLabel">
-													Добавление в корзину <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-												</h5>
+@*Информация*@
+<div class="info mx-auto d-grid">
+<h3> Местоположение: </h3>
+@*Карта Яндекса*@
 
-												<button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-											</div>
-											<div class="modal-body">
-												<h5 class="modal-body" id="#exampleModalLabel"> Билет на успешно добавлен в корзину @entity.Type "@entity.Title" добавлен в корзину </h5>
-											</div>
-											<div class="modal-footer">
-												
-											</div>
-										</div>
-									</div>	
-								</div>
-                            </form>
+        @*Помещение*@
+        <div class="roomArea">
+            <div class="roomAreatext d-flex">
+                <h3> Площадь помещения: </h3>
+                <h2 class="text-gray" style="margin-left:3px;margin-top:-1px">64.2 м&#178;</h2>
+            </div>
+            <a href="#" data-toggle="modal" data-target="#exampleModal">
+                <img src="/images/1637585487_70-idei-club-p-plan-rasstanovki-mebeli-interer-krasivo-fo-73.jpg" class="d-block mx-auto rounded" alt="...">
+            </a>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <img src="/images/1637585487_70-idei-club-p-plan-rasstanovki-mebeli-interer-krasivo-fo-73.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	             </section>
+<h3> Месячная прибыль: ~</h3>
+<h3> Средний срок оккупаемости: ~ </h3>
 
-
-
-
-             </li>
-
-            }
-        </ul></div>
-    }
 </div>
+
+@*Рыночная стоимость*@
+<div>
+    <button class="btn btn-primary mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        График рыночной стоимости
+    </button>
+        <div class="card chart-container row gy-5 mx-auto" id="collapseExample" style="margin-top:2ex;">
+                <canvas id="chart"></canvas>
+            </div>
+</div>
+</div>
+
+<script>
+      const ctx = document.getElementById("chart").getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["Март","Апрель","Май"],
+          datasets: [{
+            label: 'Рыночная стоимость',
+            backgroundColor: 'rgba(161, 198, 247, 1)',
+            borderColor: 'rgb(47, 128, 237)',
+            data: [1000000, 2000000, 1500000],
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                        beginAtZero: false,
+                        suggestedMin: 800000
+              }
+            }]
+          }
+        },
+      });
+</script>
+
+<style>
+    .roomArea img{
+        max-width:500px;
+        max-height:500px;
+    }
+</style>

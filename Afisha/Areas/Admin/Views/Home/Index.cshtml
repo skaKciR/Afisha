@@ -1,92 +1,72 @@
 ﻿@using Afisha.Domain.Entities
 @model IQueryable<Event>
 @{
-	string strTitle = "Панель администратора";
-	ViewBag.Title = strTitle;
+    string strTitle = "Панель администратора";
+    ViewBag.Title = strTitle;
 }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
+<div class=" row col-md-6 mx-auto mt-3">
+    <div class="card border p-0" style="background:#27293d">
+        <h1 class="text-white mx-auto mt-1" style="font-family: 'Raleway', sans-serif;">Панель Администратора</h1>
+        <div class="div-box mx-auto">
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                <input class="btn btn-danger mb-2 pb-1 pt-1 pe-5 ps-5 text-white" style="background:#ff0000bf" type="submit" value="Выйти" />
+            </form>
+        </div>
+    </div>
 
-<div>
-	<h1>@strTitle</h1>
-	<div class="container">
-		<h2 class="text-warning">Мероприятия</h2>
-		<a asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id=""><button type="button" class="btn btn-success">Добавить мероприятие</button></a>
-		@if (Model.Any())
-		{
-			<div>
-				@foreach (Event entity in Model)
-				{
-					<div class="d-flex">
-						<a class="m-2" asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
-                            <h4>@($"{entity.Title}")</h4>
-						</a>
-						<h4 class="m-2">|</h4>
-						<a class="m-2" asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id="@entity.Id"><h4>Редактировать</h4></a>
-						<h4 class="m-2">|</h4>
-						<form class="m-2" style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="EventItems" asp-action="Delete" method="post">
-							<input type="hidden" name="id" value="@entity.Id">
-                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();"><h4>Удалить</h4> </a>
-						</form>
-					</div>
-				}
-			</div>
-		}
-	</div>
 </div>
-<div>
-	<form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
-		<input type="submit" value="Выйти" />
-	</form>
+
+<div class="row mt-3 mx-auto">
+    <div class="col-12 mx-auto p-0">
+        <div class="card" style="background: #27293d">
+            <div class="card-header ">
+                <div class="row">
+                    <div class="col-sm-8 text-left">
+                        <h5 class="card-category" style="font-family: 'Raleway', sans-serif; color:#9a9a9a;">Редактирование</h5>
+                        <h2 class="card-title text-white ms-3" style="font-family: 'Raleway', sans-serif;">Мероприятия</h2>
+                    </div>
+                    <div class="col-sm-4 float-right pt-2">
+                        <a asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id=""> <div class="d-flex mx-auto"><button class="btn btn-success text-white pe-5 ps-5" style="border-radius: 10px;margin-right:0 !important;margin-left:auto !important; font-family: 'Raleway', sans-serif;">Добавить</button></div> </a>
+                        <div class="input-group mt-3">
+                            <input type="text" class="form-control ms-5">
+                            <button class="btn btn-warning text-white" style="background:linear-gradient(90deg, rgba(191,83,240,1) 0%, rgba(224,78,202,1) 100%); border:none">Поиск</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        @if (Model.Any())
+                        {
+                            @foreach (Event entity in Model)
+                            {
+                                <li class="border rounded mb-3" style="border-color:linear-gradient(90deg, rgba(191,83,240,1) 0%, rgba(224,78,202,1) 100%) !important;">
+                                    <div class="d-flex p-2">
+                                        <a asp-area="" asp-controller="Event" asp-action="Index" asp-route-id="@entity.Id">
+                                            <h3 class="text-white fw-light ms-2 me-2 mt-1" style="font-family: 'Raleway', sans-serif;">@($"{entity.Title}") </h3>
+                                        </a>
+                                        <div class="me-0 ms-auto">
+                                            <a asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id="@entity.Id"><button type="button" class="btn btn-dark ms-2 me-2" style="background:linear-gradient(90deg, rgba(191,83,240,1) 0%, rgba(224,78,202,1) 100%) !important; font-family: 'Raleway', sans-serif;">Редактировать</button></a>
+                                            <form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="EventItems" asp-action="Delete" method="post">   <a href="#" onclick="document.getElementById('form-@entity.Id').submit();"><button type="button" class="btn btn-danger ms-2 me-2 ps-4 pe-4" style="font-family: 'Raleway', sans-serif;">Удалить</button>  </a><input type="hidden" name="id" value="@entity.Id"> </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-	a {
-		text-decoration:none !important;
-	}
-	h4:hover{
-		transition:0.3s !important;
-		color:red !important;
-	}
+    a {
+        text-decoration: none;
+    }
 </style>
-
-@*<div class="admin">
-	<h1>@strTitle</h1>
-	<div>
-		<h2>Мероприятия</h2>
-		<div class="admin_">
-			<a asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id="">Добавить мероприятие</a>
-		</div>
-
-		@if (Model.Any())
-		{
-			<div>
-				@foreach (Event entity in Model)
-				{
-					<div class="admin_cont">
-						<a asp-area="Admin" asp-controller="EventItems" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
-						<a>|</a>
-						<form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="EventItems" asp-action="Delete" method="post">
-							<input type="hidden" name="id" value="@entity.Id">
-							<a href="#" onclick="document.getElementById('form-@entity.Id').submit();">Удалить </a>
-						</form>
-						<a>|</a>
-						
-						<a asp-area="" asp-controller="Events" asp-action="Index" asp-route-id="@entity.Id">
-							@($"{entity.Title}")
-						</a>
-					</div>
-				}
-			</div>
-		}
-	</div>
-		<h2>Редактировать страницы сайта</h2>
-		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
-		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageServices">Концерты</a>
-		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Кино</a>
-
-	<div class="div-box">
-		<form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
-			<input type="submit" value="Выйти" />
-		</form>
-	</div>
-</div>*@

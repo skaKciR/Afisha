@@ -8,8 +8,8 @@ namespace Afisha.Domain.Repositories.Abstract
     {
         public IQueryable<Ticket> GetTicketsByName(string name);
         public void SaveTicketItem(Guid EventID, string session, string hall, string selectedSeats, string userName);
-        Ticket GetTicketItemByNumber(int number);
-        public byte[] GetQRByNumberTicket(int number, string host);
+        Ticket GetTicketItemById(Guid Id);
+        public byte[] GetQRByIdTicket(Guid Id, string host);
         public string GetSelectedSeatsById(Guid EventID);
     }
 }

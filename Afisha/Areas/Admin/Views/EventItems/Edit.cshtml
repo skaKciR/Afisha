@@ -1,92 +1,133 @@
 ﻿@model Afisha.Domain.Entities.Event
 
 @{
-    string strTitle = "Редактировать запись";
+    string strTitle = "Новое мероприятие";
     ViewBag.Title = strTitle;
 }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
-<script src="~/js/ckeditor/ckeditor.js"></script>
+<div class=" row col-md-6 mx-auto mt-3">
+    <div class="card border p-0" style="background:#27293d">
+        @if (Model.Title != null)
+        {
+            <h1 class="text-white mx-auto mt-1" style="font-family: 'Raleway', sans-serif;">@Model.Title</h1>
+        }
+        else {
+            <h1 class="text-white mx-auto mt-1" style="font-family: 'Raleway', sans-serif;">Новое мероприятие</h1>
+        }
+        </div>
+</div>
 
-<div>
-    <h1>@strTitle</h1>
-    <div class="admins">
-        <form asp-area="Admin" asp-controller="EventItems" asp-action="Edit" method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="DateAdded" />
-            <input type="hidden" asp-for="TitleImagePath" />
-
-            <div asp-validation-summary="All"></div>
-            <div class="div-box">
-	            <label asp-for="Title"></label>
-	            <input asp-for="Title" />
-	            <span asp-validation-for="Title"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="Type"></label>
-                <input asp-for="Type" />
-                <span asp-validation-for="Type"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="Age"></label>
-                <input asp-for="Age" />
-                <span asp-validation-for="Age"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="Cost"></label>
-                <input asp-for="Cost" />
-                <span asp-validation-for="Cost"></span>
-            </div>
-              <div class="checkbox-group">
-	                <label asp-for="PCard"></label>
-                    <input type="checkbox" asp-for="PCard"  />
-                <span asp-validation-for="PCard"></span>
-            </div>
-            <div class="div-box">
-	            <label asp-for="Date"></label>
-	            <input asp-for="Date" />
-	            <span asp-validation-for="Date"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="Address"></label>
-                <input asp-for="Address" />
-                <span asp-validation-for="Address"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="Subtitle"></label>
-                <input asp-for="Subtitle" />
-                <span asp-validation-for="Subtitle"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="Text"></label>
-                <textarea asp-for="Text"></textarea>
-                <span asp-validation-for="Text"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="TitleImagePath"></label>
-                <input type="file" name="titleImageFile" id="titleImageFile" />
-                <div>
-                    <img class="img-block" src="~/images/@Model.TitleImagePath" />
+<div class="row mt-3 mx-auto">
+    <div class="col-12 mx-auto p-0">
+        <div class="card" style="background: #27293d">
+            <div class="card-header ">
+                <div class="row">
+                    <div class="col-sm-8 text-left">
+                        <h5 class="card-category" style="font-family: 'Raleway', sans-serif; color:#9a9a9a;">Редактирование</h5>
+                        <h2 class="card-title text-white ms-3" style="font-family: 'Raleway', sans-serif;">Мероприятия</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="pe-2">
+                        <li class="border rounded mb-3" style="border-color:linear-gradient(90deg, rgba(191,83,240,1) 0%, rgba(224,78,202,1) 100%) !important;">
+                            <div class="mx-auto p-2">
+                                <form asp-area="Admin" asp-controller="EventItems" asp-action="Edit" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="hidden" asp-for="DateAdded" />
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="div-box">
+                                        <label asp-for="Title"></label>
+                                        <input class="m-0" style="width:20rem !important; font-family: 'Raleway', sans-serif;" asp-for="Title" />
+                                        <span asp-validation-for="Title"></span>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="Type"></label>
+                                        <select class="form-select p-2 m-0" style="width:20rem !important; font-family: 'Raleway', sans-serif;" aria-label="Пример выбора по умолчанию" asp-for="Type">
+                                            <option value="Концерт" selected>Концерт</option>
+                                            <option value="Кино">Кино</option>
+                                            <option value="StandUP Шоу">StandUP Шоу</option>
+                                            <option value="Спектакль">Спектакль</option>
+                                        </select>
+                                        <span asp-validation-for="Type"></span>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="Age"></label>
+                                        <input class="text-center border border-1 rounded" style="width:5rem !important; padding:0.2rem;" asp-for="Age" />
+                                        <span asp-validation-for="Age"></span>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="Cost"></label>
+                                        <input class="text-center border border-1 rounded p-1 m-0" style="width:10rem !important;" asp-for="Cost" />
+                                        <span asp-validation-for="Cost"></span>
+                                        <div class="checkbox-group m-0">
+                                            <label asp-for="PCard"></label>
+                                            <input type="checkbox" asp-for="PCard" />
+                                            <span asp-validation-for="PCard"></span>
+                                        </div>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="Date"></label>
+                                        <input class="text-center border border-1 rounded" style="padding:0.2rem" asp-for="Date" />
+                                        <span asp-validation-for="Date"></span>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="Address"></label>
+                                        <input class="m-0" style="width:25rem !important; font-family: 'Raleway', sans-serif;" asp-for="Address" />
+                                        <span asp-validation-for="Address"></span>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="Subtitle"></label>
+                                        <input class="m-0" style="width:30rem !important; font-family: 'Raleway', sans-serif;" asp-for="Subtitle" />
+                                        <span asp-validation-for="Subtitle"></span>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="Text"></label>
+                                        <textarea class="m-0" style="width:55rem !important; font-family: 'Raleway', sans-serif;" asp-for="Text"></textarea>
+                                        <span asp-validation-for="Text"></span>
+                                    </div>
+                                    <div class="div-box mt-2">
+                                        <label>Изображение </label>
+                                        <input type="file" name="titleImageFile" id="titleImageFile" />
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="MetaTitle"></label>
+                                        <input class="m-0" style="width:20rem !important; font-family: 'Raleway', sans-serif;" asp-for="MetaTitle" />
+                                        <span asp-validation-for="MetaTitle"></span>
+                                    </div>
+                                    <div class="div-box">
+                                        <label asp-for="MetaDescription"></label>
+                                        <input class="m-0" style="width:20rem !important; font-family: 'Raleway', sans-serif;" asp-for="MetaDescription" />
+                                        <span asp-validation-for="MetaDescription"></span>
+                                    </div>
+                                    <div class="div-box mb-5">
+                                        <label asp-for="MetaKeywords"></label>
+                                        <input class="m-0" style="width:20rem !important; font-family: 'Raleway', sans-serif;" asp-for="MetaKeywords" />
+                                        <span asp-validation-for="MetaKeywords"></span>
+                                    </div>
+                                    <div class="btn btn-success d-grid mx-auto col-3">
+                                        <button class="btn btn-success text-white pe-5 ps-5 mx-auto" type="submit">Сохранить</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="div-box">
-                <label asp-for="MetaTitle"></label>
-                <input asp-for="MetaTitle" />
-                <span asp-validation-for="MetaTitle"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="MetaDescription"></label>
-                <input asp-for="MetaDescription" />
-                <span asp-validation-for="MetaDescription"></span>
-            </div>
-            <div class="div-box">
-                <label asp-for="MetaKeywords"></label>
-                <input asp-for="MetaKeywords" />
-                <span asp-validation-for="MetaKeywords"></span>
-            </div>
-            <input type="submit" value="Сохранить" />
-        </form>
+        </div>
     </div>
 </div>
+
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
 
 
 

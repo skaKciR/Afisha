@@ -1,13 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
-namespace Afisha.Domain.Entities
+namespace Afisha.Models
 {
-    public class Event
+    public class TicketWithEventData
     {
-        public Event() => DateAdded = DateTime.UtcNow;
+        [Key]
+        [Required]
+        public Guid TicketId { get; set; }
+
+        public Guid EventId { get; set; }
 
         [Required]
-        public Guid Id { get; set; }
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Заполните название мероприятия")]
         [Display(Name = "Название (заголовок)")]
@@ -27,18 +32,9 @@ namespace Afisha.Domain.Entities
 
         public byte[]? Image { get; set; }
 
-        [Display(Name = "SEO метатег Title")]
-        public string? MetaTitle { get; set; }
-
-        [Display(Name = "SEO метатег Description")]
-        public string? MetaDescription { get; set; }
-
-        [Display(Name = "SEO метатег Keywords")]
-        public string? MetaKeywords { get; set; }
+        public byte[]? QR { get; set; }
 
         [DataType(DataType.Time)]
-        public DateTime DateAdded { get; set; }
-
         public DateTime Date { get; set; }
 
         [Display(Name = "Стоимость билета")]
@@ -49,6 +45,15 @@ namespace Afisha.Domain.Entities
 
         [Display(Name = "Возрастное ограничение")]
         public int? Age { get; set; }
+
+        [Display(Name = "Сеанс")]
+        public string Session { get; set; }
+
+        [Display(Name = "Зал")]
+        public string Hall { get; set; }
+
+        [Display(Name = "Выбранные места")]
+        public string SelectedSeats { get; set; }
 
         [Display(Name = "Пушкинская карта")]
         public bool PCard { get; set; } = false;
